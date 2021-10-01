@@ -1,3 +1,5 @@
+/* Programa que simula un asistente de voz que te contesta una serie de palabras guardadas en una lista si 
+el usuario escribe una serie de frases,con Adiós se cierra el programa*/
 
 import java.util.HashMap;
 import java.util.Iterator;
