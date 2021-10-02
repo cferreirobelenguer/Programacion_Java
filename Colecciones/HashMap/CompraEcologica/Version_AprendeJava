@@ -1,0 +1,69 @@
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class SupermercadoEcologico {
+
+  public static void main(String[] args) {
+  
+  //Crea HashMap e introduce datos de los productos que hay con su precio
+    HashMap<String, Double> productos = new HashMap<String, Double>();
+    productos.put("avena", 2.21);
+    productos.put("garbanzos", 2.39);
+    productos.put("tomate", 1.59);
+    productos.put("jengibre", 3.13);
+    productos.put("quinoa", 4.50);
+    productos.put("guisantes", 1.60);
+    
+    
+    //Declaración de variables
+    Scanner s = new Scanner(System.in);
+    String productoIntroducido = "";
+    int cantidadIntroducida = 0;
+  
+    //Crea dos ArrayList que van a almacenar los productos y las cantidades elegidas
+    ArrayList<String> listaProductos = new ArrayList<>();
+    ArrayList<Integer> listaCantidades = new ArrayList<>();
+    
+    //bucle en el que se introducen los productos y cantidades que elige el usuario y se almacenan en los ArrayList hasta que el usuario introduzca fin.
+    do {
+      System.out.print("Producto: ");
+      productoIntroducido = s.nextLine();
+      
+      if (!productoIntroducido.equals("fin")) {
+        System.out.print("Cantidad: ");
+        cantidadIntroducida = Integer.parseInt(s.nextLine());
+        listaProductos.add(productoIntroducido);
+        listaCantidades.add(cantidadIntroducida);
+      }
+      
+    } while (!productoIntroducido.equals("fin"));
+    
+    
+    //Se imprime el ticket de compra
+    
+    System.out.println("Producto Precio Cantidad Subtotal");
+    System.out.println("---------------------------------");
+    
+    double total = 0;
+    
+    //Se recorre ArrayList de productos y se almacenan los productos y cantidades de los ArrayList en las variables producto y precio
+    for (int i = 0; i < listaProductos.size(); i++) {
+      String producto = listaProductos.get(i);
+      double precio = productos.get(producto);
+      int cantidad = listaCantidades.get(i);
+      
+      //Se calcula el subtotal a través de las variables precio y cantidad
+      double subtotal = precio * cantidad;
+      //Se va calculando el total añadiendo el subtotal en el bucle for
+      total += subtotal;
+      
+      //Se imprimen en columnas los resultados
+      System.out.printf("%-8s %7.2f %6d  %7.2f\n", producto, precio, cantidad, subtotal);
+    }
+    
+    System.out.println("---------------------------------");
+    System.out.printf("TOTAL: %.2f", total);
+  }
+}
