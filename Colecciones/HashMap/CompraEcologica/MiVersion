@@ -50,8 +50,9 @@ public class compraMercado {
 	
 	
 	public static void pedido(HashMap listaCompra,ArrayList productosElegidos,ArrayList preciosElegidos,ArrayList cantidadTotal, ArrayList subtotalPrecio ) {
-		
+		System.out.println("--------MERCADO ECOLÓGICO-------");
 		System.out.println(listaCompra);
+		System.out.println("__________________________________");
 		int contador=0;
 		do {
 		
@@ -140,4 +141,5 @@ public class compraMercado {
 		System.out.println("__________________________________");
 		}
 	}
+
 
