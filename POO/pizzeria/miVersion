@@ -8,7 +8,7 @@ información sobre el número total de pizzas que se han pedido y que se
 han servido. Siempre que se crea una pizza nueva, su estado es “pedida”.
  * 
  * 
- * autor:Carolina Ferreiro*/
+ * @autor:Carolina Ferreiro*/
 import java.util.Scanner;
 
 public class pizzeria {
