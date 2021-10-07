@@ -1,0 +1,114 @@
+
+/* 
+ * 11. La empresa El Corte Islandés nos ha encargado una aplicación
+ * para gestionar las tarjetas regalo. Como primer paso para implementar
+ * la aplicación, es necesario crear la clase principal. Implementar la clase
+ * TarjetaRegalo. Cuando se crea una nueva tarjeta, se le da un saldo y se asigna de forma automática
+ * un número de 5 dígitos. Si se intenta gastar más dinero del que tiene la tarjeta,
+ * se debe mostrar un mensaje de error. Dos tarjetas regalo se pueden fusionar creando
+ * una nueva tarjeta con la suma del saldo que tenga cada una y un nuevo número aleatorio de 5 cifras.
+ * Al fusionar dos tarjetas en una, las dos tarjetas originales se quedarían con 0€ de saldo.
+ *
+ *
+ *@aurtor Carolina Ferreiro*/
+
+package corteIrlandes;
+
+import java.util.Scanner;
+
+public class TarjetaRegalo {
+static Scanner sc=new Scanner(System.in);
+
+static protected int saldo;
+static protected StringBuffer numero;
+
+
+	public TarjetaRegalo(int saldo,StringBuffer numero) {
+		this.saldo=saldo;
+		this.numero=numero;
+		
+	}
+	public int saldoAleatorio() {
+		//Saldo aleatorio para atributo saldo
+		this.saldo=(int) (Math.random()*19+1);
+		return this.saldo;
+	}
+	public void numeroAleatorio() {
+		//Número aleatorio para atributo numero
+		int[]array=new int[5];
+		for(int i=0;i<array.length;i++) {
+			array[i]=(int)(Math.random()*9+1);
+			
+		}
+		StringBuffer cadena = new StringBuffer();
+		for(int j=0;j<array.length;j++) {
+			cadena=cadena.append(array[j]);
+		}
+		this.numero=cadena;
+	}
+	public void gastar() {
+		//Gastamos saldo
+		System.out.println("¿Cuánto dinero quiere gastar?");
+		int dinero=sc.nextInt();
+		if(dinero>this.saldo) {
+			System.out.println("El saldo es superior del saldo disponible en su tarjeta regalo");
+		}else {
+			this.saldo=this.saldo-dinero;
+			System.out.println("Usted ha gastado "+dinero+" € de su tarjeta dinero");
+		}
+		
+	}
+	public void cargarSaldo() {
+		//Cargamos saldo
+		System.out.println("¿Cuánto dinero quiere cargar en el saldo de su tarjeta regalo?");
+		int carga=sc.nextInt();
+		if(carga<=0) {
+			System.out.println("No se puede procesar su solicitud");
+		}else {
+			this.saldo=this.saldo+carga;
+			System.out.println("Usted ha cargado "+carga+" € en su tarjeta regalo");
+		}
+	}
+	public void fusionaCon(TarjetaRegalo tarjeta) {
+		//Fusionamos dos tarjetas regalo y creamos una nueva con la suma del saldo de ambas
+		int saldoTotal=this.saldo+tarjeta.saldo;
+		StringBuffer numeroTotal;
+		int[]array2=new int[5];
+		for(int i=0;i<array2.length;i++) {
+			array2[i]=(int)(Math.random()*9+1);
+			
+		}
+		StringBuffer cadena = new StringBuffer();
+		for(int j=0;j<array2.length;j++) {
+			cadena=cadena.append(array2[j]);
+		}
+		numeroTotal=cadena;
+		TarjetaRegalo tarjeta4=new TarjetaRegalo(saldoTotal,numeroTotal);
+		this.saldo=0;
+		tarjeta.saldo=0;
+		System.out.println("Tras la fusión su nueva tarjeta con número "+numeroTotal+" tiene un saldo de "+saldoTotal+" , y el saldo de la tarjeta que está usando es de "+this.saldo);
+	}
+	@Override
+	public String toString() {
+		return "Información de tarjeta regalo : [Saldo: " + TarjetaRegalo.saldo + ", Numero asignado: "+this.numero+"  ]";
+	}
+
+
+	public static void main(String[] args) {
+		//Tarjetas Regalo
+		TarjetaRegalo tarjeta1=new TarjetaRegalo (saldo,numero);
+		TarjetaRegalo tarjeta2=new TarjetaRegalo (saldo,numero);
+		TarjetaRegalo tarjeta3=new TarjetaRegalo (saldo,numero);
+		
+		//Llamada a métodos
+		tarjeta1.saldoAleatorio();
+		tarjeta1.numeroAleatorio();
+		tarjeta1.gastar();
+		tarjeta1.cargarSaldo();
+		System.out.println(tarjeta1.toString());
+		tarjeta1.fusionaCon(tarjeta3);
+		
+		
+	}
+
+}
