@@ -1,0 +1,38 @@
+
+
+/*int Me devuelve el número de vocales que tiene la cadena
+ * pasada como parámetro
+ * */
+ 
+
+package ejerciciosstring;
+
+import java.util.Scanner;
+
+public class cuentaVocales {
+static Scanner sc=new Scanner(System.in);
+	
+	public static void contarVocales(String palabra) {
+		int contadorVocales=0;
+		char[] arrayVocales=new char[palabra.length()];
+		for(int i=0;i<palabra.length();i++) {
+			
+			arrayVocales[i]=palabra.charAt(i);
+			
+		}
+		
+		for(int j=0;j<arrayVocales.length;j++) {
+			if((arrayVocales[j]=='a')||(arrayVocales[j]=='A')||(arrayVocales[j]=='e')||(arrayVocales[j]=='E')||(arrayVocales[j]=='i')||(arrayVocales[j]=='I')||(arrayVocales[j]=='o')||(arrayVocales[j]=='O')||(arrayVocales[j]=='u')||(arrayVocales[j]=='U')) {
+			contadorVocales++;
+			}
+		}
+		System.out.println("El total de vocales que tiene la palabra es "+contadorVocales);
+	}
+	public static void main(String[] args) {
+		
+		System.out.println("Introduce una palabra");
+		String palabra=sc.nextLine();
+		cuentaVocales.contarVocales(palabra);
+	}
+
+}
