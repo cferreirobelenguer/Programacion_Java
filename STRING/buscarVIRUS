@@ -1,0 +1,32 @@
+
+
+/*Me devuelve un entero con el número de veces que aparece 
+ * la subcadena VIRUS en la cadena pasada por parámetro*/
+ 
+package ejerciciosstring;
+
+import java.util.Scanner;
+
+public class contarVirus {
+static Scanner sc=new Scanner(System.in);
+static String virus="virus";
+
+	public static int buscarVIRUS(String palabra) {
+		int posicion;
+		int contadorVirus = 0;
+		posicion=palabra.indexOf(virus);
+		
+		while(posicion!=-1) {
+			contadorVirus++;
+			posicion=palabra.indexOf(virus,posicion+1);
+		}
+		
+		return contadorVirus;
+	}
+	public static void main(String[] args) {
+		System.out.println("Introduce una frase con la palabra VIRUS tantas veces como quieras");
+		String palabra=sc.nextLine();
+		System.out.println("El número de virus encontrados es "+contarVirus.buscarVIRUS(palabra));
+	}
+
+}
