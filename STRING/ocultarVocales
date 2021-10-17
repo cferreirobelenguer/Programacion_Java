@@ -1,0 +1,23 @@
+
+
+/* Devuelve una cadena que cambia los caracteres por asteriscos */
+package ejerciciosstring;
+
+import java.util.Scanner;
+
+public class ocultaVocales_ {
+static Scanner sc=new Scanner(System.in);
+	
+	public static String OcultaVocales(String palabra) {
+		String palabraNueva = "";
+		palabraNueva=palabra.replaceAll("[aeiouAEIOU]", "*");
+		return palabraNueva;
+	}
+	public static void main(String[] args) {
+		System.out.println("Introduce una palabra");
+		String palabra=sc.nextLine();
+		System.out.println("La nueva palabra con las vocales ocultas es "+ocultaVocales_.OcultaVocales(palabra));
+
+	}
+
+}
