@@ -1,0 +1,36 @@
+
+
+
+/*El método genera un String donde se debe
+ * repetir el último caracter de la palabra un 
+ * determinado número de veces
+ *  */
+
+package ejerciciosString;
+
+import java.util.Scanner;
+
+public class PonEco {
+static Scanner sc=new Scanner(System.in);
+
+	public static void hacerEco(String cadena,int veces) {
+		String total="";
+		String palabraTotal="";
+		String palabraFinal=cadena.substring(cadena.length()-1,cadena.length());
+		
+		for(int i=0;i<veces;i++) {
+			total+=palabraFinal;
+		}
+		palabraTotal=cadena+total;
+		System.out.println(palabraTotal);
+	}
+	public static void main(String[] args) {
+		
+		System.out.println("Introduce una palabra: ");
+		String cadena=sc.nextLine();
+		System.out.println("Introduce el número de veces que se repite la palabra");
+		int veces=sc.nextInt();
+		PonEco.hacerEco(cadena, veces);
+	}
+
+}
