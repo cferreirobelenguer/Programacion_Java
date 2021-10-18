@@ -1,0 +1,25 @@
+
+
+/*3.-   String  CortarCadena ( String CadenaOrigen,  int posini, int posfin)
+
+ Función que genera una cadena a partir de  la cadena origen, suprimiendo 
+ los caracteres que se encuentren entre la posición posini y la posición posfin.  */
+
+package ejerciciosString;
+
+public class cortarCadena {
+	public static void cortarCadena_(String cadena,String posini,String posfin) {
+		
+		cadena=cadena.replace(posini, "");
+		cadena=cadena.replace(posfin, "");
+		System.out.println(cadena);
+	}
+	public static void main(String[] args) {
+		String cadena="El examen no parece dificil,9,10";
+		String posini="no";
+		String posfin=",9,10";
+		cortarCadena.cortarCadena_(cadena, posini, posfin);
+		
+	}
+
+}
