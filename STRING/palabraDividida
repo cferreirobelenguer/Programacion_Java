@@ -1,0 +1,90 @@
+
+
+/* 1.- Partir una frase en dos. 
+ * A continuación partir cada una de las dos mitades en otras dos.
+ *  Mostrar las cuatro partes. (Si en cualquier división el número 
+ *  es impar la primera mitad tendrá un carácter más). 
+ * Probarlo con “Esta es la frase que vamos a partir en cuatro” */
+
+package ejerciciosstring;
+
+import java.util.Scanner;
+
+public class ejercicio1Marta {
+	static Scanner sc=new Scanner(System.in);
+	public static void dividirFrase(String frase) {
+		String frase1_=frase.substring(0,frase.length()/2);
+		String frase2_=frase.substring(frase.length()/2,frase.length());
+		
+		String frase1=frase1_.substring(0,frase1_.length()/2);
+		String frase2=frase1_.substring(frase1_.length()/2,frase1_.length());
+		
+		String frase3=frase2_.substring(0,frase2_.length()/2);
+		String frase4=frase2_.substring(frase2_.length()/2,frase2_.length());
+		
+		boolean impar=false;
+		int longitud1=frase1.length();
+		int longitud2=frase2.length();
+		int longitud3=frase3.length();
+		int longitud4=frase4.length();
+		System.out.println("RECUENTO DE CARACTERES DE FRASES PARTIDAS:");
+		System.out.println(longitud1);
+		System.out.println(longitud2);
+		System.out.println(longitud3);
+		System.out.println(longitud4);
+		StringBuilder frases1=new StringBuilder();
+		StringBuilder frases2=new StringBuilder();
+		StringBuilder frases3=new StringBuilder();
+		StringBuilder frases4=new StringBuilder();
+		
+		System.out.println("RECUENTO DE CARACTERES DE FRASES CON CARACTER AÑADIDO SI ES NECESARIO:");
+		if(longitud1%2!=0) {
+			
+			frases1.append(frase1).append("*");
+			longitud1=frases1.length();
+			System.out.println("1º cadena : "+frases1+" , Longitud de la cadena resultante: "+longitud1);
+		}else {
+			frase1=frase1;
+			longitud1=longitud1;
+			System.out.println("1º cadena : "+frase1+" , Longitud de la cadena resultante: "+longitud1);
+		}
+		if(longitud2%2!=0) {
+			
+			frases2.append(frase2).append("*");
+			longitud2=frases2.length();
+			System.out.println("2º cadena : "+frases2+" , Longitud de la cadena resultante: "+longitud2);
+		}else {
+			frase2=frase2;
+			longitud2=longitud2;
+			System.out.println("2º cadena : "+frase2+" , Longitud de la cadena resultante: "+longitud2);
+		}
+		if(longitud3%2!=0) {
+			
+			frases3.append(frase3).append("*");
+			longitud3=frases3.length();
+			System.out.println("3º cadena : "+frases3+" , Longitud de la cadena resultante: "+longitud3);
+		}else {
+			frase3=frase3;
+			longitud3=longitud3;
+			System.out.println("3º cadena : "+frase3+" , Longitud de la cadena resultante: "+longitud3);
+		}
+		if(longitud4%2!=0) {
+			
+			frases4.append(frase4).append("*");
+			longitud4=frases4.length();
+			System.out.println("4º cadena : "+frases4+" , Longitud de la cadena resultante: "+longitud4);
+		}else {
+			frase4=frase4;
+			longitud4=longitud4;
+			System.out.println("4º cadena : "+frase4+" , Longitud de la cadena resultante: "+longitud4);
+		}
+		
+		
+	}
+	public static void main(String[] args) {
+		String frase="Esta es la frase que vamos a partir en cuatro";
+		dividirFrase(frase);
+
+	}
+
+}
