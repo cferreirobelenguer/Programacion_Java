@@ -1,0 +1,63 @@
+
+
+
+/* 1 Queremos introducir una serie de cadenas (String) indeterminadas indicando el final de la entrada con una cadena que termina con la palabra FIN.  Mostrar las cadenas en orden inverso al introducido.  Utilizar para ello una lista encadenada que almacene String y manejarla como una pila de cadenas.
+
+ 
+Ejemplo de ejecución:
+Entrada de datos:
+
+Hola D. Pepito
+Hola D. José
+Paso usted por mi casa
+Por su casa yo pase
+FIN
+
+Resultado del programa
+
+Por su casa yo pase
+Paso usted por mi casa
+Hola D. José
+Hola D. Pepito
+*/
+package ejercicios_arrayList;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.ListIterator;
+import java.util.Scanner;
+
+public class cadenasInversas {
+static Scanner sc=new Scanner(System.in);
+
+	public static void cadenasInversas() {
+		ArrayList<String>cadenas=new ArrayList<String>();
+		System.out.println("Introduce una cadena");
+		String cadena="";
+		String fin="FIN";
+		do {
+			cadena=sc.nextLine();
+			if(!cadena.equals(fin)) {
+				
+				cadenas.add(cadena);
+			}
+			
+		}	
+		while (!cadena.equals(fin));
+		
+		//Recorrer arrayList al revés con ListIterator
+		ListIterator iter = cadenas.listIterator(cadenas.size());
+		while(iter.hasPrevious()) {
+			System.out.println(iter.previous());
+		}
+	}
+	private static String toLowerCase(String fin) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public static void main(String[] args) {
+		cadenasInversas();
+
+	}
+
+}
