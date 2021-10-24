@@ -1,0 +1,40 @@
+
+
+
+/* 2.- En cualquier frase sustituir todas las posiciones múltiplos 
+ * de 3 por ‘#’. Probarlo con “Esta es la frase donde vamos a poner 
+ * almohadillas”*/
+
+package ejerciciosstring;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class multiplo3 {
+static Scanner sc=new Scanner(System.in);
+		public static void multiploDe3(String frase) {
+			char arrayCaracteres[];
+			arrayCaracteres = new char[frase.length()];
+			
+			for(int i=0;i<frase.length();i++) {
+				char letra=frase.charAt(i);
+				int posicion=frase.indexOf(letra);
+				
+				
+				if(posicion%3==0) {
+					letra='#';
+					System.out.print(letra);
+				}else {
+					letra=letra;
+					System.out.print(letra);
+				}
+				
+			}
+			
+		}
+	public static void main(String[] args) {
+		String frase="Esta es la frase donde vamos a poner almohadillas";
+		multiploDe3(frase);
+	}
+
+}
