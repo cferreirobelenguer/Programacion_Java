@@ -1,0 +1,65 @@
+
+
+
+/* 4. Queremos hacer el siguiente método:
+
+public static repartirLista ( Lista milista, Lista listapares, Lista listaimpares)
+
+Este método maneja listas de enteros y quitará elementos de la lista milista añadiéndolos a la lista de pares o impares según el valor de cada elemento. Al final milista debe quedar sin ningún elemento.
+
+Ej.-
+milista →  3 → 8 → 12 → 7 → 2 → 5 → null
+listapares → null
+listaimpares → null
+
+Después del ejecutar el método
+
+listapares → 8 → 12 → 2 → null
+listaimpares → 3 → 7 → 5 → null
+*/
+
+package ejercicios_arrayList;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Scanner;
+
+public class crearParesImpares {
+static Scanner sc=new Scanner(System.in);
+	public static void paresImpares(ArrayList numeros) {
+		HashSet pares=new HashSet();
+		HashSet impares=new HashSet();
+		HashSet total=new HashSet();
+		Iterator recorrido=numeros.iterator();
+		while(recorrido.hasNext()) {
+			int numero=(int) recorrido.next();
+			System.out.println(numero);
+			total.add(numero);
+			if(numero%2==0) {
+				pares.add(numero);
+				total.remove(numero);
+			}else{
+				impares.add(numero);
+				total.remove(numero);
+			}
+		}
+		System.out.println("Total de números sin repetir pares: "+pares);
+		System.out.println("Total de números sin repetir impares: "+impares);
+		System.out.println("Números sin repetir que quedan en la lista: "+total);
+	}
+	public static void main(String[] args) {
+		ArrayList <Integer> numeros=new ArrayList<Integer>();
+		numeros.add(3);
+		numeros.add(8);
+		numeros.add(3);
+		numeros.add(12);
+		numeros.add(12);
+		numeros.add(7);
+		numeros.add(2);
+		numeros.add(5);
+		paresImpares(numeros);
+
+	}
+
+}
