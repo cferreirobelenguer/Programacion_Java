@@ -23,7 +23,7 @@ public class ahorcado {
 		ciudadAleatoria=ciudades[indice];
 		palabraOculta=ciudades[indice];
 		palabraOculta=palabraOculta.toLowerCase();
-		System.out.println(ciudadAleatoria);
+		
 		
 	}
 	public static void ocultarPalabra(String palabraOculta) {
