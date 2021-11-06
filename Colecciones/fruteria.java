@@ -1,5 +1,6 @@
 
 
+
 /*Usuario introduce frutas y cantidad, si son platanos, limones o naranjas
  * se incluye el producto al carrito hasta que usuario escriba fin,
  * finalmente se muestra el carrito de la compra.
@@ -27,7 +28,6 @@ public class laFruteria {
 	
 	public static void ElijaFruta(HashMap listaCompra,ArrayList frutas) {
 		
-		int contador=0;
 		String fruta="";
 		System.out.println("Selecciona una fruta: ");
 		System.out.println("Pulse fin si quiere finalizar la compra");
@@ -58,7 +58,6 @@ public class laFruteria {
 			System.out.println("Selecciona una fruta: ");
 			}
 		
-		contador++;
 		}
 		
 	}
