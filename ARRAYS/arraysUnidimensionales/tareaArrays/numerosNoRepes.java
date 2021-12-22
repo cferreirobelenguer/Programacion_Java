@@ -1,7 +1,7 @@
 package tarea_arrays;
 import java.util.Scanner;
 
-/*
+/*EJERCICIO 10
  * Leer 10 números y almacenar en una tabla sólo los valores distintos,
  *  es decir si un número es introducido varias veces sólo se almacena en la tabla una sola vez. 
  * El programa terminará cuando la tabla esté completa.
