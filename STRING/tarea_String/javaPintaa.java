@@ -40,13 +40,10 @@ public class javaPintaa {
 		int contador=0;
 		do {
 			for(int i=0;i<array.length;i++) {
-				try {
+				
 				array[i]=sc.nextLine();
 				contador++;
-				}catch(Exception e) {
-					System.out.println("Debe introducir un caracter");
-					System.exit(0);
-				}
+				
 			}
 		}while(contador!=3);
 		javaPintaa.pintar(array);
