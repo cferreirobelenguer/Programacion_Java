@@ -1,6 +1,42 @@
+MÉTODOS APLICABLES PARA ARRAYS
+________________________________
 
-ARRAYS.FILL()
+
+Para acceder a estos métodos, debemos importar el paquete java.util.Arrays antes de la clase.
+
+
+Para ejecutar estos métodos, lo haremos de la siguiente manera Arrays.nombre_metodo(parámetro);
+
+Estos son los métodos:
+
+
+Arrays.binarySearch
+____________________
+Busca un valor que le pasamos por parámetro, devuelve su posición. Debe estar ordenado.	
+Un array y un valor. Los dos del mismo tipo. Estos pueden ser un byte, char, double, float, int, long, short u objecto.	int
+
+
+Arrays.copyOf
+______________
+Copia un array y lo devuelve en un nuevo array.	Un array y la longitud. Si se pasa del tamaño del array original, 
+rellena los con ceros las posiciones sobrantes. Estos pueden ser un byte, char, double, float, int, long, short u objecto.	array del mismo tipo que se introduce
+
+
+Arrays.copyOfRange
+___________________
+Copia un array y lo devuelve en un nuevo array. Le indicamos la posición de origen y de destino.	
+Un array, posición origen y destino. Estos pueden ser un byte, char, double, float, int, long, short u objecto.	array del mismo tipo que se introduce.
+
+
+Arrays.equals
+_______________
+Indica si dos arrays son iguales.	Dos arrays del mismo tipo.	true o false
+
+
+Arrays.fill
 _____________
+Rellena un array con un valor que le indiquemos como parámetro.	Un array y el valor a rellenar. 
+Estos pueden ser un byte, char, double, float, int, long, short u objecto.	No devuelve nada
 
 Lo que hace es rellenar todo un array con un valor.
 
@@ -16,4 +52,19 @@ Con Arrays.fill se rellena el array frecuencias con el valor 0.
 
 El resultado sería asi:
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+
+
+
+Arrays.sort
+_____________
+Ordena el array.	Un array.
+Estos pueden ser un byte, char, double, float, int, long, short u objecto.	No devuelve nada
+
+
+Arrays.toString
+________________
+Muestra el contenido del array pasado como parámetros	Un array. 
+Estos pueden ser un byte, char, double, float, int, long, short u objecto.	Devuelve una cadena con el contenido del array.
+
+
 
