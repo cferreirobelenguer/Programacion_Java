@@ -21,11 +21,11 @@ public class cortarCadena {
 		System.out.println("Introduce una posición para fin de corte");
 		posfin=sc.nextInt();
 		}catch(InputMismatchException excepcion)
-			{ System.err.println("Debe introducir un caracter numérico");
+			{ System.out.println("Debe introducir un caracter numérico");
 		}
 	
 		//Si la posición introducida es -1 o es mayor que la longitud de la palabra no se hace el corte
-		if(((posini==-1)||(posfin==-1))||(posini>palabra.length())||(posfin>palabra.length())) {
+		if(((posini<-1)||(posfin<-1))||(posini>palabra.length())||(posfin>palabra.length())) {
 			System.out.println("No se puede hacer el corte");
 		}else {
 			//En caso contrario se usa substring con ambos valores
