@@ -1,0 +1,77 @@
+Java StringBuilder - StringBuffer
+
+La clase String es una clase no modificable. Esto quiere decir que cuando se modifica un String se crea un nuevo objeto String modificado a partir del original y el recolector de basura es el encargado de eliminar de la memoria el String original.
+Java proporciona la clase StringBuffer y a partir de Java 5 la clase StringBuilder para trabajar con cadenas de caracteres sobre las que vamos a realizar modificaciones frecuentes de su contenido.
+La diferencia entre StringBuffer y StringBuilder es que los métodos de StringBuffer están sincronizados y los de StringBuilder no lo están. Por este motivo StringBuilder ofrece mejor rendimiento que StringBuffer y la utilizaremos cuando la aplicación tenga un solo hilo de ejecución.
+En general decidiremos cuando usar String, StringBuilder o StringBuffer según lo siguiente:
+-         Usaremos String si la cadena de caracteres no va a cambiar.
+-         Usaremos StringBuilder si la cadena de caracteres puede cambiar y solamente tenemos un hilo de ejecución.
+-         Usaremos StringBuffer si la cadena de caracteres puede cambiar y tenemos varios hilos de ejecución.
+En esta entrada utilizaremos StringBuilder teniendo en cuenta que todo lo que se explica aquí es aplicable a StringBuffer.
+Constructores de la Clase StringBuilder
+Un objeto de tipo StringBuilder gestiona automáticamente su capacidad
+– Se crea con una capacidad inicial.
+– La capacidad se incrementa cuando es necesario.
+La clase StringBuilder proporcionan varios constructores, algunos de ellos son:
+
+
+COMO DECLARAR UN STRINGBUILDER
+_______________________________
+
+StringBuilder ()
+
+Crea un StringBuilder vacío.
+StringBuilder sb = new StringBuilder ();  
+
+StringBuilder(int n)
+Crea un StringBuilder vacío con capacidad para n caracteres.
+
+
+StringBuilder(String s);
+Crea un StringBuilder y le asigna el contenido del String s.
+String s = "ejemplo";
+StringBuilder sb = new StringBuilder (s);
+
+
+
+Métodos de la Clase StringBuilder
+__________________________________
+
+La clase StringBuilder proporcionan métodos para acceder y modificar la cadena de caracteres. Algunos de ellos son:
+
+
+length()
+Devuelve la longitud de la cadena
+
+append(X);
+Añade X al final de la cadena. X puede ser de cualquier tipo
+
+insert(posicion, X)
+Inserta X en la posición indicada. X puede ser de cualquier tipo.
+
+setCharAt(posicion, c)
+Cambia el carácter que se encuentra en la posición indicada, por el carácter c.
+
+charAt(posicion)
+Devuelve el carácter que se encuentra en la posición indicada.
+
+indexOf(‘caracter’)
+Devuelve la posición de la primera aparición de carácter. Devuelve -1 si no lo encuentra.
+
+lastIndexOf(‘caracter’)
+Devuelve la posición de la última aparición de carácter.
+Devuelve -1 si no lo encuentra.
+
+substring(n1,n2)
+Devuelve la subcadena (String) comprendida entre las posiciones n1 y n2 - 1. Si no se especifica n2, devuelve desde n1 hasta el final.
+
+delete(inicio, fin)
+Elimina los caracteres desde la posición inicio hasta fin - 1.
+
+reverse()
+Invierte el contenido de la cadena
+
+toString()
+Devuelve el String equivalente.
+
+
