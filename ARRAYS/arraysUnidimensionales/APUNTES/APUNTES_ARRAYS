@@ -1,0 +1,19 @@
+
+ARRAYS.FILL()
+_____________
+
+Lo que hace es rellenar todo un array con un valor.
+
+Ejemplo;
+
+int[] frecuencias=new int[30];
+
+Definimos un array con un length de 30 posiciones.
+
+Arrays.fill(frecuencias,0);
+
+Con Arrays.fill se rellena el array frecuencias con el valor 0.
+
+El resultado sería asi:
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+
