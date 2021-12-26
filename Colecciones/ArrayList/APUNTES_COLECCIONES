@@ -1,0 +1,139 @@
+
+COLECCIONES
+___________
+
+Una colección es un contenedor para un conjunto de elementos de un tipo en una sola unidad.
+
+Uso: almacenamiento, recuperación y manipulación de datos.
+
+Suelen representar elementos que forman grupos  naturales
+
+__________________________________________________________________________________________________
+
+Iterable<E>
+___________
+
+Concepto de iterador: es un patrón de diseño, recorre y elimina los elementos.
+
+Iterator<E>:hastNext(),next(),remove()
+
+Permite usar forEach y el bucle tipo for-each
+  
+  //Obtenemos el iterable por la vía que corresponda
+  Iterable<String> unIterable=obtenerIterable();
+  
+  //Lo podemos recorrer usando un bucke for-each
+  for(String s:unIterable){
+    System.out.println(s);
+    }
+    
+  __________________________________________________________________________________________________
+  
+  Collection<E>
+  _____________
+  
+  Extiente a Iterable<E> (hereda su funcionalidad).
+  Representa a un grupo de elementos
+  El resto de interfaces heredan de él (saldo Map y derivados)
+  Permite tener una serie de métodos comunes a (case) todos los tipos de colecciones.
+  JDK no ofrece ninguna implementación directa de esta interfaz.
+  Sirve para manipular colecciones de la forma más general posible.
+  
+  
+  Operaciones de Collection <E>
+  _____________________________
+  Tamaño:size y isEmpty
+  Comprobación: contains
+  Añadir y eliminar: add y remove
+  Iterar:iterator
+  Operaciones bulk:containsAll, addAll, removeAll, removeIf, retainAll,clear
+  Transformar en array: toArray
+  Streams: stream, paralleIStream
+  
+  
+  ______________________________________________________________________________________________________
+  
+  
+  SET <E>
+  ________
+  
+  Se trata de un Collection<E> que no permite duplicados.
+  Abstracción del concepto matemático de conjunto.
+  No añade ningún método a los heredados de Collection <E>
+  No hay acceso "posicional" (i.e. tercer elemento).
+  Mejora la implementación de los métodos equals y hashCode con respecto a Collection<E>
+    Dos instancias de Set<E> son iguales si contienen los mismos elementos
+    
+  HashSet<E>
+  __________
+  
+  Almacena sus valores en una tabla hash.
+  Nos proporciona que la mayoría de las operaciones son en un tiempo constante.
+  No respeta el orden de los elementos
+  Permite insertar valores nulos
+  No repetidos
+  No es sincronizada
+  Se mejora el rendimiento si se establece una capacidad inicial lo más ajustada posible
+  
+  LinkedHashSet<E>
+  ________________
+  
+  Almacena sus valores en una tabla hash con una lista doblemente enlazada-
+  Mantiene el orden de inserción
+  Posibilidad de almacenar un valor nulo
+  No sincronizada
+  Rendimiento mejor que TreeSet<E> pero peor que HashSet<E>
+  
+  TreeSet<E>
+  __________
+  Almacena sus valores en un árbol red-black
+  Mantiene el orden basado en sus valores
+  Peor rendimiento que el resto de opciones
+  Los elementos deben implementar Comparable
+  No permite insertar nulos
+  No sincronizada
+  Rendimiento de O(log(N)) debid a su estructura de árbol.
+  
+  EJEMPLO DE hashSet
+  __________________
+  
+  public class HashSetApp{
+  
+    public static void main(String[]args){
+         
+         //Set de string, que va creciendo en función de que vayamos añadiendo elementos
+        Set<String> hashSet=new HashSet<>();
+        
+        //Se añaden los elementos
+        hashSet.add("Cadena 1");
+        hashSet.add("Cadena 2");
+        hashSet.add("Cadena 3");
+        
+        for(String s:hashSet){
+          System.out.println(s);
+        }
+  
+    }
+  }
+  
+  add -> permite añadir elementos
+  contains-> Indica si un elemento está en el set
+    if(quijoteHashSet.contains("hidalgo")){
+      System.out.println("Contiene la palabra hidalgo");
+      }else{
+      System.out.println("No contiene la palabra hidalgo");
+      }
+      
+   forEach->Recorre el set
+   quijoteHashSet.forEach(System.out::println);
+   
+   size-> Indica la longitud del set
+    quijoteHashSet.size();
+    
+    ____________________________________________________________________________________________
+    
+    LIST <E>
+    ________
+    
+  
+ 
