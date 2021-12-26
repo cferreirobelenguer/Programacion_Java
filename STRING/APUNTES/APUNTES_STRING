@@ -1,0 +1,84 @@
+
+STRING
+________
+
+String no es un tipo primitivo
+
+¿Cómo almacenar una cadena de caracteres?
+
+INSTANCIAR O EJEMPLARIZAR UNA CLASE:
+
+String mi_nombre="Juan";
+mi_nombre es un objeto (instancia,ejemplar) de la clase String
+
+
+MÉTODOS:
+________
+
+length() ->devuelve la longitud de una cadena de caracteres
+mi_nombre.length()=4;
+
+charAt(n)-> Devuelve la posición de un carácter dentro de una cadena. Las posiciones empiezan a contar de 0.
+mi_nombre.charAt(2)=a;
+Las posiciones se empiezan a contar desde 0.
+
+substring()-> Extrae dentro de una cadena de caracteres x caracteres.
+
+equals->Devuelve true si dos cadenas de caracteres son iguales o no lo son. Tiene en cuenta si comparamos cadenas
+de caracteres mayúsculas y minúsculas.
+
+equalsIgnoreCase(cadena)-> es igual que equals salvo que no distingue entre mayusculas y minusculas.
+
+EJEMPLO:
+
+public class manipula_cadenas{
+
+  public static void main (String []args){
+    String nombre="Juan";
+    System.out.println("Mi nombre es "+nombre);
+    //Método length que nos dice el número de letras de la cadena
+    System.out.println("Mi nombre tiene "+nombre.length()+" letras";
+   
+   //Método charAt(), devuelve la letra que está en esa posición
+   System.out.println("La primera letra de "+nombre"+ es la "+nombre.charAt(0));
+   
+   int ultima_letra;
+   ultima_letra=nombre.length();
+   System.out.printin("Y la última letra es la "+nombre.charAt(ultima_letra-1));
+   //Le preguntamos por la posición 3
+   //Con length nos va a dar que son 4 posiciones, pero las posiciones empiezan por 0 con lo cual la última posición no es 4 sino 3 (0,1,2,3)
+   //entonces sería ultima_letra-1
+   
+   //Método substring
+   //Por ejemplo si queremos extraer "aprender a programar en java"
+   String frase="Hoy es un estupendo día para aprender a programar en java";
+   String frase_resumen=frase.substring(0.29)+" irnos a la playa y olvidarnos de todo..."+" y "+
+   frase.substring(29,57);
+   //Hoy es un estupendo día para irnos a la playa y olvidarnos de todo...y aprender a programar en java
+   
+   
+   //Método equals, compara cadenas de caracteres
+   String alumno1,alumno2;
+   alumno1="David";
+   alumno2="David";
+   System.out.println(alumno1.equals(alumno2));     //Debería devolver true porque son exactamente iguales
+   
+   //Método equalsIgnoreCase, compara cadenas de caracteres sin distinguir mayuscula y minuscula
+   String alumno1,alumno2;
+   alumno1="David";
+   alumno2="david";
+   System.out.println(alumno1.equals(alumno2));     //Debería devolver true porque son exactamente iguales y no distingue entre mayúscula y minúscula
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+    
+    
+
