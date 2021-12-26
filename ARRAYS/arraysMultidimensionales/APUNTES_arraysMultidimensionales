@@ -1,0 +1,134 @@
+
+ARRAYS MULTIDIMENSIONALES
+_________________________
+
+Es un array dentro de otro array.
+
+Pueden haber dos dos dimensiones o de más.
+
+ARRAYS BIDIMENSIONALES
+_______________________
+
+Dentro de cada una de las posiciones del array hay otro array que tiene x posiciones.
+
+Está formado por las filas y las columnas
+las filas son las posiciones del array que comprende los arrays de dentro.
+Las columnas son las posiciones de cada array que está dentro del de dentro.
+
+ejemplo:  fila: 0; columna: 0
+          fila: 0; columna:1;
+          fila: 0;columna:2;
+          
+          
+ public class Arrays_bidimensionales{
+ 
+ public static void main(String[]args){
+  //Se ha declarado una matriz de dos dimensiones (4 en la primera dimensión y 5 en la segunda dimensión)
+    int [][]matrix= new int[4][5];
+ 
+    //INTRODUCIR MANUALMENTE VALORES
+     //fila 0 con array de 5 posiciones
+    matrix[0][0]=15;
+    matrix[0][1]=20;
+    matrix[0][2]=30;
+    matrix[0][3]=40;
+    matrix[0][4]=34;
+    
+    //fila 1 con array de 5 posiciones
+    matrix[1][0]=56;
+    ...
+    //fila 2 con array de 5 posiciones
+    matrix[2][0]=78;
+    ...
+    //fila 3 con array de 5 posiciones
+    matrix[3][0]=45;
+    ...
+    
+    System.out.println("Valor almacenado en la posición 2,3 "+matrix[2][3]);
+    //Nos saca lo que hay almacenado en la fila 2 y la columna 3.
+    
+    //Recorrer la matriz con dos bucles for (el primero recorre la primera dimensión y el segundo recorre la segunda dimensión
+    //El primer bucle for recorre los arrays de fuera
+    //El segundo bucle for recorre los arrays de dentro
+    //Son bucles anidados, por ejemplo el primer bucle for llega a la posición 0 del array de fuera se para y entra dentro del array de dentro con el segundo bucle for
+    //Una vez que recorre todas las columnas del array dentro del array de la posición 0 pasa a la 1, se para y lee las columnas del array de dentro, y así sucesivamente.
+    //y recorre las columnas de ese array
+    
+    //Este bucle recorre la primera dimensión hasta su tamaño que es 4
+    for(int i=0;i<4;i++){
+    System.out.println();
+    //Este bucle recorre la segunda dimensión
+        for(int j=0;j<5;j++){
+          System.out.print(matrix[i][j]);
+    }
+  }
+ }
+ 
+ _______________________________________________________________________________
+ 
+ INTRODUCIR DATOS DE MATRIZ BIDIMENSIONAL DE FORMA MÁS ADECUADA
+ 
+ int[][]matrix={
+          {10,15,18,19,20},
+          {20,23,34,56,78},
+          {34,7,19,45,67},
+          {32,5,8,99,12}
+          };
+          
+   //Este array bidimensional tiene 4 de longitud en la primera dimensión y 5 de longitud en la segunda dimensión,
+   //En caso de que esto no se respete en el for sale una excepción IndexOutOfBoundsException porque excedemos el límite de tamaño de los arrays
+   //No se recorre adecuadamente las dos dimensiones
+   
+   BUCLE FOREACH MEJORADO PARA RECORRER ARRAYS BIDIMENSIONALES
+   ____________________________________________________________
+   
+   for(int []fila:matrix){
+      System.out.println();
+        for(int z:fila){
+          System.out.print(z+" ");
+         }
+    }
+   }
+ }
+ 
+ 
+ EJEMPLO PRÁCTICO DE ARRAY DE DOS DIMENSIONES
+ _____________________________________________
+ /*Rellenar una matriz bidimensional de 6 filas y 5 columnas en la que a medida que se avanza en cada fila se incrementa 0.01 el tipo de interés.
+ Se parte de un interés del 10% y un saldo de 10000. Mostrar los resultados.*/
+ public class Ejemplo_Array_2D{
+  public static void main(String[]args){
+  
+    double acumulado;
+    double interes=0.10; //Interés del 10%
+    
+    double[][]saldo=new double[6][5];
+    
+    for(int i=0;i<6;i++){
+    //Lo que pretendo es almacenar los valores fijos que son 10000, que es el dato del que se parte
+        saldo[i][0]=10000;
+        acumulado=10000;
+        //Empieza en 1 porque en la posición 0 he inicializado con 10000, con lo cual quiero calcular el incremento del resto
+        for(int j=1;j<5;j++){
+            //Se hace el incremento del interés
+            acumulado=acumulado+(acumulado*interes);
+            //Se rellena ese acumulado en la tabla
+            saldo[i][j]=acumulado;
+          }
+          //Al terminar la segunda dimensión, pasa a la siguiente fila e incrementa el interés 0.01
+          interes=interes+0.01;
+        }
+    }
+    
+    for(int z=0;z<6;z++){
+        System.out.println();
+        for(int h=0;h<5;h++){
+        //Imprime con formato de dos decimales
+            System.out.printf("%1.2f, saldo[z][h]);
+            System.out.print(" ");
+        }
+    
+    }
+ }
+        
+ 
