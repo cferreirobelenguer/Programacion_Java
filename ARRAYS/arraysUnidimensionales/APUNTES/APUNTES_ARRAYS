@@ -1,0 +1,94 @@
+
+ARRAY
+______
+
+Estructura de datos que contiene una colección de valores del mismo tipo.
+Se utiliza para almacenar valores que normalmente tienen alguna relación entre sí.
+
+Sintaxis:  int[]mi_matriz=new int5[5];
+
+Es como una especie de un grupo de variables, variables agrupadas.
+
+Las matrices comienzan a enumerar sus posiciones desde 0.
+Si el tamaño es 5, llega hasta la posición 4 con lo cual será length-1
+
+mi_matriz[0]=15;
+mi_matriz[1]=25;
+mi_matriz[2]=8;
+mi_matriz[3]=7;
+mi_matriz[4]=92;
+
+int[]mi_matriz={15,25,8,7,92};
+
+public class uso_Arrays{
+
+  public static void main(String[] args){
+  
+  int[]mi_matriz=new int[5];
+ 
+  mi_matriz[0]=5;
+  mi_matriz[1]=38;
+  mi_matriz[2]=-15;
+  mi_matriz[3]=92;
+  mi_matriz[4]=71;
+ 
+  //Otra forma de declarar la matriz
+  int[]mi_matriz={5,38,-15,92,71};
+  
+  
+  System.out.println(mi_matriz[3]);
+  
+  //Para recorrer los valores del arreglo
+  for(int i=0;i<mi_matriz.length;i++){
+  
+    System.out.println("Valor del indice "+i+" = "+mi_matriz[i]);
+    }
+  }
+  
+  
+  ________________________________________________________________
+  
+  
+  public class Uso_Arrays_II{
+    public static void main(String[]args){
+      
+      String []paises=new String[8];
+      paises={"España","México","Colombia","Perú","Chile","Argentina","Ecuador","Venezuela"};
+      
+      for(int i=0;i<paises.length;i++){
+        System.out.println("País "+(i+1)+paises[i]);
+        }
+    
+    //Otra forma de recorrer el array
+      for(String elemento:paises){
+          System.out.println("País: "+elemento);
+      }
+      
+      
+   }
+   
+   ___________________________________________________________________
+   
+   RELLENAR MATRIZ CON BUCLES ALEATORIOS
+   
+   //Se llena un array de longitud 150 con números aleatorios de 0 a 100
+   
+   public class Uso_Arrays_II{
+    public static void main(String[]args){
+    
+        int[]matriz_aleatorios=new int[150];
+        
+        for(int i=0;i<matriz_aleatorios.length;i++){
+          matriz_aleatorios[i]=(int)Math.round(Math.random()*100);
+         }
+         
+         for(int numeros:matriz_aleatorios){
+          System.out.print(numeros+" ");
+        }
+       }
+     }
+  
+  
+    
+
+
