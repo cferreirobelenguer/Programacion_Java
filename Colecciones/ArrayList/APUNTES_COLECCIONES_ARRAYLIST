@@ -1,0 +1,160 @@
+ARRAYLIST
+____________
+
+
+La clase ArrayList es una clase paramentada, es decir, que debemos especificar que tipo de clase se va a usar.
+
+La clase ArrayList es una implantación de la interfaz List, situada en java.util.List;
+
+Lo primero es importar el paquete java.util.ArrayList;
+
+Creamos una lista enlazada con ArrayList de String
+
+ArrayList<String> listaMensajes=new ArrayList<String>();
+
+ó
+
+ArrayList<String> listaMensajes=new ArrayList<>();
+
+Tiene los métodos más comunes de las listas enlazadas como add,clear, remove, etc.
+
+Para recorrer este tipo de listas con un bucle for. Esta es su sintaxis:
+
+for(Objetc o:lista_enlazada){
+
+}
+
+for(Object o:listaMensajes){
+    System.out.println(o);
+    }
+    
+    Object es como cuando declaramos una variable i en un bucle for normal.
+    
+ EJEMPLO:
+__________
+
+import java.util.ArrayList;
+
+public class ArrayListApp{
+    public static void ain(String[]args){
+      ArrayList<String> lista=new ArrayList<>();
+      
+      lista.add("Elemento 1");
+      lista.add("Elemento 2");
+      lista.add("Elemento 3");
+      lista.add("Elemento 4");
+      
+      for(Object o:lista){
+          System.out.println(o);
+       }
+     }
+   }
+   
+   También se puede recorrer la lista usando iteradores:
+   
+   ITERATOR
+______________
+Un iterador es una clase usada para recorrer estructuras dinámicas de una forma fácil, su uso es sencillo.
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class Ejemplo_iteradores{
+    public static void main(String[]args){
+        ArrayList <String> lista;
+        lista=new ArrayList<>();
+        
+      lista.add("Elemento 1");
+      lista.add("Elemento 2");
+      lista.add("Elemento 3");
+      lista.add("Elemento 4");
+      
+      //Creamos un iterator
+      Iterator<String> iterator=lista.iterator();
+      
+      //Usamos el método hasNext, para comprobar si hay algun elemento
+      while(iterador.hasNext()){
+          Syste,.out.println(iterator.next());
+          }
+         }
+       }
+ 
+ 
+ MÉTODOS DE ARRAYLIST
+ ____________________
+ 
+ add: SE USA COMO PARÁMETRO EL ELEMENTO A INSERTAR, AÑADE UN ELEMENTO A EL ARRAYLIST. AÑADE DESDE EL FINAL.
+ remove: SE USA COMO PARÁMETRO EL ÍNDICE A BORRAR, BORRA UN ELEMENTO DEL ARRAYLIST
+ clear: LIMPIA EL ARRAYLIST DE ELEMENTOS
+ size: DEVUELVE EL NÚMERO DE ELEMENTOS, CANTIDAD DE ELEMENTOS EN EL ARRAYLIST
+ get: SE USA COMO PARÁMETRO EL INDICE DEL ELEMENTO QUE QUEREMOS, DEVUELVE EL ELEMENTO EN EL INDICE INDICADO.
+ iterator: NO TIENE PARÁMETROS, DEVUELVE UN ITERADOR PARA RECORRER EL ARRAYLIST
+ isEmpty: NO TIENE PARÁMETROS, INDICA SI EL ARRAYLIST ESTA O NO VACÍO., DEVUELVE UN BOOLEANO INDICANDO SI ESTÁ O NO VACÍO EL ARRAYLIST
+ indexOf: TIENE COMO PARÁMETRO EL ELEMENTO DEL QUE QUEREMOS BUSCAR LA POSICIÓN, DEVUELVE LA POSICIÓN DEL ELEMENTO PUESTO COMO PARÁMETRO.
+ DEVUELVE LA POSICIÓN DEL ELEMENTO EN EL ARRAYLIST.
+ 
+ package ejemploarraylist;
+ 
+import java.util.ArrayList;
+import java.util.Iterator;
+ 
+public class ejemploArrayList {
+ 
+    public static void main(String[] args) {
+        
+         
+        ArrayList<Integer> lista = new ArrayList<>();
+         
+        //Metodo add. añade elementos a nuestra lista
+        lista.add(1);
+        lista.add(2);
+        lista.add(3);
+         
+        System.out.println("ADD");
+        System.out.println(lista.toString());
+         
+        //Metodo remove, elimina elementos de nuestra lista mediente indice
+        lista.remove(2); //Elimino el ultimo elemento, no el elemento 2
+         
+        System.out.println("REMOVE");
+        System.out.println(lista.toString());
+         
+        //Metodo size, indica el numero de elementos de la lista
+         
+        System.out.println("SIZE");
+        System.out.println(lista.size());
+         
+        //Metodo get, devolvemos un elemento de un indice
+         
+        System.out.println("GET");
+        System.out.println(lista.get(0)); //Primer elemento
+         
+        //Metodo Iterator, util para recorrer un arrayList
+         
+        System.out.println("ITERATOR");
+        Iterator<Integer> it = lista.iterator();
+        int num;
+        while (it.hasNext()){
+            num = it.next();
+            System.out.println(num);
+             
+        }
+         
+        //Metodo indexOf, util para saber la posicion de un elemento
+         
+        System.out.println("INDEXOF");
+        System.out.println(lista.indexOf(1));
+         
+        //Metodo Clear, elimina todos los elementos
+        lista.clear();
+         
+        System.out.println("CLEAR");
+        System.out.println(lista.toString());
+         
+        //Metodo isEmpty, indica si un arraylist esta vacio o no
+         
+        System.out.println("isEmpty");
+        System.out.println(lista.isEmpty());
+    }
+     
+}
