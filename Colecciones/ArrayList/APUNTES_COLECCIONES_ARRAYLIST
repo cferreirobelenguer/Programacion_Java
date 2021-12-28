@@ -158,3 +158,16 @@ public class ejemploArrayList {
     }
      
 }
+
+BORRAR CON ITERATOR
+___________________
+
+	//Eliminamos los pares con iterator
+		Iterator<Integer> iterator=lista.iterator();
+		while(iterator.hasNext()) {
+			if(iterator.next()%2==0) {
+				iterator.remove();
+			}
+		}
+        
+  
