@@ -170,4 +170,18 @@ ___________________
 			}
 		}
         
-  
+ORDENAR ARRAYS
+________________
+
+Collections.sort(lista);
+
+PASAR ARRAYLIST A ARRAY
+_______________________
+
+//Para pasar un ArrayList a array hay que pasarlo a String, lueg si ya se quisiera operar
+con el contenido de dentro habría que hacer un recorrido con for y con Integer.valueOf pasar
+cada caracter a int y operar.
+String[] array=new String[lista.size()];
+lista.toArray(array);
+
+
