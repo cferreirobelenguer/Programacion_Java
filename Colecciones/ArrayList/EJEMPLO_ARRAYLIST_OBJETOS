@@ -1,0 +1,109 @@
+ARRAYLIST DE OBJETOS:  EJEMPLO DE ARRAYLIST DE OBJETOS
+______________________________________________________
+
+Primero se crea la clase del objeto, con sus atributos y métodos
+
+public class Book{
+  private String name;
+  private String edition;
+  
+  
+  public Book(){
+    name="";
+    edition="";
+   }
+  
+  public String getName(){
+    return name;
+    }
+  public void SetName(String name){
+    this.name=name;
+   }
+   public String getEdition(){
+      return edition;
+   }
+   public void setEdition(String edition){
+      this.edition=edition;
+   }
+  }
+   __________________________________________
+  
+  Se crea una clase de la lista en la que se crea el ArrayList, y es del tipo de la clase del objeto
+  
+   public class ListBook{
+    ArrayList<Book> listBook=new ArrayList();
+    
+    //Creamos un método de showInputDialog para no repetir datos y hacer el código más limpio
+    public String Input(String text){
+      return JOptionPane.showInputDialog(text);
+     }
+     
+    //Se añaden datos al arrayList de objetos
+    public void addBook(){
+      String name=Input("Name Book");
+      String edition=Input("Edition Book");
+      
+      //Creamos un objeto para poder agregar los datos
+      Book book=new Book();
+      //Se asigna esos valores a nuestros atributos name y edition del objeto
+      book.setName(name);
+      book.setEdition(edition);
+      
+      //Añadimos los valores a la lista
+      listbook.add(book);
+      
+    }
+    
+    public void getBooks(){
+    String string="";
+      for(int i=0;i<listbook.size();i++){
+          string+="Book "+(i+1)+"\n";
+          string+="Name: "+listbook.get(i).getName()+"\n";
+          string+="Edition: "+listbook.get(i).getEdition()+"\n";
+          
+      }
+      JOptionPane.showMessageDialog(null,string);
+    
+    }
+    public void clearListBook(){
+        listbook.clear();
+    }
+   }
+    
+   _______________________________________________________________________________
+   //Prueba de la aplicación en el main, usuario elige la opción , y con un switch 
+   en función de la opción se ejecuta o añadir libros, o listar libros, o limpiar lista de libros o salir.
+   
+   public class AppArrayList{
+    public static void main(String[]args){
+      ListBook obj=new ListBook();
+      
+      byte opcion;
+      
+      do{
+        opcion=Byte.parseByte(JOptionPane.showInputDialog("Menú principal\n"+"1.Add Book\n"+"2. List Book\n"+"3.Clear list Book\n"+"4. Exit\n"));
+      
+      }while(opcion!=4);
+      
+      switch(opcion){
+      case 1:
+        obj.addBook();
+      break;
+      case 2:
+        obj.getBooks();
+      break;
+      case 3:
+        obj.clearListBook();
+      break;
+      case 4:
+          JOptioPane.showMessageDialog(null, "good bye");
+      break;
+      default:
+         JOptioPane.showMessageDialog(null, "not found");
+         break;
+     
+      }
+    
+    
+      }
+    }
