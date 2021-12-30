@@ -31,15 +31,37 @@ Set<Map.Entry<K,V> entrySet()
 
 Es como una clase interna.
 
+Nos devuelve un set con Map.Entry y este recibe una clave y un valor. 
+Map.Entry tiene una serie de métodos:
+getKey()->devuelve la clave correspondiente a la entrada que le indiquemos
+getValue()->devuelve el valor correspondiente a la entrada
+
 
 EJEMPLO
 ________
 
 //Vamos a almacenar empleados que tengan su propia clave
 
+import java.util.*;
 public class PruebaMapas{
     public static void main (String []args){
+      HashMap<String,Empleado>personal=new HashMap<String,Empleado>();
+      personal.put("145",new Empleado("Juan"));
+      personal.put("146",new Empleado("Ana"));
+      personal.put("147",new Empleado("Antonio"));
+      personal.put("148",new Empleado("Sandra"));
+      System.out.println(personal);
+      personal.remove("147"); //Borramos Antonio
+      personal.put("148",new Empleado("Natalia"));   //Sustituye Sandra por Natalia
+      System.out.println(personal.entrySet()); //Nos imprime todo lo que hay en la colección pero en tipo set con un corchete de apertura y otro de cierre
       
+      //Con getKey y getValue podemos acceder a las claves y los valores dándole un formato determinado
+      for(Map.Entry<String,Empleado>entrada:personal.entrySet()){
+        String clave=entrada.getKey();
+        Empleado valor=entrada.getValue();
+        System.out.println("Clave= "+clave+" Valor: "+valor;
+        
+      }
     }
  }
  class Empleado{
@@ -56,3 +78,7 @@ public class PruebaMapas{
   private double sueldo;
   
   }
+
+Con remove (Object key) se puede borrar una clave del mapa.
+Si introducimos un elemento con la misma clave con put lo que estamos haciendo es reemplazarlo.
+
