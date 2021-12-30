@@ -52,8 +52,7 @@ public class entradas {
 	}
 	public static void pagar(ArrayList datosUsuarios,ArrayList preciosCola) {
 		//El usuario que está en la cola en la primera posición realiza el pago
-		System.out.println("Introduzca la posición en la que está en la cola");
-		int posicion=sc.nextInt();
+		int posicion=0;
 		System.out.println("Se ha realizado la compra de las entradas, los datos son:");
 		datosUsuarios.get(posicion);
 		//Al hacer un pago se aumenta la recaudación
