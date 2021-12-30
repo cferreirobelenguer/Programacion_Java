@@ -1,0 +1,58 @@
+
+MAPAS
+______
+
+Lista compuesta por clave valor
+No pueden haber claves iguales
+Tiene poca eficiencia comparado con las demás colecciones
+
+
+HASHMAP
+_________
+No permite la ordenación de sus elementos
+Es bastante eficiente
+
+Es como almacenar la información en una tabla con dos columnas. Se reciben dos tipos genéricos
+de parámetros <K,V> (clave,valor). La clave no tiene por qué ser un número, puede ser cualquier cosa.
+
+MÉTODO PUT
+___________
+Para poder introducir elementos es a través del método put.
+put(K,V);
+
+MÉTODO GET
+__________
+Nos permite obtener un valor en concreto, se usa mucho en búsquedas
+V get(Object key)
+
+MapEntry
+_________
+Set<Map.Entry<K,V> entrySet()
+
+Es como una clase interna.
+
+
+EJEMPLO
+________
+
+//Vamos a almacenar empleados que tengan su propia clave
+
+public class PruebaMapas{
+    public static void main (String []args){
+      
+    }
+ }
+ class Empleado{
+ 
+ //Constructor con un argumento nombre
+  public Empleado(String n){
+    nombre=n;
+    sueldo=2000;
+  }
+  public String toString(){
+    return"[Nombre="+nombre+", sueldo="+sueldo+" 
+  }
+  private String nombre;
+  private double sueldo;
+  
+  }
