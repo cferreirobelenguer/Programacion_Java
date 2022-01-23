@@ -133,6 +133,10 @@ Test: clases orientadas a realizar pruebas de nuestra aplicación. En Java, suel
 EJEMPLO
 _______
 
+package encapsulacion.modelo;
+
+import java.time.LocalDate;
+
 public class Persona{
   
   //Atributos privados
@@ -238,8 +242,13 @@ public int hashCode(){
   
   
   _____________________________
+  package encapsulacion.servicio;
+  
+  import java.util.ArrayList;
+  import java.util.List;
   
   import encapsulacion.modelo.Persona;
+  
   
   public class Servicio{
   //Se crea una lista que va a almacenar objetos de tipo Persona
@@ -278,6 +287,8 @@ public int hashCode(){
    
    package encapsulacion.utilidad;
    
+   import java.time.LocalDate;
+   
    public class UtilsDni{
    
     public static boolean verificarLetraDni(String nif){
@@ -309,7 +320,14 @@ public int hashCode(){
       
     }
 
+____________________
 
+package encapsulacion;
+import java.time.LocalDate;
+
+import encapsulacion.modelo,Persona;
+import encapsulacion.servicio.Servicio;
+import encapsulacion.utilidad.UtilsDni;
 
 public class MainEncapsulacion{
 
