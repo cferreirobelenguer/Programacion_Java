@@ -1,0 +1,336 @@
+
+POO
+___
+
+En general, todos los objetos tienen una estructura (como están conformado) y un comportamiento
+(realizan una serie de operaciones).
+El comportamiento son las funcionalidades que es capaz de hacer.
+
+
+ESTRUCTURA: 
+Plástico
+4 ruedas
+1 volante
+
+COMPORTAMIENTO:
+Mover adelante
+Mover atrás
+
+
+ENCAPSULACIÓN:
+_______________
+
+Mecanismo mediante el cual los objetos conocen solamente su estructura y no la de los demás.
+Ofrece al exterior una pequeña parte de lo que es el objeto en sí, dejando oculto una parte de él.
+A la hora de implementar la encapsulación en java, ñps atributos de un objeto se deben ocultar o editar
+a través de métodos.
+En ese caso no se puede acceder a los atributos salvo desde la propia clase, salvo que accedamos a ellos 
+a través de un método de ese objeto.
+
+DEFINICIÓN E IMPLEMENTACIÓN DE UNA CLASE
+
+public class NombreDeLaClase{
+
+  //Propiedades
+  int propiedad1;
+  String propiedad2;
+  float propiedad3;
+  
+  //Métodos
+  void metodo1(){
+  
+  }
+ }
+ 
+ MODIFICADORES DE ACCESO:
+ ________________________
+ 
+ Nos permiten indicar quien puede hacer uso de una clase, o de sus atributos y métodos.
+ public: cualquiera puede acceder a ese elemento (ya sea clase,atributo o método)
+ private:solo la propia clase 
+ protected: la propia clase, los elementos que estén en el mismo paquete y sus derivados
+ Por defecto: las clases cercanas (que estén en el mismo paquete)
+ 
+ 
+ BUENAS PRÁCTICAS:
+ _________________
+ 
+ La mayoría de las clases que se crean son públicas.
+ Cada fichero .java tendrá solamente una clase pública, con el mismo nombre del fichero.
+ 
+ public class MiClase{   //La clase se tiene que llamar del mismo nombre que el fichero MiClase.java
+    //propiedades
+    
+    //Métodos
+ 
+ 
+ }
+ 
+La mayoría de los atributos de una clase serán privados.
+Solamente algunas constantes, o casos muy particulares, tendrán otra modificador de acceso
+Estos atributos son expuestos al exterior mediante los getter y setter
+public class MiClase{  //La clase se tiene que llamar del mismo nombre que el fichero MiClase.java
+
+  //propiedades
+  private int numero;
+  private String nombre;
+  
+  //métodos getter y setter a través de estos métodos se puede acceder a los atributos privados
+  public int getNumero(){
+    return this.numero;
+   }
+   public String getNombre(){
+    return this.nombre;
+   }
+   public int setNumero(int numero){
+    this.numero=numero;
+   }
+   public String setNombre(String nombre){
+    this.nombre=nombre;
+   }
+}
+
+Si los atributos son privados los métodos deben son públicos para poder interactuar con ellos.
+
+Los métodos privados son interesantes para cálculos auxiliares o parciales (sólo se pueden invocar desde la propia clase),
+
+public class MiClase{
+
+  //propiedades
+  private int numero;
+  private String nombre;
+  
+  //metodos
+  public int getNumero(){
+  
+  {
+
+}
+
+
+TIPOS DE CLASES
+_______________
+
+Java solo tiene una forma de crear clases a través de class.
+Podemos dieferencias las clases según su cometido:
+Modelo
+Servicios
+Auxiliares
+Main 
+Test
+
+Clase modelo: representan objetos o hechos de la naturaleza: un coche, un asiento contable, los datos meteorológicos de un día.
+Suelen tener atributos getter y setter, equals, hashCode, toString, Compare. Sus atributos suelen ser privados.
+
+Servicios: implementan la lógica de negocio. Suelen tener algunos atributos, pero sobre todo métodos públicos o privados.
+
+Auxiliares: sirven para realizar operaciones auxiliares de cálculo o transformación de datos. Mayoritariamente, sus métodos son estáticos.
+
+Main: son el punto de entrada de la aplicación. La mayoría de las ocasiones solo tienen este método y si tienen más suelen ser estáticos.
+
+Test: clases orientadas a realizar pruebas de nuestra aplicación. En Java, suelen ser text unitarios con JUnit.
+
+EJEMPLO
+_______
+
+public class Persona{
+  
+  //Atributos privados
+  private String dni;
+  private String nombre;
+  private String apellidos;
+  private LocalDate fechaNacimiento;
+  
+  //Constructor vacío
+  pubic Persona(){}
+  
+  //Constructor con parámetros
+  public Persona(String dni,String nombre,String apellidos,localDate fechaNacimiento){
+    super();
+    this.dni=dni;
+    this.nombre=nombre;
+    this.apellidos.apellidos;
+    this.fechaNacimiento=fechaNacimiento;
+ }
+ 
+ //Getter y Setter de los atributos privados
+ public String getDni(){
+  return dni;
+ }
+ public void setDni(string dni){
+  this.dni=dni;
+ }
+ public String getNombre(){
+  return nombre;
+ }
+ 
+ public void setNombre(String nombre){
+  this.nombre=nombre;
+ }
+ 
+ public String getApellidos(){
+  return apellidos;
+ }
+ public void setApellidos(String apellidos){
+  this.apellidos=apellidos;
+ }
+ 
+ public LocalDate getFechaNacimiento(){
+  return fechaNacimiento;
+  }
+ public void setFechaNacimiento(LocalDate fechaNacimiento){
+  this.fechaNacimiento=fechaNacimiento;
+ }
+
+@Override
+public int hashCode(){
+  final int prime=31;
+  int result=1;
+  result=prime*result+((apellidos==null)?0:apellidos.hashCode()));
+  result=prime*result+((dni==null)?0:dni.hashCode()));
+  result=prime*result+((fechaNacimiento==null)?0:fechaNacimiento.hashCode()));
+  result=prime*result+((nombre==null)?0:nombre.hashCode()));
+  return result;
+ }
+ 
+ @Override
+ public boolean equals(Object obj){
+ 
+  if(this==obj){
+    return true;
+  if(obj==null){
+    return false;
+  if(getClass()!=obj.getClass())
+    return false;
+  Persona other=(Persona) obj;
+  if(apellidos==null){
+    if(other.apellidos!=null)
+      return fase;
+    }else if(!apellidos.equals(other.apellidos))
+      return false;
+   if(dni==null){
+    if(dni==null){
+      if(other.dni!=null)
+        return false;
+      }else if(!dni.equals(other.dni))
+        return false;
+      if(fechaNacimiento==null){
+        if(other.fechaNacimiento!=null)
+          return false;
+       }else if("fechaNacimiento!=null)
+        return false;
+       }else if(!fechaNacimiento.equals(other.fechaNacimiento))
+        return false;
+       }if(nombre==null){
+        if(other.nombre!=null)
+          return false;
+       }else if(!nombre.equals(other.nombre))
+        return false;
+       return true;
+    }
+    
+    @Override
+    public String toString(){
+      return "Persona[dni= "+dni+", nombre="+nombre+", apellidos= "+apellidos+", fechaNacimiento= "+fechaNacimiento+" ]";
+    }
+    
+  }
+  
+  
+  _____________________________
+  
+  import encapsulacion.modelo.Persona;
+  
+  public class Servicio{
+  //Se crea una lista que va a almacenar objetos de tipo Persona
+    List<Persona>lista;
+    
+    public Servicio(){
+      lista=new ArrayList<>();
+    }
+    public void addPersona(Persona p){
+      lista.add(p);
+    }
+    public void editarPersona(Persona p){
+      for(int i=0;i<lista.size();i++){
+        if(lista.get(i).getDni().equalsIgnoreCae(p.getDni())){
+          lista.set(i,p);
+         }
+       }
+     }
+     
+     public void eliminarPersona(Persona p){
+      for(int i=0;i<lista.size();i++){
+        if(lista.get(i).getDni().equalsIgnoreCase(p.getDni())){
+          lista.remove(i);
+          }
+        }
+       }
+      
+      public List<Persona> listarTodasPersonas(){
+        return lista;
+      }
+      
+   }
+   
+   
+   ___________________________
+   
+   package encapsulacion.utilidad;
+   
+   public class UtilsDni{
+   
+    public static boolean verificarLetraDni(String nif){
+      String [] arrayLetrasNIF={"T","R","W","A","G","M","Y","F","P","D","X","B","N","J","Z","S","Q","V","H","C","K","E"};
+      
+      nif=nif.toUpperCase();
+      
+      //Si el largo del nif es diferente a 9, acaba el método
+      if(nif.length()!=9){
+        return false;
+      }
+      //Posición inicial: 0 (primero en la cadena de texto)
+      //Longitud: cadena de texto menos última posición. Así obtenemos sólo el número
+      
+      String numeroNIF=NIF.SUBSTRING(0,NIF.LENGTH()-1);
+      
+      //Para obtener la letra nos situamos en la penúltima posición y contamos 1 de largo
+      String letraNif=nif.substring(nif.length()-1,nif.length());
+      
+      try{
+        if(letraNif.equals(arrayLetrasNIF[Integer.parseInt(numeroNIF)%23])){
+          return true;
+       }else{
+          return false;
+       }
+     }catch(Exception e ){
+          return false;
+     }
+      
+    }
+
+
+
+public class MainEncapsulacion{
+
+  public static void main(String[]args){
+  //Este objeto tiene un constructor con parámetros
+    Persona p=new Persona("12345678A","Pepe","Perez", LocalDate.of(1980,1,1));
+   //Constructor vacío sin parámetros
+    Servicio=new Servicio();
+  s.addPersona(p);
+  
+  for(Persona per: s.listarTodasPersonas()){
+    System.out.print(per);
+    
+    if(UtilsDni.verificarLetraDni(p.getDni()))){
+      System.out.println("Su DNI es correcto");
+    }else{
+      System.out.println("Su DNI es incorrecto");
+    }
+    
+ }
+ 
+ 
+
+ 
