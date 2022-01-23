@@ -1,0 +1,690 @@
+
+SOBREESCRIBIR LOS MÉTODOS HASHCODE, EQUALS Y TO STRING DE LA CLASE OBJECT
+_________________________________________________________________________
+
+HERENCIA DE OBJECT
+__________________
+
+Todo objecto, de forma explícita o implícita hereda de Object.
+Es la clase base de cualquier otra en Java. 
+Tiene algunos métodos:equals, hashCode y toString.
+
+Cualquier clase que no herede de nadie implícitamente también hereda de Object.
+La clase Object implemene algunos métodos (equals, hashCode, toString entre otros).
+
+
+COMPARACIÓN DE OBJETOS
+______________________
+
+EQUALS
+______
+
+Con tipos primitivos hemos usado el operadr ==.
+¿Qué sucede con los objetos? el operador == no se comporta igual con los objetos. No sirve
+para comparar.
+Primero tenemos que definir cuando dos instancias de un objeto aon iguales o diferentes.
+
+Es el método equals que devuelve un valor booleano indicando cuando un objeto es igual a otro.
+ECLIPSE lo autogenera.
+
+HASHCODE
+________
+
+Devuelve un número asociado a la clase. Sirve como posición de memoria en hexadecimal.
+Por definición, si dos objetos son iguales (equals), su hash code también tiene que serlo.
+Si sobreescribimos el método equals, también tenemos que sobreescribir hashCode para que se
+cumpla esa propiedad.
+
+
+TOSTRING
+________
+
+Devuelve una representación en String del objeto.
+Por defectom devuelve el tipo (la clase) y su hashCode.
+Lo podemos sobreescribir para que represente los valores.
+Dos objetos iguales deben tener la misma representación.
+
+
+EJEMPLOS EQUALS
+_______________
+
+
+/**
+ * 
+ */
+package equals;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class Coche {
+	
+	private String marca;
+	private String modelo;
+	private String motorizacion;
+	
+	
+	public Coche(String marca, String modelo, String motorizacion) {
+		this.marca = marca;
+		this.modelo = modelo;
+		this.motorizacion = motorizacion;
+	}
+
+
+	public String getMarca() {
+		return marca;
+	}
+
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+
+	public String getModelo() {
+		return modelo;
+	}
+
+
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
+	}
+
+
+	public String getMotorizacion() {
+		return motorizacion;
+	}
+
+
+	public void setMotorizacion(String motorizacion) {
+		this.motorizacion = motorizacion;
+	}
+	
+	
+	
+	
+
+}
+__________________________________________
+
+/**
+ * EJEMPLO DE COMPARACIÓN DE DOS INSTANCIAS DE UNA CLASE QUE TIENE
+ * IMPLEMENTADO EL MÉTODO EQUALS
+ */
+package equals;
+
+import java.time.LocalDate;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class EjemploEquals {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		// Coche no tiene implementado equals
+		// Toma el comportamiento por defecto de object
+		Coche mercedes = new Coche("Mercedes", "A200", "2.0 TDI");
+		Coche volkswagen = new Coche("VolksWagen", "Passat", "2.0 TDI");
+
+		if (mercedes.equals(volkswagen))
+			System.out.println("Los dos coches son iguales");
+		else
+			System.out.println("Son diferentes");
+
+		
+		//Asigna a las dos referencias el mismo objeto en memoria
+		//No copia valores
+		volkswagen = mercedes;
+
+		// Esta línea de código es equivalente al bloque if/else de arriba
+		System.out.println((mercedes.equals(volkswagen)) ? 
+				"Los dos coches son iguales" : "Son diferentes");
+		
+		System.out.println("Mercedes: " + mercedes);
+		System.out.println("Volkswagen: " + volkswagen);
+		
+		System.out.println("\n\n\n");
+		//Persona sí que tiene implementado el método equals
+		Persona rafaNadal = new Persona("Rafael", "Nadal Parera", LocalDate.of(1986, 6, 3));
+		Persona otroRafaNadal = new Persona("Rafael", "Nadal Parera", LocalDate.of(1986, 6, 3));
+		Persona rogerFederer = new Persona("Roger", "Federer", LocalDate.of(1981, 8, 8));
+		
+		System.out.println((rafaNadal.equals(otroRafaNadal)) ? 
+				"Las dos personas son iguales" : "Son diferentes");
+		
+		System.out.println((rafaNadal.equals(rogerFederer)) ? 
+				"Las dos personas son iguales" : "Son diferentes");
+		
+		System.out.println("rafaNadal:" + rafaNadal);
+		System.out.println("otroRafaNadal:" + otroRafaNadal);
+		System.out.println("rogerFederer:" + rogerFederer);
+
+	}
+
+}
+
+____________________________________________________________
+
+/**
+ * 
+ */
+package equals;
+
+import java.time.LocalDate;
+import java.util.Objects;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class Persona {
+
+	private String nombre;
+	private String apellidos;
+	private LocalDate fechaNacimiento;
+
+	public Persona(String nombre, String apellidos, LocalDate fechaNacimiento) {
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+	public LocalDate getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	// Generado por Eclipse
+	// Viejo estilo
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		Persona other = (Persona) obj;
+//		if (apellidos == null) {
+//			if (other.apellidos != null)
+//				return false;
+//		} else if (!apellidos.equals(other.apellidos))
+//			return false;
+//		if (fechaNacimiento == null) {
+//			if (other.fechaNacimiento != null)
+//				return false;
+//		} else if (!fechaNacimiento.equals(other.fechaNacimiento))
+//			return false;
+//		if (nombre == null) {
+//			if (other.nombre != null)
+//				return false;
+//		} else if (!nombre.equals(other.nombre))
+//			return false;
+//		return true;
+//	}
+
+	// Estilo a partir de Java SE 7
+	// Mucho más compacto
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+
+		// casteamos a la clase correcta
+		Persona p = (Persona) obj;
+
+		return Objects.equals(nombre, p.nombre) && Objects.equals(apellidos, p.apellidos)
+				&& Objects.equals(fechaNacimiento, p.fechaNacimiento);
+
+	}
+
+}
+
+
+________________________________________
+
+
+EJEMPLO HASHCODE
+_________________
+
+/**
+ * EJEMPLO DE COMPARACIÓN DE DOS INSTANCIAS DE UNA CLASE QUE TIENE
+ * IMPLEMENTADO EL MÉTODO EQUALS
+ */
+package hashCode;
+
+import java.time.LocalDate;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class EjemploHashCode {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		//Persona sí que tiene implementado el método equals
+		PersonaV2 rafaNadal = new PersonaV2("Rafael", "Nadal Parera", LocalDate.of(1986, 6, 3));
+		PersonaV2 otroRafaNadal = new PersonaV2("Rafael", "Nadal Parera", LocalDate.of(1986, 6, 3));
+		PersonaV2 rogerFederer = new PersonaV2("Roger", "Federer", LocalDate.of(1981, 8, 8));
+		
+		System.out.println((rafaNadal.equals(otroRafaNadal)) ? 
+				"Las dos personas son iguales" : "Son diferentes");
+		
+		System.out.println((rafaNadal.equals(rogerFederer)) ? 
+				"Las dos personas son iguales" : "Son diferentes");
+		
+		System.out.println("rafaNadal:" + rafaNadal);
+		System.out.println("otroRafaNadal:" + otroRafaNadal);
+		System.out.println("rogerFederer:" + rogerFederer);
+
+	}
+
+}
+
+_____________________________________________________
+
+/**
+ * 
+ */
+package hashCode;
+
+import java.time.LocalDate;
+import java.util.Objects;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class PersonaV2 {
+
+	private String nombre;
+	private String apellidos;
+	private LocalDate fechaNacimiento;
+
+	public PersonaV2(String nombre, String apellidos, LocalDate fechaNacimiento) {
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+	public LocalDate getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+//	// Generado por Eclipse
+//	// Viejo estilo	
+//	@Override
+//	public int hashCode() {
+//		final int prime = 31;
+//		int result = 1;
+//		result = prime * result + ((apellidos == null) ? 0 : apellidos.hashCode());
+//		result = prime * result + ((fechaNacimiento == null) ? 0 : fechaNacimiento.hashCode());
+//		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+//		return result;
+//	}
+//	
+//
+//	// Generado por Eclipse
+//	// Viejo estilo
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		PersonaV2 other = (PersonaV2) obj;
+//		if (apellidos == null) {
+//			if (other.apellidos != null)
+//				return false;
+//		} else if (!apellidos.equals(other.apellidos))
+//			return false;
+//		if (fechaNacimiento == null) {
+//			if (other.fechaNacimiento != null)
+//				return false;
+//		} else if (!fechaNacimiento.equals(other.fechaNacimiento))
+//			return false;
+//		if (nombre == null) {
+//			if (other.nombre != null)
+//				return false;
+//		} else if (!nombre.equals(other.nombre))
+//			return false;
+//		return true;
+//	}
+
+	// Estilo a partir de Java SE 7
+	// Mucho más compacto
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+
+		// casteamos a la clase correcta
+		PersonaV2 p = (PersonaV2) obj;
+
+		return Objects.equals(nombre, p.nombre) && Objects.equals(apellidos, p.apellidos)
+				&& Objects.equals(fechaNacimiento, p.fechaNacimiento);
+
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(nombre, apellidos, fechaNacimiento);
+	}
+	
+
+}
+
+____________________________________________________
+
+
+EJEMPLO TOSTRING
+________________
+
+/**
+ * EJEMPLO DE COMPARACIÓN DE DOS INSTANCIAS DE UNA CLASE QUE TIENE
+ * IMPLEMENTADO EL MÉTODO EQUALS
+ */
+package toString;
+
+import java.time.LocalDate;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class EjemploToString {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		//Persona sí que tiene implementado el método equals
+		PersonaV3 rafaNadal = new PersonaV3("Rafael", "Nadal Parera", LocalDate.of(1986, 6, 3));
+		PersonaV3 otroRafaNadal = new PersonaV3("Rafael", "Nadal Parera", LocalDate.of(1986, 6, 3));
+		PersonaV3 rogerFederer = new PersonaV3("Roger", "Federer", LocalDate.of(1981, 8, 8));
+
+		System.out.println(rafaNadal); //Invocamos implícitamente a .toString
+		System.out.println(otroRafaNadal);
+		System.out.println(rogerFederer);
+
+	}
+
+}
+
+
+______________________________________
+
+/**
+ * 
+ */
+package toString;
+
+import java.time.LocalDate;
+import java.util.Objects;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class PersonaV3 {
+
+	private String nombre;
+	private String apellidos;
+	private LocalDate fechaNacimiento;
+
+	public PersonaV3(String nombre, String apellidos, LocalDate fechaNacimiento) {
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+	public LocalDate getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+
+	// Estilo a partir de Java SE 7
+	// Mucho más compacto
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+
+		// casteamos a la clase correcta
+		PersonaV3 p = (PersonaV3) obj;
+
+		return Objects.equals(nombre, p.nombre) && Objects.equals(apellidos, p.apellidos)
+				&& Objects.equals(fechaNacimiento, p.fechaNacimiento);
+
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(nombre, apellidos, fechaNacimiento);
+	}
+	
+	@Override
+	public String toString() {
+		return "PersonaV3 [" + (nombre != null ? "nombre=" + nombre + ", " : "")
+				+ (apellidos != null ? "apellidos=" + apellidos + ", " : "")
+				+ (fechaNacimiento != null ? "fechaNacimiento=" + fechaNacimiento : "") + "]";
+	}
+	
+	
+	
+
+}
+
+
+________________________________________
+
+EJEMPLO TOSTRING
+_________________
+
+
+/**
+ * EJEMPLO DE COMPARACIÓN DE DOS INSTANCIAS DE UNA CLASE QUE TIENE
+ * IMPLEMENTADO EL MÉTODO EQUALS
+ */
+package toString;
+
+import java.time.LocalDate;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class EjemploToString {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		//Persona sí que tiene implementado el método equals
+		PersonaV3 rafaNadal = new PersonaV3("Rafael", "Nadal Parera", LocalDate.of(1986, 6, 3));
+		PersonaV3 otroRafaNadal = new PersonaV3("Rafael", "Nadal Parera", LocalDate.of(1986, 6, 3));
+		PersonaV3 rogerFederer = new PersonaV3("Roger", "Federer", LocalDate.of(1981, 8, 8));
+
+		System.out.println(rafaNadal); //Invocamos implícitamente a .toString
+		System.out.println(otroRafaNadal);
+		System.out.println(rogerFederer);
+
+	}
+
+}
+
+______________________________________
+
+/**
+ * 
+ */
+package toString;
+
+import java.time.LocalDate;
+import java.util.Objects;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class PersonaV3 {
+
+	private String nombre;
+	private String apellidos;
+	private LocalDate fechaNacimiento;
+
+	public PersonaV3(String nombre, String apellidos, LocalDate fechaNacimiento) {
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+	public LocalDate getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+
+	// Estilo a partir de Java SE 7
+	// Mucho más compacto
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+
+		// casteamos a la clase correcta
+		PersonaV3 p = (PersonaV3) obj;
+
+		return Objects.equals(nombre, p.nombre) && Objects.equals(apellidos, p.apellidos)
+				&& Objects.equals(fechaNacimiento, p.fechaNacimiento);
+
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(nombre, apellidos, fechaNacimiento);
+	}
+	
+	@Override
+	public String toString() {
+		return "PersonaV3 [" + (nombre != null ? "nombre=" + nombre + ", " : "")
+				+ (apellidos != null ? "apellidos=" + apellidos + ", " : "")
+				+ (fechaNacimiento != null ? "fechaNacimiento=" + fechaNacimiento : "") + "]";
+	}
+	
+	
+	
+
+}
+
+
+
