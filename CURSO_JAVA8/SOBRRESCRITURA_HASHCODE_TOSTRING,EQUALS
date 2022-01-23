@@ -47,6 +47,10 @@ Dos objetos iguales deben tener la misma representación.
 
 EJEMPLOS EQUALS
 _______________
+Si las referencias son las mismas el objeto es igual, si la referencia que proporcionamos es nula el objeto es falso, 
+y si no pertenecen a la misma clase también serían diferentes.
+El método equals tiene dos objects y devuelve true si los objetos son iguales.
+Es mejor práctica la versión más compacta.
 
 
 /**
@@ -276,6 +280,9 @@ ________________________________________
 
 EJEMPLO HASHCODE
 _________________
+Construye el Hash en función a los objetos que le proporcionemos.
+Es buena práctica usar el método compacto.
+Devuelve un valor.
 
 /**
  * EJEMPLO DE COMPARACIÓN DE DOS INSTANCIAS DE UNA CLASE QUE TIENE
