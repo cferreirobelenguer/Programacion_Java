@@ -1,0 +1,303 @@
+
+
+POLIMORFISMO
+_____________
+
+
+Una subclase puede acceder a los métodos de su clase base (public y protected).
+
+También puede sobrescribir el comportamiento del mismo.
+
+Se puede instanciar un objeto de clase fja y guardar su referencia en una variable de clase base de clase padre.
+Una subclase puede ser accedida a través de una referencia de una superclase.
+Esto es muy útil, sobre todo, pasa usar como atributos de métodos.
+
+Rectangulo r=new Cuadrado();
+
+Podriamos crear un cuadrado y guardar su referencia en un rectángulo.
+
+OCULTACIÓN DE MÉTODOS:
+
+Si una subclase añade un método con mismo nombre y firma que otro de la clase base, oculta a este.
+¿Qué sucede en caso de el uso de referencias de clase base, pero instanciación de objetos derivados?
+
+POLIMORFISMO:
+
+Java escoge, en tiempo de ejecución, el tipo de objeto.
+Si ese tipo ha ocultado un método en la superclase, llama a la concreción.
+En otro caso, llama al método de la clase base.
+
+POLIMORFISMO CON INTERFACES:
+
+Java también hace uso de polimorfismo con la herencia de interfaces y las clases que lo implementan.
+
+ClaseQueImplementaInterfaz c1=new ClaseQueImplementaInterfaz();
+c1.saludar("Hola Mundo"),
+
+Hija c2=new ClaseQueImplementaInterfaz();
+c2.saludar("Hola Mundo, otra vez");
+
+Base c3=new ClaseQueImplementaInterfaz();
+c3.saludar("Hola Mundo, por tercera vez");
+
+ 
+ /**
+ * Clase Rectángulo
+ */
+package polimorfismo;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class Rectangulo {
+	
+  //Atributos
+	public float base;
+	public float altura;
+	
+	//Constructor con atributos
+	public Rectangulo(float base, float altura) {
+		this.base = base;
+		this.altura = altura;
+	}
+
+  //Getter y Setter
+	public float getBase() {
+		return base;
+	}
+
+
+	public void setBase(float base) {
+		this.base = base;
+	}
+
+
+	public float getAltura() {
+		return altura;
+	}
+
+
+	public void setAltura(float altura) {
+		this.altura = altura;
+	}
+
+  //toString
+	@Override
+	public String toString() {
+		return "Rectangulo [base=" + base + ", altura=" + altura + "]";
+	}
+	
+	//Métodos de la clase calcular área y perímetro
+	public float getArea() {
+		System.out.println("Area de un rectángulo");
+		return base*altura;
+	}
+	
+	public float getPerimetro() {
+		System.out.println("Perímetro de un rectángulo");
+		return (base*2) + (altura*2);
+	}
+	
+	
+
+}
+
+___________________________________________
+
+/**
+ * Clase Cuadrado (es un tipo de Rectángulo)
+ */
+package polimorfismo;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class Cuadrado extends Rectangulo{
+
+	public Cuadrado(float lado) {
+  //Hereda los atributos de rectángulo
+		super(lado, lado);
+	}
+	
+  //Getter y Setter
+	public float getLado() {
+		return getBase();
+	}
+	
+	public void setLado(float lado) {
+		setBase(lado);
+		setAltura(lado);
+	}
+	
+  //Se sobreescriben los métodos
+	public float getArea() {
+		System.out.println("Area de un cuadrado");
+		return getBase()*getBase();
+	}
+	
+	public float getPerimetro() {
+		System.out.println("Perimetro de un cuadrado");
+		return getBase()*4;
+	}
+
+  //clase toString
+	@Override
+	public String toString() {
+		return "Cuadrado [lado=" + getLado() + "]";
+	}
+	
+	
+
+}
+
+
+___________________________________________
+
+/**
+CLASE MAIN:
+ * EJEMPLO DE POLIMORFISMO CON FIGURAS
+ */
+package polimorfismo;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class EjemploFiguras {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		
+		List<Rectangulo> listaFiguras = new ArrayList<>();
+		
+		//Creamos una lista de 10 figuras.
+		//Tanto la figura como el tamaño de la misma
+		//son aleatorias :S
+		for(int i = 0; i < 10; i++) {
+			listaFiguras.add(tirarMoneda() ? 
+					new Rectangulo(aleatorio(50), aleatorio(50)) : 
+						new Cuadrado(aleatorio(50)));
+		}
+		
+		//Recorremos la lista, usando referencias de
+		//tipo RECTANGULO
+		for(Rectangulo r : listaFiguras) {
+			System.out.println(r);
+			System.out.printf("Area de la figura: %f | Perímetro de la figura: %f %n", r.getArea(), r.getPerimetro());
+			System.out.println("");
+		}
+			
+	}
+	
+	public static float aleatorio(int tope) {
+		Random r = new Random();
+		return r.nextFloat() * r.nextInt(tope);
+	}
+	
+	public static boolean tirarMoneda() {
+		Random r = new Random();
+		return (r.nextInt(2) % 2 == 0);
+	}
+
+}
+
+______________________________________________________
+
+
+OTRO EJEMPLO:
+
+/**
+ *  Interfaz Base (para la herencia)
+ */
+package polimorfismo.interfaz;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public interface Base {
+	
+	default public void saludar(String mensaje) {
+		System.out.println(mensaje + " desde Base");
+	}
+
+}
+
+______________________________________________________
+
+/**
+ * Clase que implementa la interfaz Hija
+ */
+package polimorfismo.interfaz;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class ClaseQueImplementaInterfaz implements Hija {
+
+}
+
+______________________________________________________
+
+/**
+ *  Ejemplo de polimorfismo, utilizando como tipos de las
+ *  referencias algunas interfaces.
+ */
+package polimorfismo.interfaz;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class EjemploInterfaces {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		
+		ClaseQueImplementaInterfaz c1 = new ClaseQueImplementaInterfaz();
+		c1.saludar("Hola Mundo");
+		
+		Hija c2 = new ClaseQueImplementaInterfaz();
+		c2.saludar("Hola Mundo, otra vez");
+		
+		Base c3 = new ClaseQueImplementaInterfaz();
+		c3.saludar("Hola Mundo, por tercera vez");
+
+	}
+
+}
+
+______________________________________________________
+
+/**
+ * Interfaz Hija (que extiende a Base)
+ */
+
+package polimorfismo.interfaz;
+
+
+/**
+ * @author Openwebinars
+ *
+ */
+public interface Hija extends Base {
+	
+	default public void saludar(String s) {
+		System.out.println(s + " desde Hija");
+	}
+
+}
+
+
+
