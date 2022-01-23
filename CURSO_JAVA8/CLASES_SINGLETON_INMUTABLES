@@ -1,0 +1,197 @@
+
+CLASES SINGLETON Y CLASES INMUTABLES
+____________________________________
+
+PATRÓN DE DISEÑO SINGLETON
+
+Patrón de diseño (GoF)
+Para aquellas clases de las que no queremos tener más de una instancia (por ejemplo los servicios).
+
+Ejemplo, una conexión a la base de datos podríamos usarlo con el patrón singleton.
+
+Debemos tener un atributo estático privado que se llama privado y siempre va a null.
+
+Hay que hacer un constructor sin parámetros privado, esto evitaría que pudiéramos hacer una construcción directa del objeto.
+Luego hacemos un método estático que nos devuelve la instancia , si la instancia es null instanciamos el objeto.
+Tanto si la instancia era nula como si no lo era ya devolveríamos la instancia. De manera que esta operación se realizará solo una vez y a partir
+de ahí iremos devolviendo siempre la misma instancia.
+Getter, Setter, atributos propios podríamos tener los que pudiéramos.
+
+/**
+ * Ejemplo de un Servicio que implementa el patrón Singleton
+ */
+
+package singleton;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class MiServicioSingleton {
+	
+	private String unAtributo;
+	
+	//Una instancia del objeto que va a existir
+	private static MiServicioSingleton instance = null;
+	
+	//Evitamos así la instanciación directa
+	private MiServicioSingleton() {	}
+	
+	public static MiServicioSingleton getInstance() {
+		if (instance == null)
+			instance = new MiServicioSingleton();
+		
+		return instance;
+	}
+
+	public String getUnAtributo() {
+		return unAtributo;
+	}
+
+	public void setUnAtributo(String unAtributo) {
+		this.unAtributo = unAtributo;
+	}
+
+	
+	
+
+}
+______________________________________________________________
+
+/**
+ * EJEMPLO DE USO DE UNA CLASE SINGLETON
+ */
+package singleton;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class UsoSingleton {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		
+		//No podemos instanciar directamente
+		//MiServicioSingleton ser1 = new MiServicioSingleton();
+		
+		//Creamos dos referencias, pero una sola instancia, señalan a un mismo objeto
+		MiServicioSingleton ser2 = MiServicioSingleton.getInstance();
+		MiServicioSingleton ser3 = MiServicioSingleton.getInstance();
+		
+		//Podemos comprobar que la dirección de memoria es la misma
+		System.out.println(ser2);
+		System.out.println(ser3);
+		
+		//Si cambiamos un atributo a través de una referencia
+    //Llaman todo el rato al mismo objeto
+		ser2.setUnAtributo("Hola");
+		//Podemos visualizarlo desde la otra.
+		System.out.println(ser3.getUnAtributo());
+		//Aunque tengamos varias referencias siempre señalan al mismo objeto
+
+	}
+
+}
+
+___________________________________________________
+
+
+OBJETOS INMUTABLES
+__________________
+
+Objetos cuyo estado no puede ser modificado una vez se haya inicializado.
+No son constantes (estas se definen en tiempo de compilación, y los inmutables en tiempo de ejecución).
+Un ejemplo de inmutable es String.
+
+Un objeto de tipo inmutable son los objetos de tipo String.
+
+ESTRATEGIA PARA HACER OBJETOS INMUTABLES
+________________________________________
+
+Definir las propiedades como final y private
+No añadir métodos setter, no tendríamos manera de modificar su valor al ser atributos privados.
+Declarar la clase misma como final. Al ser final no podrán ser modificadas.
+Al declarar la clase como final no podrá ser modificada.
+
+
+/**
+ * EJEMPLO DE USO DE UNA CLASE INMUTABLE
+ */
+package inmutable;
+
+import java.time.LocalDate;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class EjemploInmutable {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		
+		PersonaInmutable yo = new PersonaInmutable("Luis Miguel", "López Magaña", LocalDate.of(1982, 9, 18));
+		
+		//No tenemos forma de modificar las propiedades
+		//Solo de acceder a ellas en modo lectura
+		System.out.printf("%s %s (%s)", yo.getNombre(), yo.getApellidos(), yo.getFechaNacimiento());
+
+	}
+
+}
+
+_______________________________________________________
+
+
+/**
+ * EJEMPLO DE OBJETO INMUTABLE
+ */
+package inmutable;
+
+import java.time.LocalDate;
+
+/**
+ * @author Openwebinars
+ *
+ */
+ //Clase estática final
+public final class PersonaInmutable {
+	//atributos final
+	final private String nombre;
+	final private String apellidos;
+	final private LocalDate fechaNacimiento;
+	
+	
+	public PersonaInmutable(final String nombre, final String apellidos, final LocalDate fechaNacimiento) {
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+//Sólo métodos getter y no setter para que no puedan modificarse los atributos
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+
+	public LocalDate getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+	
+	
+	
+	
+
+}
+
+
