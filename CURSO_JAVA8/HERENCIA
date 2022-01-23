@@ -1,0 +1,349 @@
+HERENCIA
+__________
+
+Una clase que extiende a otra hereda de sus atributos y sus métodos (no constructores).
+Puede añadir atributos y métodos nuevos.
+
+Trabajador:
+
+nombre
+puesto
+direccion
+telefono
+nss
+
+Empleado:
+
+sueldo
+impuestos
+calcularPaga()
+
+Consultor:
+
+horas
+tarifa
+calcularPaga()
+
+Las nuevas clases heredadas pueden formar atributos nuevos y métodos nuevos.
+Se establece una relación es-un entre las clases heredadas y las clase padre.
+
+MODIFICADOR PROTECTED:
+_______________________
+
+Si usamos protected en la clase base, tendremos acceso directo a los atributos.
+En otro caso, tendremos que acceder vía getter/setter
+
+(Es mejor práctica usar getter y setter)
+OJO!, Los constructores no se heredan aunque sean públicos.
+
+//Clase padre
+/**
+ * 
+ */
+package herencia.clases;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class Base {
+	
+  //Atributos privados
+	private String nombre;
+	protected String apellidos;
+	
+  //Constructor vacío
+	public Base() { }
+  
+  //Constructor con parámetros
+	public Base(String nombre, String apellidos) {
+		super();
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+	}
+  //Getter y Setter
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+}
+
+______________________________
+
+//Clase hija
+/**
+ * 
+ */
+package herencia.clases;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class Hija extends Base {
+	
+  //Constructor con dos parámetros desde la clase base con atributos de la clase base
+	public Hija(String n, String a) {
+		super(n, a);
+	}
+	
+  //Método de clase heredada
+	public void metodo() {
+		//this.nombre = Pepe;   // Imposible acceder. Nos da error
+		this.setNombre("Pepe"); // Funciona perfectamente
+		this.apellidos = "Perez";
+	}
+	//Método de clase heredada
+	public void print() {
+		System.out.println(this.getNombre() + " " + this.apellidos);
+	}
+
+}
+
+//En el caso de nombre, como es un atributo privado para poder acceder a él a través de cualquier método hay que acceder
+mediante su getter y setter, como por ejemplo en el método de la clase heredada hace falta setNombre para modificar el nombre.
+En el caso de apellidos es protected, con lo cual es visible en la misma clase y en clases heredadas y podríamos nombrarlo y utilizarlo
+sin getter y setter.
+
+
+HERENCIA DE INTERFACES
+______________________
+También podemos establecer relaciones jerárquicas entre interfaces.
+Nos regimos por las mismas reglas que en el caso de las clases.
+Cuando una interfaz hereda de otra también hereda los métodos que tiene así como las constantes.
+
+package herencia.interfaces;
+
+/**
+ClaseImprimible implementa a dos interfaces Imprimible e ImprimiblePorConsola
+ * 
+ * @author Openwebinars
+ *
+ */
+public class ClaseImprimible implements ImprimiblePorConsola {
+
+	@Override
+	public void print(String s) {
+		System.out.println(s);
+	}
+	
+
+}
+
+
+_________________________________
+
+package herencia.interfaces;
+
+/**
+ * 
+ * @author Openwebinars
+ *
+ */
+public interface Imprimible {
+	
+	public void print(String s);
+
+}
+_________________________________
+EJEMPLO DE UNA INTERFAZ HIJO EN UNA HERENCIA:
+
+package herencia.interfaces;
+
+public interface ImprimiblePorConsola extends Imprimible {
+	
+	default public void printConsola(String s) {
+		System.out.println(s);
+	}
+
+}
+
+__________________________________
+
+CLASE MAIN DE CREACIÓN DEL OBJETO Y LLAMADA DE MÉTODOS
+
+package herencia.interfaces;
+
+/**
+ * 
+ * @author Openwebinars
+ *
+ */
+public class EjemploHerenciaInterfaces {
+	
+	public static void main(String[] args) {
+  //Se crea el objeto
+		ClaseImprimible imprimible = new ClaseImprimible();
+		
+    //Se llama al método print que pertenece a la clase imprimible
+		imprimible.print("Hola");
+		imprimible.printConsola("Hola mundo");
+	}
+
+}
+
+
+__________________________________
+
+ASOCIACIÓN DE COMPOSICIÓN DE CLASES:
+
+Normalmente, cuando representamos la estructura de un sistema, está formado por muchas class.
+En este caso, no solamente importan las clases en sí, sino las asociaciones.
+Una de ellas es la composición.
+En UML, se representan de una forma especial.
+
+Una clase formada por otra parte.
+La clase provincia tiene unos municipios que lo forman. //Ejemplo
+
+La clase todo tiene al menos una parte de la clase parte.
+Normalmente hay dependencia de existencia entre la parte y el todo. 
+No podríamos tener municipios que queden fuera de una provincia.
+
+Ejemplo:
+
+//Clase Municipio
+
+package herencia.composicion;
+
+/**
+ * 
+ * @author Openwebinars
+ *
+ */
+public class Municipio {
+	
+	private String nombre;
+	private int numHabitantes;
+	
+	
+	public Municipio() { }
+
+
+	public Municipio(String nombre, int numHabitantes) {
+		this.nombre = nombre;
+		this.numHabitantes = numHabitantes;
+	}
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public int getNumHabitantes() {
+		return numHabitantes;
+	}
+
+
+	public void setNumHabitantes(int numHabitantes) {
+		this.numHabitantes = numHabitantes;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Municipio [nombre=" + nombre + ", numHabitantes=" + numHabitantes + "]";
+	}
+	
+}
+
+______________________________________________
+//Clase Provincia
+
+package herencia.composicion;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * 
+ * @author Openwebinars
+ *
+ */
+public class Provincia {
+	
+	private String nombre;
+	private List<Municipio> municipios;
+	
+	public Provincia(String nombre) {
+		this.nombre = nombre;
+		this.municipios = new ArrayList<>();
+	}
+
+	public Provincia(String nombre, List<Municipio> municipios) {
+		this.nombre = nombre;
+		this.municipios = municipios;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public List<Municipio> getMunicipios() {
+		return municipios;
+	}
+
+	public void setMunicipios(List<Municipio> municipios) {
+		this.municipios = municipios;
+	}
+
+	@Override
+	public String toString() {
+		return "Provincia [nombre=" + nombre + ", municipios=" + municipios + "]";
+	}
+	
+	
+
+}
+
+______________________________________________
+
+//Main
+package herencia.composicion;
+
+/**
+ * 
+ * @author Openwebinars
+ *
+ */
+public class EjemploComposicion {
+
+	public static void main(String[] args) {
+		Provincia sevilla = new Provincia("Sevilla");
+		
+		sevilla.getMunicipios().add(new Municipio("Sevilla", 690576));
+		sevilla.getMunicipios().add(new Municipio("Dos Hermanas", 131855));
+		sevilla.getMunicipios().add(new Municipio("Mairena del Aljarafe", 45040));
+		
+		System.out.println(sevilla);
+
+	}
+
+}
+
+______________________________________________
+
+No es una herencia ni municipio extiende de provincia, ni provincia de municipio. Pero sin embargo
+si es una asociación, ya que una provincia está formada por uno o varios municipios.
+
