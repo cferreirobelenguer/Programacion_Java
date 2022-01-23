@@ -1,0 +1,233 @@
+STATIC
+______
+
+Los objetos son instancias de una clase.
+Cada objeto tiene una copia de los atributos.
+¿Y si quisiéramos tener un atributo común a todos los objetos de una clase?
+Para eso tenemos static, que permite que un atributo o un método sean compartido por todas las instancias.
+
+ATRIBUTOS ESTÁTICOS
+____________________
+
+Están asociados a la clase, no a una instancia de ella.
+Son llamados atributos estáticos.
+Compartidos para todas las instancias de esa clas.e
+Pueden ser manipulados por cualquier instancia.
+También pueden ser manipulados sin crear instancias de esa clase.
+
+MÉTODOS ESTÁTICOS
+__________________
+
+Son similares a las variables estáticas (static)
+Se pueden invocar sin crear instancia de esa clase.
+Clase.metodoEstatico(...);
+Para acceder a una variable estática, necesitamos un método estático.
+Clases con métodos auxiliares (como por ejemplo, java.util.Arrays),
+
+CONSTANTES
+__________
+
+Se suelen definir como estáticas, 
+static final...
+Suelen ser definidas dentro de interfaces
+
+static final double PI=3.141592...;
+
+No se puede modificar su valor(error).
+Nombre en mayúsculas, separando palabras con guiones bajos.
+
+CLASES ESTÁTICAS
+________________
+
+Válido para clases internas 
+Nos permiten agrupar código
+Para crear una instancia de la clase interna, no necesitamos una de la clase externa
+Con static no se usa this.
+
+EJEMPLO:
+
+package ejemplostatic;
+
+public class Bicicleta {
+	
+	private int numMarchas;
+	private int diametroRueda;
+	private int velocidad;
+	private int id;
+	
+	
+	//Variable estática
+	//Compartida para todas las instancias.
+	private static int numeroDeBiciletas = 0;
+	
+	public static int getNumeroDeBicicletas() {
+		//No podemos usar this
+		//return this.numeroDeBiciletas;
+		return numeroDeBiciletas;
+	}
+
+
+	public Bicicleta(int numMarchas, int diametroRueda, int velocidad) {
+		this.numMarchas = numMarchas;
+		this.diametroRueda = diametroRueda;
+		this.velocidad = velocidad;
+		id = ++numeroDeBiciletas;
+	}
+
+
+	public int getNumMarchas() {
+		return numMarchas;
+	}
+
+
+	public void setNumMarchas(int numMarchas) {
+		this.numMarchas = numMarchas;
+	}
+
+
+	public int getDiametroRueda() {
+		return diametroRueda;
+	}
+
+
+	public void setDiametroRueda(int diametroRueda) {
+		this.diametroRueda = diametroRueda;
+	}
+
+
+	public int getVelocidad() {
+		return velocidad;
+	}
+
+
+	public void setVelocidad(int velocidad) {
+		this.velocidad = velocidad;
+	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+}
+
+_____________________________________________________
+
+/**
+ * Ejemplo de uso de atributos y métodos estáticos
+ */
+package ejemplostatic;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class Estaticos {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		
+		Bicicleta bici1 = new Bicicleta(21, 27, 0);
+		Bicicleta bici2 = new Bicicleta(18, 24, 0);
+		
+		System.out.println(bici1.getId());
+		System.out.println(bici2.getId());
+		
+		System.out.println("Número total de bicis: " + Bicicleta.getNumeroDeBicicletas());
+
+	}
+
+}
+
+___________________________________________________________
+
+/**
+ * En este ejemplo podemos ver el uso de clase internas estáticas,
+ * que permiten crear instancias de ellas sin crear una instancia
+ * de la clase que la envuelve.
+ */
+package clasestatic;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class EjemploClaseStatic {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		
+		Persona p = new Persona("Pepe");		
+		System.out.println(p);
+		
+		//Trabajaremos esto en profundidad en capítulos posteriores
+		OtraClase o = new EjemploClaseStatic().new OtraClase("Juan");
+		System.out.println(o);
+	}
+	
+	public static class Persona {
+		
+		private String nombre;
+		
+		public Persona(String nombre) {
+			this.nombre = nombre;
+		}
+		
+		public String getNombre() {
+			return nombre;
+		}
+		
+		public void setNombre(String nombre) {
+			this.nombre = nombre;
+		}
+
+		@Override
+		public String toString() {
+			return "Persona [" + (nombre != null ? "nombre=" + nombre : "") + "]";
+		}
+		
+		
+		
+	}
+	
+	public class OtraClase {
+		
+		private String atributo;
+		
+		public OtraClase(String atributo) {
+			this.atributo = atributo;
+		}
+
+		@Override
+		public String toString() {
+			return "OtraClase [" + (atributo != null ? "atributo=" + atributo : "") + "]";
+		}
+		
+		
+	}
+
+}
+
+________________________________________________________
+
+/**
+ * Una clase top-level no puede ser estática...
+ */
+
+package clasestatic;
+
+//Una clase "top-level" no puede ser estática
+//public static class Persona {
+//	
+//}
+
+_______________________________________________________
