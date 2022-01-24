@@ -10,6 +10,8 @@ Palabra reservada
 Se puede usar a nivel de método y de clase
 Sirve para indicar la obligación de implementar un método o extender una clase completa.
 
+No se pueden crear objetos de las clases abstractas, pero si de sus clases heredadas.
+
 CLASE ABSTRACTA:
 _______________
 
@@ -214,7 +216,7 @@ public class Circulo extends ObjectoGrafico{
 		//Al rotar un círculo se queda igual
 		
 	}
-
+	//Se implementan los métodos abstractos de la clase padre
 	@Override
 	public void voltearHorizontal() {
 		//No hay que hacer nada.
@@ -250,8 +252,11 @@ public class EjemploAbstract {
 	public static void main(String[] args) {
 		
 		//Imposible instanciar la clase abstracta
+		//No se puede crear un objeto de una clase abstracta pero si de sus clases heredadas
 		//ObjectoGrafico o = new ObjetoGrafico();
 		
+		
+		//Esta es la clase heredada de la que podemos crear el objeto y llamar a las funciones de la clase abstracta y a las de su respectiva clase
 		Circulo c = new Circulo(1,1,7);
 		c.dibujar();
 		c.cambiarTamanio(2);
@@ -274,6 +279,8 @@ ______________________________________________________________________
 
 package ejemploabstractinterfaces;
 
+//ObjetiGrafico implementa a transformable, por el hecho de ser abstracta permite que los métodos abstractos
+//se implementen en su clase heredada que es Circulo
 public abstract class ObjectoGrafico implements Transformable {
 	
 	protected int x, y;
@@ -293,6 +300,7 @@ _____________________________________________________________________
 
 package ejemploabstractinterfaces;
 
+//Es una interfaz que implementa métodos de transformación de objetos (rotar,voltearHorizontal,voltearVertical)
 public interface Transformable {
 	
 	public void rotar();
