@@ -1,0 +1,304 @@
+
+
+CLASES ABSTRACTAS
+_________________
+
+ABSTRACT
+________
+
+Palabra reservada
+Se puede usar a nivel de método y de clase
+Sirve para indicar la obligación de implementar un método o extender una clase completa.
+
+CLASE ABSTRACTA:
+_______________
+
+Clase definida como abstract, va siempre después de public y antes de class.
+Una clase abstracta no se puede instanciar, da error en tiempo de compilación.
+No se pueden crear instancias de la misma
+Puede tener métodos con implementación y atributos. Puede tener otro tipo de métodos abstractos también.
+Una clase abstracta sirve como base para tener una serie de elementos que son herencia y trabajar con ellos.
+
+
+public abstract class AbstractaSencilla{
+  public vod saluda(){
+      System.out.println("Hola mundo!!!");
+  }
+}
+
+MÉTODOS ABSTRACT
+________________
+
+Deben estar en una clase definida como abstract
+Definen la firma del método pero sin implementación
+Sus subclases se comprometen a implementarlo.
+Si no lo hacen, también deben ser abstractas.
+Pueden convivir con métodos normales.
+
+
+public abstract class AbstractaConMetodos{
+  public abstract void saludo (String s);
+  public void saludar(){
+    System.out.println("Hola mundo!!!");
+  }
+}
+
+Los métodos definidos como abstractos se encuentran en una clase abstracta.
+
+Una clase que extienda a otra que tiene métodos abstractos se compromete a darle una implementación a esos métodos. 
+En caso de no querer hacerlo habría que definir esa clase también como abstracta.
+Una clase abstracta también tiene métodos abstractos.
+
+
+Podemos hablar de clases abstractas que implementan una interfaz.
+Una clase que implementa una interfaz tiene la obligación de implementar todos sus métodos. Puede darse el caso de que una clase abstracta que no de la la implemetación de algunos elementos
+de la interfaz que está implementando.
+Lo que está haciendo es delegar de la clase que hereda de ella en dar implementación a esos métodos.
+
+EJEMPLOS DE ABSTRACCIÓN:
+
+/**
+ * Clase que extiende a una clase abstracta
+ */
+package ejemploabstract;
+
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class Circulo extends ObjectoGrafico  {
+	
+	private int radio;
+	
+	public Circulo(int x, int y, int radio) {
+		this.x = x;
+		this.y = y;
+		this.radio = radio;
+	}
+
+	@Override
+	public void dibujar() {
+		System.out.println(this);
+	}
+
+	@Override
+	public void cambiarTamanio(int factorAumento) {
+		this.radio *= factorAumento;
+		
+	}
+
+	@Override
+	public String toString() {
+		return "Circulo [radio=" + radio + ", x=" + x + ", y=" + y + "]";
+	}
+
+	
+	
+	
+
+}
+
+_______________________________________________________________________
+
+
+/**
+ * EJEMPLO DE USO DE CLASES Y MÉTODOS ABSTRACTOS
+ */
+package ejemploabstract;
+
+
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class EjemploAbstractInterfaces {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		
+		//Imposible instanciar la clase abstracta
+		//ObjectoGrafico o = new ObjetoGrafico();
+		
+		Circulo c = new Circulo(1,1,7);
+		c.dibujar();
+		c.cambiarTamanio(2);
+		c.moverA(3, 3);
+		c.dibujar();
+		
+		//Podemos usar el Circulo con una referencia
+		//de tipo ObjetoGrafico
+		ObjectoGrafico o = c;
+		System.out.println("Dibujando un círculo desde un objeto gráfico");
+		o.dibujar();
+		
+		
+
+	}
+
+}
+
+________________________________________________________________
+
+
+/*
+ * Ejemplo de clase abstracta
+ */
+package ejemploabstract;
+
+
+/**
+ * @author Openwebinars
+ *
+ */
+public abstract class ObjectoGrafico  {
+	
+	protected int x, y;
+	
+	public void moverA(int nuevaX, int nuevaY) {
+		this.x = nuevaX;
+		this.y = nuevaY;
+	}
+	
+	abstract public void dibujar();
+	
+	abstract public void cambiarTamanio(int factorAumento);
+
+}
+
+___________________________________________________________________
+
+EJEMPLO ABSTRACCIÓN CON INTERFACES:
+
+/**
+ * 
+ */
+package ejemploabstractinterfaces;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class Circulo extends ObjectoGrafico{
+	
+	private int radio;
+	
+	public Circulo(int x, int y, int radio) {
+		this.x = x;
+		this.y = y;
+		this.radio = radio;
+	}
+
+	@Override
+	public void dibujar() {
+		System.out.println(this);
+	}
+
+	@Override
+	public void cambiarTamanio(int factorAumento) {
+		this.radio *= factorAumento;
+		
+	}
+
+	@Override
+	public String toString() {
+		return "Circulo [radio=" + radio + ", x=" + x + ", y=" + y + "]";
+	}
+	
+	@Override
+	public void rotar() {
+		//No hay que hacer nada.
+		//Al rotar un círculo se queda igual
+		
+	}
+
+	@Override
+	public void voltearHorizontal() {
+		//No hay que hacer nada.
+		//Al volter horizontalmente un círculo se queda igual
+	}
+
+	@Override
+	public void voltearVertical() {
+		//No hay que hacer nada.
+		//Al volter verticalmente un círculo se queda igual		
+	}
+	
+
+}
+
+
+_______________________________________________________________________
+
+/**
+ * EJEMPLO DE USO DE CLASES Y MÉTODOS ABSTRACTOS
+ */
+package ejemploabstractinterfaces;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class EjemploAbstract {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		
+		//Imposible instanciar la clase abstracta
+		//ObjectoGrafico o = new ObjetoGrafico();
+		
+		Circulo c = new Circulo(1,1,7);
+		c.dibujar();
+		c.cambiarTamanio(2);
+		c.moverA(3, 3);
+		c.dibujar();
+		
+		//Podemos usar el Circulo con una referencia
+		//de tipo ObjetoGrafico
+		ObjectoGrafico o = c;
+		System.out.println("Dibujando un círculo desde un objeto gráfico");
+		o.dibujar();
+		
+		
+
+	}
+
+}
+
+______________________________________________________________________
+
+package ejemploabstractinterfaces;
+
+public abstract class ObjectoGrafico implements Transformable {
+	
+	protected int x, y;
+	
+	public void moverA(int nuevaX, int nuevaY) {
+		this.x = nuevaX;
+		this.y = nuevaY;
+	}
+	
+	abstract public void dibujar();
+	
+	abstract public void cambiarTamanio(int factorAumento);
+
+}
+
+_____________________________________________________________________
+
+package ejemploabstractinterfaces;
+
+public interface Transformable {
+	
+	public void rotar();
+	public void voltearHorizontal();
+	public void voltearVertical();
+}
+
+
+
