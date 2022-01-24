@@ -1,0 +1,379 @@
+
+MODIFICADOR FINAL:
+
+Se puede utilizar en diferentes contextos:
+
+Clases final
+Métodos final
+Variables final
+
+En todos los casos, indica que de una u otra forma, el ámbito sobre el que aplica no podrá ser modificado o bien
+que no puede ser extendido.
+
+Son clases que no se pueden extender.
+En una jerarquía de herencia, son el último nodo.
+Se pueden instanciar y tratar con normalidad.
+
+MÉTODOS FINAL
+_____________
+Se definen en clases susceptibles de ser extendidas.
+Nos permiten indicar que un método no se va a poder sobrescribir.
+
+VARIABLES FINAL
+_______________
+
+Si van asociadas a tipos primitivos, son valores contables (usualmente final + static).
+Si es una referencia al objeto, podemos modificar el estado del objeto; pero la referencia no puede apuntar a otro objeto diferente,
+Idem en el caso de un array.
+
+
+EJEMPLO FINAL
+_____________
+
+/**
+ * 
+ */
+package ejemploclasefinal;
+
+/**
+ * @author Openwebinars
+ *
+ */
+ //Esta clase ya no va a poder ser extendida porque lleva un final
+public final class Cuadrado extends Rectangulo{
+
+	public Cuadrado(float lado) {
+		super(lado, lado);
+	}
+	
+	public float getLado() {
+		return getBase();
+	}
+	
+	public void setLado(float lado) {
+		setBase(lado);
+		setAltura(lado);
+	}
+	
+	public float getArea() {
+		System.out.println("Area de un cuadrado");
+		return getBase()*getBase();
+	}
+	
+	public float getPerimetro() {
+		System.out.println("Perimetro de un cuadrado");
+		return getBase()*4;
+	}
+
+	@Override
+	public String toString() {
+		return "Cuadrado [lado=" + getLado() + "]";
+	}
+	
+	
+
+}
+
+
+_____________________________________________________
+
+
+package ejemploclasefinal;
+
+//No nos permite exstender la clase Cuadrado
+//public class CuadradoRelleno extends Cuadrado{
+//
+//}
+________________________________________________________
+
+
+/**
+ * 
+ */
+package ejemploclasefinal;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class Rectangulo {
+	
+	public float base;
+	public float altura;
+	
+	
+	public Rectangulo(float base, float altura) {
+		this.base = base;
+		this.altura = altura;
+	}
+
+
+	public float getBase() {
+		return base;
+	}
+
+
+	public void setBase(float base) {
+		this.base = base;
+	}
+
+
+	public float getAltura() {
+		return altura;
+	}
+
+
+	public void setAltura(float altura) {
+		this.altura = altura;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Rectangulo [base=" + base + ", altura=" + altura + "]";
+	}
+	
+	
+	public float getArea() {
+		System.out.println("Area de un rectángulo");
+		return base*altura;
+	}
+	
+	public float getPerimetro() {
+		System.out.println("Perímetro de un rectángulo");
+		return (base*2) + (altura*2);
+	}
+	
+	
+
+}
+
+____________________________________________________
+
+
+EJEMPLO DE MÉTODOS FINALES
+
+/**
+ * 
+ */
+package ejemplometodofinal;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class Rectangulo {
+	
+	public float base;
+	public float altura;
+	
+	
+	public Rectangulo(float base, float altura) {
+		this.base = base;
+		this.altura = altura;
+	}
+
+
+	public float getBase() {
+		return base;
+	}
+
+
+	public void setBase(float base) {
+		this.base = base;
+	}
+
+
+	public float getAltura() {
+		return altura;
+	}
+
+
+	public void setAltura(float altura) {
+		this.altura = altura;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Rectangulo [base=" + base + ", altura=" + altura + "]";
+	}
+	
+	
+	final public float getArea() {
+		System.out.println("Area de un rectángulo");
+		return base*altura;
+	}
+	
+	public float getPerimetro() {
+		System.out.println("Perímetro de un rectángulo");
+		return (base*2) + (altura*2);
+	}
+	
+	
+
+}
+
+
+_________________________________________________________
+
+EJEMPLO VARIABLE FINAL
+
+
+
+/**
+ * DIFERENTES TIPOS DE EJEMPLO DE VARIABLE FINAL
+ */
+package ejemplovariablefinal;
+
+import java.time.LocalDate;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class EjemploVariablesFinal {
+
+	/**
+	 * @param args
+	 */
+	@SuppressWarnings("unused")
+	public static void main(String[] args) {
+		
+		//Referencias final
+		final Persona p = new Persona("12345678A", "Pepe", "Perez", Persona.HOMBRE, LocalDate.of(1950, 1, 1));
+		System.out.println(p);
+		p.setNombre("José");
+		System.out.println(p);
+		
+		//No nos permite realizar esta reasignación del objeto
+		//p = new Persona("23456789B", "Ana", "Martínez", Persona.MUJER, LocalDate.of(1960, 2, 2));
+		
+		//Arrays final
+		final Persona[] matrimonio1 = new Persona[2];
+		Persona[] matrimonio2 = new Persona[2];
+		
+		matrimonio1[0] = p;
+		
+		//Tampoco nos deja hacer esta asignación
+		//matrimonio1 = matrimonio2;
+		
+		//Podemos referencia a un objeto referenciado como final,
+		//desde una referencia que no es final
+		Persona p2 = p;		
+		System.out.println(p2);
+		
+		//Esta referencia NO final sí que puede ser reasignada
+		p2 = new Persona("23456789B", "Ana", "Martínez", Persona.MUJER, LocalDate.of(1960, 2, 2));
+		System.out.println(p2);
+		
+	}
+	
+
+	public static Persona metodoConParametroFinal(final Persona p) {
+		//No nos permite realizar esta reasignación del objeto
+		//p = new Persona("23456789B", "Ana", "Martínez", Persona.MUJER, LocalDate.of(1960, 2, 2));
+		return p;
+	}
+
+}
+
+__________________________________________________________________
+
+
+EJEMPLO DE VARIABLES FINALES
+
+/**
+ * EJEMPLO DE UNA CLASE DE TIPO MODELO
+ */
+package ejemplovariablefinal;
+
+import java.time.LocalDate;
+
+/**
+ * @author Openwebinars
+ *
+ */
+public class Persona {
+	
+	public static final char HOMBRE = 'H';
+	public static final char MUJER = 'M';
+
+	private String dni;
+	private String nombre;
+	private String apellidos;
+	private char sexo;
+	private LocalDate fechaNacimiento;
+	
+	public Persona() { }
+
+	public Persona(String dni, String nombre, String apellidos, char sexo, LocalDate fechaNacimiento) {
+		super();
+		this.dni = dni;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.sexo = sexo;
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+	public LocalDate getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+	
+	
+
+	public char getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(char sexo) {
+		this.sexo = sexo;
+	}
+
+	@Override
+	public String toString() {
+		return "Persona [" + (dni != null ? "dni=" + dni + ", " : "")
+				+ (nombre != null ? "nombre=" + nombre + ", " : "")
+				+ (apellidos != null ? "apellidos=" + apellidos + ", " : "") + "sexo=" + sexo + ", "
+				+ (fechaNacimiento != null ? "fechaNacimiento=" + fechaNacimiento : "") + "]";
+	}
+
+	
+
+	
+	
+	
+	
+	
+}
+
+___________________________________________________________________
+
