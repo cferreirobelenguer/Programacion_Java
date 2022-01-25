@@ -1,0 +1,149 @@
+
+
+Enum
+____
+
+Un enumerado (o Enum) es una clase "especial" que limita la creación de objetos a los especificados explícitamente en la implementación de la clase.
+La única limitación que tienen los enumerados respecto a una clase normal es que si tiene constructor, este debe de ser privado para que no se puedan
+crear nuevos objetos.
+
+Ejemplo: tenemos los futbolistas que están caracterizados por una demarcación a la hora de jugar un partido de fútbol, por tanto las demarcaciones en las
+que puede jugar un futbolista son finitas y por tanto se pueden enumear en: Portero, Defensa, Centrocampista y Delantero. Con esta especificación creamos
+la siguiente clase "Enum" llamada "Demarcación".
+
+public enum Demarcacion{
+  PORTERO,DEFENSA,CENTROCAMPISTA,DELANTERO
+  }
+  
+Es muy importante entender que un "Enum" en java es realmente una clase (cuyos objetos solo pueden ser los definidos en esta clase: PORTERO,..., DELANTERO)
+que hereda de la clase Enum (java.lang.Enum) y por tanto los enumerados tienen una serie de métodos heredados de esa clase padre.
+A continuación vamos a mostrar algunos de los métodos utilizados de los enumerados.
+
+public enum Demarcacion {
+  PORTERO,DEFENSA,CENTROCAMPISTA,DELANTERO
+  }
+  delantero.name(); //Devuelve un String con el nombre de la constante (DELANTERO)
+  delantero.toString(); //Devuelve un String con el nombre de la constante (DELANTERO)
+  delantero.ordinal();  //Devuelve un entero con la posición del enum según está declarado 
+  delantero.compareTo(Enum otro); //Compara el enum con el parámetro según el orden en el que están declarados los enum
+  Demarcacion.values(); //Devuelve un array que contiene todos los enum
+  
+  
+  EJEMPLO:
+  
+  Demarcacion delantero=Demarcacion.DELANTERO;
+  Demarcacion defensa=Demarcacion.DEFENSA;
+  
+  //Devuelve un String con el nombre de la constante
+  System.out.println("delantero.name()= "+delantero.name());
+  System.out.println("defensa.toString()= "+defensa.toString();
+  
+  //Devuelve un entero con la posición de la constante según está declarada
+  System.out.println ("delantero.ordinal()= "+delantero.ordinal();
+  
+  //Compara el enum con el parámetro según el orden en el que están declaradas las constantes.
+  System.out.println("delantero.compareTo(portero)= "+delantero.compareTo(defensa));
+  System.out.println("delantero.compareTo(delantero)= "+delantero.compareTo(delantero));
+  
+  //Recorre todas las constantes de la enumeración
+  for(Demarcacion s: Demarcacion.values()){
+    System.out.println(d.toString()+" - ");
+    
+  
+  }
+  
+  OTRO EJEMPLO:
+  ____________
+  
+  
+  public enum Equipo{
+    BARCA("FC Barcelona",1), REAL_MADRID ("Real Madrid",2),
+    SEVILLA("Sevilla FC",4), VILLAREAL("Villareal",7);
+    
+    private String nombreClub;
+    private int puestoLiga;
+    
+    private Equipo(String nombreClub, int puestoLiga){
+      this.nombreClub=nombreClub;
+      this.puestoLiga=puestoLiga;
+    }
+    
+    public String getNombreClub(){
+      return nombreClub; 
+    }
+    public int getPuestoLiga(){
+      return puestoLiga;
+    }
+    
+   }
+  
+  
+  public class Futbolista{
+  
+    private int dorsal;
+    private String Nombre;
+    private Demarcacion demarcacion;
+    private Equipo equipo;
+    
+    public Futbolista(){
+    
+      public Futbolista(String nombre, int dorsal, Demarcacion demarcacion, Equipo equipo){
+        this.dorsal=dorsal;
+        Nombre=nombre;
+        this.demarcacion=demarcacion;
+        this.equipo=equipo;
+      
+      }
+      
+      @Override
+      public String toString(){
+        return this.dorsal + " - "+this.Nombre + " - "+ this.demarcacion.name()+ " - "+this.equipo.getNombreClub(); 
+      
+      }
+    }
+      
+    
+    Dada esta clase podemos crearnos ya objetos de la clase futbolista:
+    
+    Futbolista casillas =new Futbolista("Casillas", 1, Demarcacion.PORTERO, Equipo.REAL_MADRID);
+    Futbolista capdevila= new Futbolista ("Capdevila", 11, Demarcacion.DEFENSA, Equipo.VILLAREAL);
+    Futbolista iniesta= new Futbolista ("Iniesta", 6, Demarcacion.CENTROCAMPISTA, Equipo.BARCA);
+    Futbolista navas=new Futbolista ("Navas", 22, Demarcacion.DELANTERO, Equipo.SEVILLA);
+    
+    Como vemos la demarcación y el equipo al que pertenecen solo pueden ser los declarados en la clase enumerado. Si 
+    llamamos al método toString() declarado en la clase futbolista, podemos imprimir por pantalla los datos de los futbolistas. Dado
+    el siguiente código:
+    
+    System.out.println(casillas.toString());
+    System.out.println(capdevila.toString());
+    System.out.println(iniesta.toString());
+    System.out.prinltn(navas.toString());
+    
+    Y dado el método toString():
+    
+    @Overide
+    
+    public String toString(){
+        return this.dorsal + " - "+this.Nombre+ " - "+this.demarcacion.name()+" - "+ this.equipo.getNombreClub();
+     }
+     
+     Tenemos como salida:
+     
+     1- Casillas- PORTERO- Real Madrid
+     11- Capdevila -DEFENSA- Villareal
+     6- Iniesta - CENTROCAMPISTA - FC Barcelona
+     22 - Navas - DELANTERO - Sevilla FC
+     
+     
+    
+    
+      
+      
+    
+    
+    
+  
+  
+  
+  
+  
