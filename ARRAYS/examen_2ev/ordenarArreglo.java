@@ -7,7 +7,7 @@ c) Solicita un valor al usuario e indica si el número se encuentra o no en la t
 
  */
 import java.util.*;
-public class ejercicioArrays1 {
+public class ordenarArreglo {
 	static Scanner sc= new Scanner(System.in);
 	public static void numerosAleatorios(int[]lista) {
 		int contador=0;
