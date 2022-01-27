@@ -1,6 +1,4 @@
 
-
-
 package ejercicios_Arrays;
 import java.util.*;
 /*
@@ -23,16 +21,17 @@ public class sustituirCeros {
 	static Scanner sc=new Scanner (System.in);
 	static int[]nuevo;
 	static boolean esta=false;
+	static int contador;
 	public static boolean rellenarTabla ( int contenedor[],int[]valores) {
 		
 		nuevo=new int[contenedor.length];
 		int j=0;
-		int contador=0;
+		contador=0;
 		
 		for(int k=0;k<=contenedor.length-1;k++) {
 			if(contenedor[k]==0) {
 				//Si el contador llega al length-1 se rompe el bucle
-				if(j>=3) {
+				if(j>=valores.length) {
 					break;
 					
 				}else {
@@ -47,7 +46,7 @@ public class sustituirCeros {
 		}
 		//Contador hace un recuento de las veces que se recorre valores cuando se rellena
 		//Si contador es mayor que es el booleano es true, se completa todo el arreglo valores, sino no
-		if(contador>=3) {
+		if(contador>=valores.length) {
 			esta=true;
 		}else {
 			esta=false;
@@ -60,10 +59,12 @@ public class sustituirCeros {
 	
 	
 	public static void main(String[] args) {
-		int[]contenedor= { 10,0 };
-		int []valores={ 48, 54, 15};
+		int[]contenedor= { 10,0,78,9,0,0,56,0,0,0 };
+		int []valores={ 48, 54, 15,89,6};
 		boolean resultado=false;
 		resultado=sustituirCeros.rellenarTabla(contenedor,valores);
+		System.out.println(esta);
+		System.out.println(contador);
 		//Muestra mensaje de si se ha completado el arreglo valores o no
 		if(esta==true) {
 			System.out.println("Se ha completado todo el arreglo valores");
