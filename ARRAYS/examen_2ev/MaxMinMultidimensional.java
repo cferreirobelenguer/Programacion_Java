@@ -54,7 +54,7 @@ public class MaxMinMultidimensional {
 						{2,34,5,10,53,5}, 
 						{23,12,4,6,888,8} };
 		
-		ejerciciosArrays4.calcularMaxMin(lista);
+		MaxMinMultidimensional.calcularMaxMin(lista);
 		System.out.println(Arrays.toString(lista2));
 	}
 
