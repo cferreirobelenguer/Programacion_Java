@@ -52,7 +52,7 @@ public class divisibles_cinco {
 	}
 	public static void main(String[] args) {
 		int[]valores={10,3,15,25,7};
-		System.out.println(Arrays.toString(ejercicio5.dameDivEntre5(valores)));
+		System.out.println(Arrays.toString(divisibles_cinco.dameDivEntre5(valores)));
 
 	}
 
