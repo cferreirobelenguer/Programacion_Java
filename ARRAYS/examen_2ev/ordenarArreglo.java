@@ -52,11 +52,11 @@ public class ordenarArreglo {
 		//Arreglo de longitud 30
 		int[]lista=new int [30];
 		System.out.println("______________");
-		ejercicioArrays1.numerosAleatorios(lista);
+		ordenarArreglo.numerosAleatorios(lista);
 		System.out.println("______________");
-		ejercicioArrays1.ordenar(lista);
+		ordenarArreglo.ordenar(lista);
 		System.out.println("______________");
-		ejercicioArrays1.buscar(lista);
+		ordenarArreglo.buscar(lista);
 
 	}
 
