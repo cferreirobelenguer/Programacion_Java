@@ -40,8 +40,8 @@ public class avazarPosiciones {
 		int tabla[]={10,34,3,5 };
 		System.out.println("Introduce un valor para añadir en la primera posición");
 		int valor=sc.nextInt();
-		ejerciciosArrays3.añadirValor(tabla, valor);
-		ejerciciosArrays3.recorrer(tabla);
+		avazarPosiciones.añadirValor(tabla, valor);
+		avazarPosiciones.recorrer(tabla);
 		
 		
 	}
