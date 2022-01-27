@@ -63,7 +63,7 @@ public class sustituirCeros {
 		int[]contenedor= { 10,0 };
 		int []valores={ 48, 54, 15};
 		boolean resultado=false;
-		resultado=ejerciciosArrays2.rellenarTabla(contenedor,valores);
+		resultado=sustituirCeros.rellenarTabla(contenedor,valores);
 		//Muestra mensaje de si se ha completado el arreglo valores o no
 		if(esta==true) {
 			System.out.println("Se ha completado todo el arreglo valores");
