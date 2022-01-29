@@ -31,4 +31,12 @@ public class Jefes extends Empleados implements Parajefes{
 		return cargo;
 	}
 
+	@Override
+	public double setBonus(double gratificacion) {
+		// Se llama al método heredado de la interfaz ParaTrabajadores
+		double prima=2000;
+		//Para llamar a la constante bonus hay que llamar a la interfaz primero que es ParaTrabajadores
+		return prima+gratificacion+ParaTrabajadores.bonus;
+	}
+
 }
