@@ -1,8 +1,7 @@
 
 
-
-INTERFACES
-__________
+INTERFACES CONCEPTO
+___________________
 
 Una interfaces marca las directrices de las clases que las implementan. 
 Es una colección de métodos abstractas y propiedades constantes en las que se especifica quése debe hacer pero no cómo se debe hacer.
@@ -13,6 +12,9 @@ Si declaramos una interfaz con dos métodos, podemos decir que esos métodos son
 que implemente esa interfaz.
 
 Una clase en java sólo puede heredar de una clase, no puede heredar de varias clases a la vez.
+
+CREAR INTERFACES PROPIAS:
+________________________
 
 Por ejemplo tenemos una clase personas, y tenemos dos clases empreados y alumnos que heredan de personas.
 En personas tenemos el método Public abstract String getDescripcion() , que empleados y alumnos al heredar de Personas
@@ -71,4 +73,44 @@ Tenemos un método para establecer el cargo del jefe y el método getCargo que n
 Para implementar la interfaz sería con la palabra reservada implements y el nombre de la interfaz:
 class Jefes extends Empleados implements ParaJefes, Interfaz2,Interfaz3{
 Podemos implementar varias interfaces.
+
+
+INTERFACES DE LA API
+____________________
+
+Podemos introducir en la clase test los objetos en un arreglo, y ordenarlo de menor a mayor por sueldo.
+El problema es que hace falta que hace falta una interfaz de la API para poder ordenar un arreglo de objetos.
+La interfaz que hace falta es Comparable que se llama en la clase que queremos ordenar.
+
+class Empleados extends Persona implements Comparable{
+
+Es una clase ya predefinida, no hay que desarrollarla, solo implementarla en la clase donde queremos usarla.
+Esta interfaz sobreescribe en la clase donde la vamos a usar el método compareTo.
+Este método lo que hace es comparar el objetos de la clase Empleados al que llamamos con otros objetos de la misma clase.
+
+@Override
+	public int compareTo(Object o) {
+		// Método que devulve negativo si el objeto es mayor, 0 si son iguales y positivo si el objeto que comparamos es mayor
+		//Transformo un objeto de tipo Object al de Empleados
+		Empleados otroEmpleado=(Empleados)o;
+		//Comparamos por sueldo
+		if(this.sueldo<otroEmpleado.sueldo) return -1;
+		
+		if(this.sueldo>otroEmpleado.sueldo) return 1;
+		
+		return 0;
+	}
+ 
+  Para ello primero hay que realizar una transformación del Object que sobreescribe eclipse a un objeto de tipo Empleados.
+  Luego se compara el sueldo  con this de nuestro objeto con el del otro objeto de tipo empleado, en caso de que el sueldo de nuestro objeto sea menor
+  que el otro devuelve negativo, si el sueldo de nuestro objeto es mayor devuelve positivo y si es igual devuelve 0.
+  
+  Con este método implementado ya se podría en test ordenar el arreglo con Arrays.sort();
+  Ordenaría de menor a mayor , con lo cual si tuviéramos que decir en el programa cuál es el sueldo mayor sería la útima posición y el sueldo mayor la primera posición.
+  
+  
+  
+
+
+
 
