@@ -1,0 +1,76 @@
+
+HERENCIA DE INTERFACES
+______________________
+
+Usando extends conseguimos que una interfaz herede de otra.
+
+Por ejemplo Interfaz2 extends Interfaz1
+
+Imaginémonos que la Interfaz1 tiene dos métodos y la Interfaz2 tiene también dos métodos, si la interfaz2 hereda de la interfaz1 implícitamente tiene 4 métodos
+los dos propios más los que hereda de la Interfaz1.
+
+Creamos una interfaz llamada ParaTrabajadores que va a heredar de otra interfaz llamada ParaJefes:
+
+Creamos la interfaz ParaTrabajadores:
+
+package cargoJefes;
+//Se sobreentiende que es public abstract se puede poner o no
+public interface ParaTrabajadores {
+	//método abstracto
+	double setBonus(double gratificacion);
+	//constante
+	public final static double bonus=200;
+	//Se puede poner double bonus=200 sin el public static final
+}
+
+La interfaz ParaJefes va a heredar la interfaz ParaTrabajadores:
+
+package cargoJefes;
+//Interfaz Parajefes que define los métodos abstractos de modificar cargo y visualizar cargo
+public interface Parajefes extends ParaTrabajadores{
+	public abstract void setCargo(String cargo);
+	public abstract String getCargo();
+}
+
+Se crea una jerarquía de herencia , ParaJefes tiene un método más que es el de setBonus que hereda de ParaTrabajadores
+La clase va a generar un error ya que hay que sobreescribir el método de la interfaz ParaTrabajadores.
+
+Solamente se implementa en la clase la interfaz ParaJefes, ya que al implementar esa interfaz ya se cogen los métodos de ParaTrabajadores porque esta última
+hereda de la interfaz ParaJefes.
+
+En la clase Jefes se sobreescribe el método de ParaTrabajadores:
+
+	@Override
+	public double setBonus(double gratificacion) {
+		// Se llama al método heredado de la interfaz ParaTrabajadores
+		double prima=2000;
+		//Para llamar a la constante bonus hay que llamar a la interfaz primero que es ParaTrabajadores
+		return prima+gratificacion+ParaTrabajadores.bonus;
+	}
+  
+  En este caso se crean dos interfaces, una que hereda de otra porque en un caso necesitamos implemetar cargo y bonus, y en otra sólo bonus.
+  En empleados no necesitamos implementar cargo con lo cual no implementamos la interfaz ParaJefes; pero sí necesitamos bonus con lo cual
+  implementamos ParaTrabajadores.
+  
+  
+class Empleados extends Persona implements Comparable, ParaTrabajadores{
+
+Eclipse va a pedir sobreescribir el método de ParaTrabajadores en la clase Empleados:
+
+	@Override
+	public double setBonus(double gratificacion) {
+		// Se llama al método heredado de la interfaz ParaTrabajadores
+		
+		//Para llamar a la constante bonus hay que llamar a la interfaz primero que es ParaTrabajadores
+		return gratificacion+ParaTrabajadores.bonus;
+	}
+
+En test llamamos a los métodos:
+
+	Jefes Manuel=new Jefes("Manuel",new Date(54654),5000,100);
+		Empleados Sonia=new Empleados ("Sonia",new Date(654654),3000);
+		System.out.println("El trabajador "+Manuel.getNombre()+" tiene un bonus de "+Manuel.setBonus(500));
+		System.out.println("La trabajadora "+Sonia.getNombre()+ " tiene un bonus de "+Sonia.setBonus(100));
+	}
+
+
