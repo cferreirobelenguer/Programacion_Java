@@ -3,7 +3,10 @@ package cargoJefes;
 
 import java.util.Date;
 //Comparable es una API predefinida
-class Empleados extends Persona implements Comparable{
+//Se implementa ParaTrabajadores y no ParaJefes porque en los empleados no queremos implementar un cargo
+//pero sí queremos establecer un bonus.
+
+class Empleados extends Persona implements Comparable, ParaTrabajadores{
 	//Atributos de la clase empleados
 	private Date fechaAlta;
 	private double sueldo;
@@ -50,4 +53,14 @@ class Empleados extends Persona implements Comparable{
 		return 0;
 	}
 
+	@Override
+	public double setBonus(double gratificacion) {
+		// Se llama al método heredado de la interfaz ParaTrabajadores
+		
+		//Para llamar a la constante bonus hay que llamar a la interfaz primero que es ParaTrabajadores
+		return gratificacion+ParaTrabajadores.bonus;
+	}
+
+		
+	
 }
