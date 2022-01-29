@@ -18,7 +18,13 @@ public class test2 {
 		for(Empleados e:losEmpleados) {
 			System.out.println(e.getDescription());
 		}
+		//Se determina el mayor sueldo y el menor sueldo
+		System.out.println("___________________");
+		System.out.println("El mayor sueldo es: "+losEmpleados[losEmpleados.length-1].getSueldo()+" que corresponde al empleado "+losEmpleados[losEmpleados.length-1].getNombre());
+		System.out.println("El menor sueldo es: "+losEmpleados[0].getSueldo()+" que corresponde al empleado "+losEmpleados[0].getNombre());
+		System.out.println("___________________");
 		
+		//Se muestra el bonus de un empleado de la clase Jefes que tiene prima y un empleado de la clase Empleados que no tiene prima
 		Jefes Manuel=new Jefes("Manuel",new Date(54654),5000,100);
 		Empleados Sonia=new Empleados ("Sonia",new Date(654654),3000);
 		System.out.println("El trabajador "+Manuel.getNombre()+" tiene un bonus de "+Manuel.setBonus(500));
