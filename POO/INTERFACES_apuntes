@@ -1,0 +1,60 @@
+
+INTERFACES
+__________
+
+Una interfaces marca las directrices de las clases que las implementan. 
+Es una colección de métodos abstractas y propiedades constantes en las que se especifica quése debe hacer pero no cómo se debe hacer.
+Serán las clases que implementan las interfaces las que establezcan la lógica de los métodos que existan dentro de esa interfaz, y 
+estaremos marcando las directrices que deben de cumplir las clases.
+
+Si declaramos una interfaz con dos métodos, podemos decir que esos métodos son las directrices a seguir de aquella clase
+que implemente esa interfaz.
+
+Una clase en java sólo puede heredar de una clase, no puede heredar de varias clases a la vez.
+
+Por ejemplo tenemos una clase personas, y tenemos dos clases empreados y alumnos que heredan de personas.
+En personas tenemos el método Public abstract String getDescripcion() , que empleados y alumnos al heredar de Personas
+pueden implementar ese método al heredar de Personas. 
+Ambas clases son capaces de darnos una descripción de empleado y alumno.
+Tenemos una clase jefes que hereda de empleados, pero no hereda de personas directamente, hereda getDescripcion().
+
+Quiero que mi programa me diga qué cargo tiene un jefe y que pueda modificar ese cargo. Con lo cual en Personas, se establecen los 
+métodos:
+
+Public abstract void setCargo(string cargo);
+Public abstract String getCargo();
+
+Al heredar jefe de Empleados coge los métodos de Persona, ya que Empleados hereda de Persona.
+
+Cuando implementamos estos métodos en la clase abstracta, obligamos a que Empleados y Jefes lo tengan, ya que se obliga a que se sobreescriban los métodos. 
+Si pusiéramos estos métodos directamente en Jefe no obligamos a que tenga el método.
+
+Un método normal no obliga a que se desarrolle un método, con lo cual tiene que ser abstracto.
+
+El problema es que no queremos que el cargo lo tenga Empleados, sino que queremos que el cargo sólo lo tengan los Jefes, con lo cual habría que crear una interfaz que contenga
+estos métodos abstractos y que jefes herede de esta interfaz. Ya que no se puede crear clases multiples que hereden.
+
+Crearíamos una interfaz llamada Parajedes con los dos métodos:
+
+Public abstract void setCargo(String cargo);
+Public abstract String getCargo();
+
+Y la clase Jefes implementa esa interfaz.
+
+La Interfaz debe contener métodos abstractos que obligan a sobreescribir ese método a la clase Jefes.
+
+Y Jefes llama a la interfaz de la siguiente manera:
+
+Class Jefes extends Empleados implements Parajefes
+
+implements se usa cuando quieres implementar una o varias interfaces.
+Con las interfaces se pueden implementar todas las que queramos.
+Lo contrario de la herenda que no deja poner extends varias veces (una clase solo puede heredar de otra, no admite herencia múltiple).
+Una interfaz de java sólo debe contener métodos abstractos y constantes.
+Las interfaces se almacenan en un fichero.class como las clases.
+No se pueden instanciar (no uso de new). No podemos llamar al constructor con el operador new ya que no tiene constructor. Como en las clases abstractas que no pueden
+instanciarse ya que no tienen objeto. Se instancias sus clases heredadas pero no la clase abstracta.
+Todos sus métodos son public y abstract. No se implementan.
+No tienen variables. Si constantes.
+
+
