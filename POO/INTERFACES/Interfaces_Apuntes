@@ -58,3 +58,17 @@ No se pueden instanciar (no uso de new). No podemos llamar al constructor con el
 instanciarse ya que no tienen objeto. Se instancias sus clases heredadas pero no la clase abstracta.
 Todos sus métodos son public y abstract. No se implementan.
 No tienen variables. Si constantes.
+
+Para definir una clase sería con public para que sea accesible a todas las clases interfaces y el nombre de la interfaz:
+
+public interface ParaJefes{
+  public abstract void setCargo(String cargo);
+  public abstract String getCargo();
+}
+Solo debe tener en su interior métodos abstractos y constantes.
+Tenemos un método para establecer el cargo del jefe y el método getCargo que nos va a deolver el cargo establecido en el método anterior.
+
+Para implementar la interfaz sería con la palabra reservada implements y el nombre de la interfaz:
+class Jefes extends Empleados implements ParaJefes, Interfaz2,Interfaz3{
+Podemos implementar varias interfaces.
+
