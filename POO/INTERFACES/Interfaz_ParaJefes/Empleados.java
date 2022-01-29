@@ -2,8 +2,8 @@
 package cargoJefes;
 
 import java.util.Date;
-
-class Empleados extends Persona {
+//Comparable es una API predefinida
+class Empleados extends Persona implements Comparable{
 	//Atributos de la clase empleados
 	private Date fechaAlta;
 	private double sueldo;
@@ -36,7 +36,18 @@ class Empleados extends Persona {
 	public void setSueldo(double sueldo) {
 		this.sueldo = sueldo;
 	}
-	
+
+	@Override
+	public int compareTo(Object o) {
+		// Método que devulve negativo si el objeto es mayor, 0 si son iguales y positivo si el objeto que comparamos es mayor
+		//Transformo un objeto de tipo Object al de Empleados
+		Empleados otroEmpleado=(Empleados)o;
+		//Comparamos por sueldo
+		if(this.sueldo<otroEmpleado.sueldo) return -1;
 		
-	
+		if(this.sueldo>otroEmpleado.sueldo) return 1;
+		
+		return 0;
+	}
+
 }
