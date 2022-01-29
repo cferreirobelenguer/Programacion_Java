@@ -1,9 +1,7 @@
-
 package cargoJefes;
  import java.util.Arrays;
 import java.util.Date;
 public class test2 {
-//En este test se usa la interfaz Comparable para ordenar por precio los objetos de la clase Empleados
 
 	public static void main(String[] args) {
 		// Creación de objetos en array de objetos
@@ -20,6 +18,11 @@ public class test2 {
 		for(Empleados e:losEmpleados) {
 			System.out.println(e.getDescription());
 		}
+		
+		Jefes Manuel=new Jefes("Manuel",new Date(54654),5000,100);
+		Empleados Sonia=new Empleados ("Sonia",new Date(654654),3000);
+		System.out.println("El trabajador "+Manuel.getNombre()+" tiene un bonus de "+Manuel.setBonus(500));
+		System.out.println("La trabajadora "+Sonia.getNombre()+ " tiene un bonus de "+Sonia.setBonus(100));
 	}
 
 }
