@@ -1,0 +1,190 @@
+
+EXCEPCIONES
+___________
+
+Consiste en controlar errores a la hora de programar en java.
+Puede ser un error en tiempo de compilación( el programa no compila) o un error en tiempo de ejecución 
+(permite que mi programa de java compile pero al leer el archivo encuentra un error de lógica).
+
+Dentro de tiempo de ejecución , está la clase Throwable (clase de la que heredan todos los errores de tiempo
+de ejecución) se categorizan en dos grupos:  objeto de tipo Exception (Se pueden controlar) 
+y el objeto de tipo Error (sin espacio o memoria llena, no se pueden controlar).
+Dentro de Exception hay dos tipos de errores IOException (son los que denominan errores y excepciones comprobadas) y RuntimeException
+(excepciones o errores no comprobados).
+
+java.lang.Throwable: Clase padre de todas las excepciones
+java.lang.Error: problemos serios que normalmente no se debería intetar manejar
+java.lang.Exception: excepciones que indican problemas razonables que son recuperables. Fallo en la red ( no hay conexión con el servidor), fallo de acceso a disco (se 
+saca la llave USB), fallo de formato de los datos.
+Normalmente deben ser capturadas las de tipo Exception
+
+
+Ejemplo de errores en tiempo de compilación: 
+Léxicos: private String cadena= "hola;  //mal escrito provoca error de compilación
+Sintácticos: primate numero int=0; //va antes int que el nombre de la variable, no compila
+Semánticos: private String cadena=new Integer(5);  //primero se ha declarado que es String y luego integer , no compila
+
+
+Errores en tiempo de ejecución:
+. Recuperables: se pueden detectar y se deben tratar. Un fallo en una conexión de red, un fichero que no existem una entrada de datos incorrecta...
+. No recuperables: errores que, habitualmente, son causados por el sistema operativo sobre el que el programa no puede actuar. Por ejemplo falta de memoria, fallo en
+la máquina virtual... Son errores graves, que suelen finalizar la ejecución del programa.
+
+Es necesario poder manejar los errores en tiempo de ejecución.
+Los errores en tiempo de ejecución en Java se denomina excepciones (exceptions)
+Cuando se produce una excepción, se interrumpe la ejecución secuencial de las sentencias.
+No se ejecuta la sentencia posterior a aquella en la que se produce la exceoción.
+Por defecto se muestra por pantalla (salida estándar de errores) un informe del error producido.
+
+public class Prueba{
+  public static void main (String[] args){
+    System.out.println("Sentencia 1");
+    System.out.ptintln("Sentencia 2");
+    
+    //Sentencia 3
+    int divisionPorCero=4/0;
+    
+    //Estas sentencias no se ejecutarán
+    System.out.println("Sentencia 4);
+    System.out.println ("Sentencia 5");
+    }
+   }
+   
+   Da una exception java.lang..ArithmeticException: / by zero
+   
+   Métodos de la clase base Throwable:
+    public String getMessage(): Devuelve un mensaje que informa de la excepción
+    public void printStackTrace(): imprime los métodos que estaban en la pila de ejecución cuando se produjo la excepción por la salida estándar.
+    
+    TRATAMIENTO DE UNA EXCEPCIÓN:
+    ____________________________
+
+  Bloque try //bloque de código donde es posible que se produzca una excepción
+  Bloques catch //Se pueden poner varios, se especifica la excepción que queremos tratar
+  
+  System.out.println ("Inicio método");
+  
+  try{
+    float div=5/0; 
+    System.out.println("Div="+div);   //Código que se ejecuta si no hay error
+   }catch(ArithmeticException e){  //Clase de excepción que se maneja
+    e.printStackTrace(); //Código que ejecuta si hay error
+   }
+   System.out.println("Fin de metodo");
+   
+   
+   SE PUEDEN PONER VARIAS EXCEPCIONES:
+   
+   public class Divisor{
+    public static void main (String[]args){
+      try{
+        int numero1=Integer.parseInt(args[0]);
+        int numero2=Integer.parseInt(args[1]);
+        float div=numero1/numero2;
+        System.out.println("Div="+div);
+        
+     }catch (AritmeticException e){
+      System.out.println("Error aritmético");
+      System.out.println(e.getMessage());
+     }catch(NumberFormatException e){
+      System.out.println("Error de formato");     //Dependiendo del error se ejecuta un código u otro
+      System.out.println(e.getMessage());
+     }
+    }
+   }
+   
+   Se pueden agrupar varias excepciones en un único catch si tienen una clase padre en común.
+   El orden de colocación de los catch es importante, primero han de colocarse los catch de las clases hijas,
+   si no , no se ejecutarán nunca.
+   
+   
+   En vez de usar dos catch por cada excepción, podemos englobar los dos con la clase Exception e que engloba ambos:
+   
+     public class Divisor{
+    public static void main (String[]args){
+      try{
+        int numero1=Integer.parseInt(args[0]);
+        int numero2=Integer.parseInt(args[1]);
+        float div=numero1/numero2;
+        System.out.println("Div="+div);
+        
+     }catch (Exception e){
+      System.out.println("Error en la aplicación");
+      System.out.println(e.getMessage());
+   
+     }
+    }
+   }
+   
+   
+   EXCEPCIONES PROPIAS
+________________________
+
+
+El desarrollador puede generar o lanzar sus propias excepciones cuando se producen condiciones inesperadas.
+Se crea un objeto de una clase que herede de Exception y se lanza o eleva,
+Se lanza con la sentencia throw.
+Cuando se lanza una excepción se interrumpe el flujo de ejecución secuencial.
+
+public static int[] sumaTablas( int[] s1, int[] s2){
+  if(s1.length!=s2.length){
+    throw new IllegalArgumentException(" Deben tener el mismo tamaño");   // En esta función se crea la excepción
+   }
+  for(int i=0;i<resu.length;i++){
+    resu[i]=s1[i]+s2[i];
+   }
+   return resu;
+  }
+  
+  
+  //La excepción se captura
+  try{
+    int[] s1=...
+    int[] s2=...
+    int[] ss= SumaTablas(s1,s2);
+   }catch(IllegalArgumentException e){
+    System.out.println(e.getMessage());
+   }
+   
+   
+   Hay dos tipos de excepciones:
+   - Excepciones que se pueden capturar o se pueden ignorar. Pero si ocurren y no se capturan provocan la terminación del programa, comportamiento
+   por omisión. Las que se pueden capturar o ignorar son las RuntimeException (NullPointerException, ClassCastException. ArrayIndexOutOfBoundsException,
+   ArithmeticException.  //Generalmente se producen por un fallo del diseño o los algoritmos del programa.
+   - Excepciones que no se pueden ignorar (hay que capturarlas o declararlas). El compilador obliga que estén dentro de un try- catch. Cualquier excepción que no sea
+   hija de RuntimeExceptio , por ejemplo IOException, SQLException, MalformedURLException, TimeoutException, ParseException.
+   
+   Las excepciones también se pueden lanzar usando throw.
+   
+   
+   FINALLY
+   ________
+   
+   El bloque finally es un bloque opcional al final de la sentencia try/catch
+   Si existe el bloque finally, pueden quitarse todos los catch y no se captura la excepción.
+   
+   try{
+      <sentencias>
+   }catch (Exception e){
+      <sentencias>
+   }finally{
+      <sentencias>
+   }
+   
+   
+   try{
+    <sentencias>
+   }finally{
+    <sentencias>
+   }
+   
+   El código del bloque finally se ejecuta siempre, se produzca o no alguna excepción.
+   Es un bloqe donde se cierran los ficheros, se cierran la conexión con la bbdd, sockets,...
+   
+   
+   
+   
+   
+  
+  
+   
