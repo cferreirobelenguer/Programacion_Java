@@ -146,6 +146,33 @@ public static int[] sumaTablas( int[] s1, int[] s2){
     System.out.println(e.getMessage());
    }
    
+   Otro ejemplo:
+   Usamos throws para indicar el método donde se ha creado la excepción y throw new para crear la excepción.
+   
+   	public void cogerNumero() throws maxClientesException{
+		if(opcion==1) {
+			contadorClientes++;
+			System.out.println("El número de clientes esperando es= "+contadorClientes);
+		}
+		if(contadorClientes==maxClientes) {
+			
+				throw new maxClientesException(contadorClientes);
+				
+			}
+			
+	}
+   
+   Ejemplo de excepción propia:
+   
+   public class ListFullException extends Exception{
+    public ListFullException (int maximoTamanno){
+      super("Se ha superado el tamaño máximo de "+maximoTamanno);
+     }
+    }
+    Con super se crea el mensaje de la excepción, en caso que sea un Runtime no hace falta capturarlo en un Try catch.
+   
+   TIPOS DE EXCEPCIONES
+   _____________________
    
    Hay dos tipos de excepciones:
    - Excepciones que se pueden capturar o se pueden ignorar. Pero si ocurren y no se capturan provocan la terminación del programa, comportamiento
