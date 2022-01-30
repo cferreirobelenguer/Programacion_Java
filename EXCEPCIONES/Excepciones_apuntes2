@@ -1,0 +1,135 @@
+EXCEPCIONES
+____________
+
+EXCEPCIONES TRY CATCH
+______________________
+
+Se da cuando debido a un error, nuestro programa termina de forma abrupta,
+en caso de que esto ocurra nuestro programa debe recuperarse de este tipo de errores.
+Por ejemplo si se divide un número entre 0 genera un error ArithmeticException y se para el programa.
+Podemos controlar esto con try catch.
+
+public class TestExcepciones{
+
+  public static void main(String[]args){
+    int resultado=0;
+    try{
+    resultado=10/0;
+    }catch(Exception e){
+    //Con printStackTrace se imprime la pila de excepciones, ponemos System.out para indicar que la salida se mande a la consola
+      
+      System.out.println("Error");
+      e.printStackTrace(System.out);
+      }
+    System.out.println("Resultado= "+resultado);
+  
+  Pila de excpeciones e.printStackTrace() : excepción que puede generar otra excepción.
+  
+  
+  TIPOS DE EXCEPCIONES EN EL API DE JAVA
+  ________________________________________
+  Exception es la clase padre de las excepciones.
+  
+  Exception que engloba excepciones de RuntimeException y SQLException. Dentro de las RuntimeException están las NullPointerException.
+  
+  En las RuntimeException el compilador no nos obliga a ejecutar un try catch.
+  
+  EXCEPCIONES PERSONALIZADAS cuando la excepción viene de la clase Exception
+  ___________________________________________________________________________
+  
+  Se puede usar en la clase Exception o la RuntimeException (aunque el compilador no nos obliga a ejecutar la excepcion)
+  
+  Se crea una clase aparte llamada OperacionExcepcion que va a definir el mensaje de la excepcion
+  public lcass OperacionExcepcion extends Exception{
+    public OperacionException (String mensaje){
+      super(mensaje);
+     }
+    }
+  
+  Se crea la clase en la que se va a ejecutar la división entre 0
+  
+  package aritmetica;
+  
+  import excepciones.OperacionExcepcion;
+  
+  public class Aritmetica{
+  
+    public static int division(int numerador, int denominador) throws OperacionExcepcion{
+        if(denominar==0){
+          throw new OperacionExcepcion ("Division entre cero");
+        }
+        return numerador/denominador;
+    }
+  
+  Con throw indicamos que vamos a lanzar un nuevo objeto de tipo excepción.
+  Aparte de lanzar el objeto de excepción con throw, también tenemos que indicar al método que este método
+  posiblemente arroja una excepción y no es obligatorio, en la firma del método se pone throws y el objeto de la excepción.
+  Una vez creada la excepción OperacionExcepcion la llamamos en la clase Aritmetica:
+  
+  Con e.getMessage() podemos ver el mensaje de la excepcioón sin necesidad de ver toda la pila de excepciones.
+  
+  package test;
+  import static aritmetica.Aritmetica.division;
+  public class TestExcepciones{
+
+  public static void main(String[]args){
+    int resultado=0;
+    try{
+    resultado=10/0;
+    }catch(Exception e){
+    //Con printStackTrace se imprime la pila de excepciones, ponemos System.out para indicar que la salida se mande a la consola
+      
+      System.out.println("Error");
+      //e.printStackTrace(System.out);
+      System.out.println(e.getMessage());
+      }
+    System.out.println("Resultado= "+resultado);
+  
+   EXCEPCIONES PERSONALIZADAS cuando la excepción viene de la clase RuntimeException
+  ____________________________________________________________________________________
+  
+  public class OperacionExcepcion extends RuntimeException{
+  
+    public OperacionExcepcion(String mensaje){
+        super(mensaje);
+        }
+      }
+      
+      No nos obliga el RuntimeException a lanzar la exception en la firma del método con el throws.
+      
+      También podría quitarse el try catch.
+      Con lo cual no sería necesario crear la excepción, el programa terminaría de forma abrupta pero el código sería más limpio.
+      
+   FINALLY
+   _______
+   
+   Cuando creamos el try catch si ponemos finally , se usa para cerrar recursos y siempre se va a ejecutar.
+   Siempre se va a ejecutar, incluso si ocurra una excepción.
+   
+   try{
+      resultado=division(10,0);
+    }catch(Exception e){
+        System.out.println("Ocurrió un error: ");
+        System.out.println(e.getMessage());
+     }
+     finally(){
+        System.out.println("Se revisó la división entre cero");
+     }
+     
+     EJECUTAR VARIAS EXCEPCIONES:
+     ____________________________
+     
+     try{
+     
+        resultado=division(10,0);
+     }catch (OperacionExcepcion){
+        System.out.println("Ocurrió un error de tipo OperacionExcepcion");
+        System.out.println(e.getMessage());
+     }catch(Exception e){
+        System.out.println("Ocurrió un error de tipo Exception: ");
+        System.out.println(e.getMessage());
+     }
+    
+     
+     }
+     
