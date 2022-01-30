@@ -6,9 +6,9 @@ En una clase con el main crea un Array de 5 estudiantes. Usando Comparable estab
 Muestra por consola la lista ordenada.
 *
 */
-package ejercicio_estudiante;
-
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class test {
 
@@ -20,11 +20,11 @@ public class test {
 		lista[2]=new Estudiante ("Carla",16,3);
 		lista[3]=new Estudiante ("Noa",13,1);
 		lista[4]=new Estudiante ("Noemi",21,5);
-    //Se muestra la lista desordenada
-   System.out.println(Arrays.toString(lista));
+		//Se muestra la lista desordenada
+		   System.out.println(Arrays.toString(lista));
 		//Se ordena la lista por edad de forma ascendente
 		Arrays.sort(lista);
-    //Muestra la lista ordenada
+		System.out.println("______________");
 		for(Estudiante i:lista) {
 			System.out.println(i.getNombre()+": ");
 			System.out.println(i.toString());
@@ -33,7 +33,23 @@ public class test {
 		//Muestra la mayor y menor edad
 		System.out.println("El alumno con menor edad es "+lista[0].getNombre()+ "con la edad de "+lista[0].getEdad()+" años");
 		System.out.println("El alumno con mayor edad es "+lista[lista.length-1].getNombre()+" con la edad de "+lista[lista.length-1].getEdad()+" años");
-
+		//Se añaden profesores al ArrayList
+		ArrayList <Profesores> lista2=new ArrayList<Profesores>();
+		lista2.add(new Profesores("Vicente", 1));
+		lista2.add(new Profesores("Manuela",4));
+		lista2.add(new Profesores("Pepe",5));
+		lista2.add(new Profesores("Antonia",1));
+		lista2.add(new Profesores("Michele",2));
+		lista2.add(new Profesores("Paco",5));
+		
+		//Se quiere ordenar el ArrayList de objetos por orden alfabético de nombre
+		Collections.sort(lista2);
+		System.out.println("___________");
+		//Se muestran los resultados
+		for(Profesores i:lista2) {
+			System.out.println(i.toString());
+			System.out.println("___________");
+		}
 	}
 
 }
