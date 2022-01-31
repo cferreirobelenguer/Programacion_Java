@@ -136,7 +136,61 @@ public enum Demarcacion {
      
      
     
+    ENUMERADOS
+__________________
+
+Los tipos enumerados sirven para definir grupos de constantes como posibles valores de una variable. Por ejemplo,
+DiaDeLaSemana sería un tipo enumerado que puede tomar solo los valores constantes: LUNES, MARTES...DOMINGO . Se 
+define de forma parecida a una clase:
+  enum DiaDeLaSemana{
+    LUNES,MARTES,MIERCOLES,JUEVES,VIERNES,SABADO,DOMINGO
+  }
+  
+  En la definición usamos la palabra clave enum y no class. En un programa se accede a sus valores de la forma
+  DiaDeLaSemana.LUNES, DiaDeLaSemana.MARTES,etc
+  
+  Un tipo enumerado se puede implementar en un archivo aparte - mormalmente dentro del mismo paquete, aunque no es obligatorio- como si fuera una clase o bien dentro de la
+  definición de la clase donde se va a usar.
+  
+  Ahora, si queremos guardar en una variable el dia de la semana que tenemos inglés -los lunes- escribiremos:
+  
+    DiaDeLaSemana ingles=DiaDeLaSemana.LUNES;
+  
+  Normalmente, cuando tengamos que introducir por teclado un valor de tipo enumerado, escribiremos una cadena como "LUNES" y no DiaDeLaSemana.LUNES. Para asignarlo a una 
+  variable de tipo DiaDeLaSemana, tendremos que convertirla en el valor enumerado correspondiente. Para eso se usa el método valueOf(), que convierte la cadena "LUNES" 
+  en el valor DiaDeLaSemana.LUNES.
+  
+  Scanner sc=new Scanner (System.in);
+  String dia=sc.nextLine(); //Introducimos LUNES
+  DiaDeLaSemana ingles=DiaDeLaSemana.valueOf(dia);
+  
+  Si vamos a usar un tipo enumaerado exclusivamente dentro de una clase, se puede definir dentro de ella. Por ejemplo para añadir a la clase Cliente el atributo sexo con los
+  valores posibles HOMBRE y MUJER, definimos el tipo enumerado Sexo dentro de la clase.
+  
+  class Cliente{
+    enum Sexo {HOMBRE,MUJER} //definición del tipo enumerado
+    Sexo sexo; declaracion de un atributo de tipo enumerado;
+  }
+  
+  El tipo Sexo solo es accesible directamente desde dentro de la propia clase. Al escribir el constructor de Cliente, tenemos dos opciones para el parámetro de entrada del atributo sexo:
+  
+  Definirlo de tipo String y convertirlo en Sexo dentro del código del constructor.
+  
+  Cliente(...,String sexo){
+    this.sexo=Sexo.valueOf(sexo);
+  }
+  
+  Definirlo de tio Sexo directamente.
+    Cliente(...,Sexo sexo){
+      ...
+    } 
     
+    En el primer caso al crear el objeto se llama a un String directamente.
+    En el segundo caso:
+      Si estádefinido dentro de la clase Cliente, se accede a él con el nombre de la clase,
+        Cliente c=new Cliente(...,Cliente,Sexo.valueOf(sexoCliente);
+      Si se ha definido en un archivo propio, aunque dentro del mismo paquete.
+        Cliente c=new Cliente(..., Sexo.valueOf(sexoCliente));
       
       
     
