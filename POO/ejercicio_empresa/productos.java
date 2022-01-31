@@ -43,52 +43,38 @@ nombre.
 • Los valores $ y ml se pueden concatenar después en la parte de impresión
  */
 
+package ejercicio_metrica;
 
-package ejercicio_empresa;
-
-abstract public class Productos {
-	
-	//Clase abstracta, desde esta clase no se pueden instanciar objetos
-	//Atributo privado de la clase Producto
+//Clase abstracta que no puede implementarse
+public class productos implements Comparable<productos> {
 	private String nombre;
 	private int precio;
-	public Productos(String nombre,int precio) {
-		//Constructor con parámetro nombre
+	public productos(String nombre, int precio) {
 		this.nombre=nombre;
 		this.precio=precio;
 	}
-
-	//Getter y Setter
 	
+	//Getter y Setter 
 	public String getNombre() {
 		return nombre;
 	}
-
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		this.nombre=nombre;
 	}
-
 	public int getPrecio() {
 		return precio;
 	}
-
-	public void setPrecio(int precio) {
-		this.precio = precio;
+	public void setPrecio() {
+		this.precio=precio;
 	}
-	//toString
+	//Función compareTo que permite ordenar el arreglo de objetos de la clase productos
 	@Override
-	public String toString() {
-		return "/// Nombre:" + nombre + "/// Precio: $" + precio+"";
+	public int compareTo(productos o) {
+		//Se transforma el objeto o de tipo Object a la clase productos
+		productos otrosProductos=(productos)o;
+		if(this.precio>otrosProductos.precio) return 1;
+		if(this.precio<otrosProductos.precio) return -1;
+		return 0;
 	}
-
 	
-	//Función de la superclase que compara objetos en función del precio
-	public int compareTo(Productos o) {
-		int resultado=0;
-		if(this.precio<o.precio){
-			resultado=-1;
-		}else if(this.precio>o.precio){
-			resultado=1;
-		}
-	return resultado;
-	}
+}
