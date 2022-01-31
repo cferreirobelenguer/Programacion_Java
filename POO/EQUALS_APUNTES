@@ -1,0 +1,67 @@
+
+
+Método equals()
+_______________
+
+Compara dos objetos y decide si son iguales, devolviendo true en caso afirmativo y false en caso contrario.
+Su prototipo en la clase Object es:
+
+  public boolean equals (Object otro);
+
+El operador == es útil para comparar tipos primitivos, pero no sirve para comparar objetos, ya que en este caso compara
+sus referencias, sin fijarse en su contenido. Por ejemplo:
+
+Persona a= new Persona ("Claudia",8,1.20);
+Persona b= new Persona ("Claudia",8,1.20);
+System.out.println(a==b);//false
+
+El resultado es false porque la comparación se hace atendiendo a las referencias de los objetos, que son distintas.
+El prototipo equals() tiene un parámetro de entrada de tipo Object para poder comparar objetos de cualquier clase. Este prototipo
+debe mantenerse al hacer overriding en cualquier subclase - de lo contrario no seróa overriding, sino sobrecarga- Pero para
+acceder a los atributos del objeto pasado como parámetro, tenemos que informar al compilador de que, en ralidad, es un objeto
+Persona. Esto se consigue por medio de un cast, como veremos a continuación:
+
+Vamos a reimplementar equals() para comparar objetos de la clase Persona. Lo primer es decidir qué significa que dos personas 
+sean iguales. Para este ejemplo , vamos a considerar dos personas iguales si tienen el mismo nombre y la misma edad.
+
+@Override
+public boolean equals(Object otro){  //comprar this con otro
+  Persona otraPersona= (Persona) otro; // este cast se explica más abajo
+  boolean iguales;
+  if (this.nombre.equals(otraPersona.nombre) && this.edad==otraPersona.edad){
+    iguales=true;
+  }else{
+    iguales=false;
+  }
+  return iguales;
+ }
+ 
+ El cast siempre es necesario porque el prototipo de equals() tiene que ser el mismo que en la clase Object, donde el parámetro de entrada
+ es de tipo Object. Pero para acceder a los atributos nombre y edad de la clase Persona necesitamos que la variable otro sea de tipo Persona. Esto 
+ nos obliga a realizar un cast en la asignación. Es una conversión de estrechamiento, que podemos hacer porque sabemos que el objeto pasado como 
+ parámetro es, en realidad, de la clase Persona, aunque esté referenciado con una variable de tipo Object.
+ 
+ Por otra parte, en la condición de la estructura if, hemos invocado la implementación de equals() de la clase String para comparar los nombres,
+ ya que son cadenas,  Pero hemos utilizado == para comparar la edad, ya que es de un tipo entero primitivo. Ahora podemos comparar:
+ 
+ Persona a=new Persona ("Claudia",8,1.20);
+ Persona b=new Persona ("Claudia",8,0.0);
+ Persona c=new Persona("Pepe",24,1.89);
+ 
+ System.out.println(a.equals(b)); //true
+ System.out.println(a.equals(c)); //false
+ 
+ Aquí equals() compara los atributos nombre y edad, no referencias. 
+ 
+ int t1[]= {1,2,3,4};
+ int t2[]= {1,2,3,4};
+ int t3[]= {1,4,3,2};
+ 
+ boolean iguales=Arrays.equals(t1,t2); //devuelve true
+ boolean iguales= Arrays.equals(t1,t3); //devuelve false
+ 
+ 
+ 
+  
+  
+ 
