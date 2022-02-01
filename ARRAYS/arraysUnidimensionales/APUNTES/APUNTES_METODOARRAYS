@@ -15,6 +15,29 @@ ____________________
 Busca un valor que le pasamos por parámetro, devuelve su posición. Debe estar ordenado.	
 Un array y un valor. Los dos del mismo tipo. Estos pueden ser un byte, char, double, float, int, long, short u objecto.	int
 
+Primero hay que ordenar el arreglo, y luego ya se aplica el método que devuelve la posición que tiene en el arreglo ese valor:
+
+ejemplo:
+
+// Ordenar
+		Arrays.sort(tabla);
+		
+		System.out.println(Arrays.toString(tabla));
+		
+		Scanner sc = new Scanner(System.in);
+		int valor;
+		System.out.print("Introduce un valor: "); valor = sc.nextInt();
+		
+		
+		int pos = Arrays.binarySearch(tabla, valor);
+		if ( pos >= 0) {
+			System.out.println(" El elemento se encuentra en la posición "+ pos);
+		} else {
+			System.out.println( " No se encuentra el valor en la tabla ");
+		}
+		
+
+
 
 Arrays.copyOf
 ______________
