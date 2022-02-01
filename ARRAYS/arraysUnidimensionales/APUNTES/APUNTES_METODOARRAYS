@@ -37,7 +37,8 @@ ejemplo:
 		}
 		
 
-
+	Si el valor está en el arreglo devolverá la posición y si no está devuelve un valor negativo.
+	Si no se ordena la matriz primero se devuelve el número en negativo, con lo cual es imprescindible ordenar primero la matriz.
 
 Arrays.copyOf
 ______________
