@@ -1,0 +1,121 @@
+
+
+MANERAS DE ORDENAR UN HASHMAP DE OBJETOS:
+_________________________________________
+
+PUEDE SER DE LAS SIGUIENTES FORMAS:
+TreeMap
+ArrayList and Collections.sort()
+TreeSet
+
+
+USANDO TreeMap
+______________
+
+Se puede ordenar por clave a través del TreeMap, añadiendo todos los datos en un TreeMap.
+
+For starters, let's define a HashMap and initialize it with some data:
+
+Map<String, Employee> map = new HashMap<>();
+
+Employee employee1 = new Employee(1L, "Mher");
+map.put(employee1.getName(), employee1);
+Employee employee2 = new Employee(22L, "Annie");
+map.put(employee2.getName(), employee2);
+Employee employee3 = new Employee(8L, "John");
+map.put(employee3.getName(), employee3);
+Employee employee4 = new Employee(2L, "George");
+map.put(employee4.getName(), employee4);
+For the Employee class, note that we've implemented Comparable:
+
+
+
+public class Employee implements Comparable<Employee> {
+
+    private Long id;
+    private String name;
+
+    // constructor, getters, setters
+
+    // override equals and hashCode
+    @Override
+    public int compareTo(Employee employee) {
+        return (int)(this.id - employee.getId());
+    }
+}
+Next, we store the entries in the TreeMap by using its constructor:
+
+TreeMap<String, Employee> sorted = new TreeMap<>(map);
+Or, the putAll method to copy the data:
+
+TreeMap<String, Employee> sorted = new TreeMap<>();
+sorted.putAll(map);
+And that's it! To make sure our map entries are sorted by key, let's print them out:
+
+Annie=Employee{id=22, name='Annie'}
+George=Employee{id=2, name='George'}
+John=Employee{id=8, name='John'}
+Mher=Employee{id=1, name='Mher'}
+As we see, the keys are sorted in natural order.
+
+3. USAR ArrayList
+__________________
+
+Se puede ordenar por ArrayList, pero se pasan los datos a String.
+3.1. Ordenar por clave
+Let's load the key set into an ArrayList:
+
+List<String> employeeByKey = new ArrayList<>(map.keySet());
+Collections.sort(employeeByKey);
+And the output is:
+
+[Annie, George, John, Mher]
+
+
+3.2. Ordenar por valor
+
+Se copian los valores en la lista
+
+List<Employee> employeeById = new ArrayList<>(map.values());
+Y después se ordena con Collections.sort
+
+Collections.sort(employeeById);
+Para hacer esto se debe implementar la interfaz Comparable 
+To check the results, we print the employeeById:
+
+[Employee{id=1, name='Mher'}, 
+Employee{id=2, name='George'}, 
+Employee{id=8, name='John'}, 
+Employee{id=22, name='Annie'}]
+Los objetos se ordenan por id
+
+4.USANDO  a TreeSet
+____________________
+Las colecciones de tipo Set no aceptan duplicados, hay que tenerlo en cuenta a la hora de usar set.
+First, let's add some duplicate entries to our initial map:
+
+Employee employee5 = new Employee(1L, "Mher");
+map.put(employee5.getName(), employee5);
+Employee employee6 = new Employee(22L, "Annie");
+map.put(employee6.getName(), employee6);
+
+4.1. Ordenar por clave
+To sort the map by its key entries:
+
+SortedSet<String> keySet = new TreeSet<>(map.keySet());
+Let's print the keySet and see the output:
+
+[Annie, George, John, Mher]
+Now we have the map keys sorted without the duplicates.
+
+4.2. Ordenar por valor
+Likewise, for the map values, the conversion code looks like:
+
+SortedSet<Employee> values = new TreeSet<>(map.values());
+And the results are:
+
+[Employee{id=1, name='Mher'}, 
+Employee{id=2, name='George'}, 
+Employee{id=8, name='John'}, 
+Employee{id=22, name='Annie'}]
+As we can see, there are no duplicates in the output. This works with custom objects when we override equals and hashCode.
