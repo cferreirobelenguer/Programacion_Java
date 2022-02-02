@@ -1,4 +1,5 @@
 
+
 /*EXAMEN PARCIAL COLECCIONES 3 EV 2021
  * 
  * Crear una clase que defina el tipo objeto que indique el profesor. Disco.java, Pelicula.java, Empleado.java. Esta clase
@@ -27,12 +28,12 @@ static Scanner sc=new Scanner(System.in);
 	public static void main(String[] args) throws ErrorId {
 		
 		ArrayList <Pelicula> lista=new ArrayList<>();
-		lista.add(new Pelicula(1,"Mar adentro",2001,critica.BUENA));
+		lista.add(new Pelicula(6,"Mar adentro",2001,critica.BUENA));
 		lista.add(new Pelicula(2,"Los otros",2001,critica.BUENA));
-		lista.add(new Pelicula(3,"Abre los ojos",1997,critica.REGULAR));
-		lista.add(new Pelicula(4,"Tesis",1994,critica.MALA));
+		lista.add(new Pelicula(4,"Abre los ojos",1997,critica.REGULAR));
+		lista.add(new Pelicula(3,"Tesis",1994,critica.MALA));
 		lista.add(new Pelicula(5,"Agora",2009,critica.REGULAR));
-		lista.add(new Pelicula(6,"Spanish Movie",2009,critica.MALA));
+		lista.add(new Pelicula(1,"Spanish Movie",2009,critica.MALA));
 		
 		//Se muestra el primer y el último objeto introducido
 		System.out.println("================================================");
@@ -49,6 +50,14 @@ static Scanner sc=new Scanner(System.in);
 				lista.remove(i);
 			}
 		}
+		
+		//Mostrar datos sin ordenar y con la condición ya eliminada de la lista
+		System.out.println("================================================");
+		System.out.println("Datos sin ordenar:");
+		for(Pelicula f:lista) {
+			System.out.println(f);
+		}
+		System.out.println("================================================");
 		
 		//Se ordena el ArrayList por id y se muestran los resultados
 		Collections.sort(lista);
