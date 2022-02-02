@@ -62,6 +62,51 @@ As we see, the keys are sorted in natural order.
 __________________
 
 Se puede ordenar por ArrayList, pero se pasan los datos a String.
+
+Una forma de convertir es usar el constructor de ArrayList. Para hacer esto, podemos usar el método keySet() presente en el HashMap.
+Este método devuelve el conjunto que contiene todas las claves del mapa hash. Este conjunto se puede pasar a ArrayList 
+durante la inicialización para obtener una ArrayList que contenga todas las claves. Después de obtener las claves, podemos usar 
+el método values () presente en el hashmap para obtener una colección de todos los valores presentes en el hashmap. 
+Podemos usar esta colección para inicializar otra matriz que contenga todos los valores de las claves en el mapa hash.
+  
+import java.util.*;
+  
+public class GFG {
+    public static void main(String[] args)
+    {
+        // Create an empty hash map
+        HashMap<String, Integer> map
+            = new HashMap<>();
+  
+        // Add elements to the map
+        map.put("vishal", 10);
+        map.put("sachin", 30);
+        map.put("vaibhav", 20);
+  
+        // Finding the Set of keys from
+        // the HashMap
+        Set<String> keySet = map.keySet();
+  
+        // Creating an ArrayList of keys
+        // by passing the keySet
+        ArrayList<String> listOfKeys
+            = new ArrayList<String>(keySet);
+  
+        // Getting Collection of values from HashMap
+        Collection<Integer> values = map.values();
+  
+        // Creating an ArrayList of values
+        ArrayList<Integer> listOfValues
+            = new ArrayList<>(values);
+  
+        System.out.println("The Keys of the Map are "
+                           + listOfKeys);
+  
+        System.out.println("The Values of the Map are "
+                           + listOfValues);
+    }
+}
+
 3.1. Ordenar por clave
 Let's load the key set into an ArrayList:
 
