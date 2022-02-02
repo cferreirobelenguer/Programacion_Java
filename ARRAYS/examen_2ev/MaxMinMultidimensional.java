@@ -32,7 +32,6 @@ public class MaxMinMultidimensional {
 				if(lista[i][j]>max) {
 					//Se almacena el valor máximo
 					max=lista[i][j];
-					j++;
 					fila=i;
 					columna=j;
 					}
