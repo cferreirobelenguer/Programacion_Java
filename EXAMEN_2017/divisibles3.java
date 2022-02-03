@@ -1,5 +1,4 @@
 
-
 package examen_2020;
 /*
  * Leer una serie de números hasta que el usuario introduzca un 0.
@@ -25,7 +24,7 @@ public class divisibles3 {
 				}else {
 					if(num%3==0) {
 						lista[i]=num;
-						contadorImpares++;
+					
 						}
 					}
 				contador++;	
@@ -36,10 +35,13 @@ public class divisibles3 {
 			}while(num!=0);
 	System.out.println("==========");
 		for(int j=0;j<lista.length;j++) {
-			
-				System.out.println(lista[j]);
-			
+				if(lista[j]!=0) {
+					contadorImpares++;
+					System.out.println(lista[j]);
+				}
+				
 		}
+		System.out.println("==========");
 		System.out.println("Números introducidos: "+contador);
 		System.out.println("Números divisibles entre 3 introducidos: "+contadorImpares);
 	}
