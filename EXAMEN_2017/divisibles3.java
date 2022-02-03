@@ -34,13 +34,23 @@ public class divisibles3 {
 				
 			}while(num!=0);
 	System.out.println("==========");
+	System.out.println("Valores:");
 		for(int j=0;j<lista.length;j++) {
 				if(lista[j]!=0) {
-					contadorImpares++;
-					System.out.println(lista[j]);
+					if(lista[j]==lista.length-1) {
+						System.out.print(lista[j]);
+						contadorImpares++;
+					}else {
+						contadorImpares++;
+						System.out.print(lista[j]+",");
+					}
+					
+					
+					
 				}
 				
 		}
+		System.out.println();
 		System.out.println("==========");
 		System.out.println("Números introducidos: "+contador);
 		System.out.println("Números divisibles entre 3 introducidos: "+contadorImpares);
