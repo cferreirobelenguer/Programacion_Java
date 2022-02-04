@@ -1,0 +1,36 @@
+
+
+PAQUETES
+_________
+
+La sentencia donde se identifica el paquete se llama package.
+
+Se pueden importar clases definidas en otros paquetes mediante import.
+
+También se pueden ver clases si se ponen públicas.
+
+Debido a la estructura de clases: organizadas en paquetes que utiliza Java, dos clases cualesquiera
+pueden definirse de las siguientes formas:
+
+Clases vecinas: cuando ambas pertenecen al mismo paquete.
+Clases externas: cuando se han definido en paquetes distintos.
+
+Si hay clases dentro de un paquete1 que está dentro de un paquete2. Las clases del paquete1 no serán visibles en paquete2 y a la inversa.
+
+Una clase siempre puede verse por sus clases vecinas. Que pueda verse en clases externas depende de si está declarada como pública.
+
+Visibilidad total
+_________________
+
+Poniendo las clases públicas o importando las clases con import.
+
+package miprimerprograma;
+import miprimerprograma.paquete1.B;  //Ahora A puede usar la clase B
+ class A{
+  ...
+ }
+ 
+ Una clase externa de otro paquete no puede heredar de una clase de un paquete. Ya que las clases son visibles solamente en clases vecinas. Y la herencia es 
+ cuando una clase hereda de otra. Por lo tanto no pueden ser externas, son clases vecinas.
+ 
+ 
