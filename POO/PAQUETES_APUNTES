@@ -30,7 +30,8 @@ import miprimerprograma.paquete1.B;  //Ahora A puede usar la clase B
   ...
  }
  
- Una clase externa de otro paquete no puede heredar de una clase de un paquete. Ya que las clases son visibles solamente en clases vecinas. Y la herencia es 
- cuando una clase hereda de otra. Por lo tanto no pueden ser externas, son clases vecinas.
+Se pueden crear herencia en paquetes diferentes. Se importarían las clases. Los atributos deben de ser públicos o protected ya que sino no se podrían ver.
+
+
  
  
