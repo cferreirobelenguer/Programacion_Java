@@ -1,0 +1,57 @@
+ITERAR OBJETOS
+_______________
+
+Se puede crear una interfaz Iterator para poder iterar los objetos.Java proporciona la interfaz Iterable<T> que
+debe ser implementada por aquellas clases
+sobre las que se pueda iterar:
+ A los objetos iterables se les exige que creen
+objetos iterador (iterator) para realizar la
+iteración.
+
+public interface Iterable<T> {
+Iterator<T> iterator();
+}
+
+
+Interfaz Iterator<T>
+:
+ hasNext(): indica si quedan elementos en la
+iteración.
+ next(): devuelve el siguiente elemento de la
+iteración.
+ remove(): elimina el último elemento devuelto por
+el iterador.
+public interface Iterator<E> {
+boolean hasNext();
+E next();
+void remove();
+}
+
+
+
+private class Itr implements Iterator<T> {
+int cursor = 0;
+public boolean hasNext() {
+return cursor != size();
+}
+public T next() {
+return get(cursor);
+}
+public void remove() { …}
+}
+
+
+List<Cuenta> cuentas = new LinkedList<Cuenta>();
+...
+public void imprimeMorosos(){
+
+Iterator<Cuenta> iterador = cuentas.iterator();
+
+while (iterador.hasNext()){
+
+Cuenta cta = iterador.next();
+
+if (cta.isEnRojo())
+System.out.println(cta.getTitular());
+  }
+}
