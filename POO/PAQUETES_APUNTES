@@ -30,6 +30,10 @@ import miprimerprograma.paquete1.B;  //Ahora A puede usar la clase B
   ...
  }
  
+LOS PAQUETES PERMITEN HERENCIA:
+_______________________________
+
+
 Se pueden crear herencia en paquetes diferentes. Se importarían las clases. Los atributos deben de ser públicos o protected ya que sino no se podrían ver.
 
 
