@@ -1,0 +1,96 @@
+
+
+FileInputStream FileOutputStream
+_________________________________
+
+
+Como hemos visto hasta ahora, podemos usar los ficheros de texto para almacenar o leer información, 
+pero su mayor desventaja es que al ser legible, puede ser modificado por terceras personas.
+
+Por ejemplo, cuando vemos un fichero que tiene una extensión concreta, solo puede leerse con un programa especifico.
+Si abres un documento Word desde un bloc de notas, veras muchos caracteres 
+no legibles, esto es porque Word sabe como leer esos caracteres.
+
+La forma de crear un fichero binario es igual que vimos con FileReader y FileWriter, veamos un ejemplo:
+
+FileOutputStream fos=new FileOutputStream("D:\\fichero_bin.ddr");
+FileInputStream fis=new FileInputStream("D:\\fichero_bin.ddr");
+
+//EJEMPLO DE OUTPUT ESCRIBIR CODIGO BINNARIO EN ARCHIVO 
+import java.io.*;
+public class FicherosBinariosApp {
+ 
+    public static void main(String[] args) {
+ 
+        try(FileOutputStream fos=new FileOutputStream("D:\\fichero_bin.ddr")){
+ 
+            String texto="Esto es una prueba para ficheros binariosssss";
+ 
+            //Copiamos el texto en un array de bytes
+            byte codigos[]=texto.getBytes();
+ 
+            fos.write(codigos);
+ 
+        }catch(IOException e){
+ 
+        }
+ 
+    }
+ 
+}
+
+//EJEMPLO DE INPUT LEER ARCHIVO CON CODIGO BINARIO
+
+Ahora veremos como se lee, es prácticamente igual que vimos con FileReader, usando el método read(), 
+cuando llega al final del fichero devuelve -1. Su diferencia básica es que con FileReader leemos caracteres y FileInputStream lee bytes.
+
+import java.io.*;
+public class FicherosBinariosApp {
+ 
+    public static void main(String[] args) {
+ 
+        try(FileInputStream fis=new FileInputStream("D:\\fichero_bin.ddr")){
+ 
+            int valor=fis.read();
+            while(valor!=-1){
+                System.out.print((char)valor);
+                valor=fis.read();
+            }
+ 
+        }catch(IOException e){
+ 
+        }
+ 
+    }
+ 
+}
+
+
+Veamos un ejemplo de leer un fichero binario, como una imagen. Si abres una imagen con el bloc de notas, vera que aparecen muchos caracteres raros.
+
+import java.io.*;
+public class FicherosBinariosApp {
+ 
+    public static void main(String[] args) {
+ 
+        try(FileInputStream fis=new FileInputStream("D:\\ejemplo_fich.png")){
+ 
+            int valor=fis.read();
+            while(valor!=-1){
+                System.out.print((char)valor);
+                valor=fis.read();
+            }
+ 
+        }catch(IOException e){
+ 
+        }
+ 
+    }
+ 
+}
+
+
+
+
+
+
