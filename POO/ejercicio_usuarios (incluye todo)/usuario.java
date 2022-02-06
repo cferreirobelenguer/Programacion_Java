@@ -23,6 +23,7 @@ public class usuario extends persona implements conectar, Comparable<usuario>{
 	}
 	@Override
 	void llamar() {
+		//Función que efectúa una llamada y se aumenta el contador de llamadas si el móvil estaba encendido
 		if(this.telefono==MOVIL.ENCENDIDO) {
 			System.out.println("Ha realizado una llamada");
 			this.llamadasRealizadas++;
