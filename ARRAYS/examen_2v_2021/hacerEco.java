@@ -18,12 +18,16 @@ Ejemplos
 	public static String imprimir(String cadena,int veces) {
 		String nuevo="";
 		String veces2="";
-		for(int i=0;i<veces;i++) {
+		if(cadena.length()==0) {
+			nuevo="";
+		}else {
+		for(int i=0;i<veces;i++)
+		{
 			String caracter=String.valueOf(cadena.charAt(cadena.length()-1));
 			veces2+=caracter;
 		}
 		nuevo=cadena+veces2;
-		
+		}
 		
 		return nuevo;
 	}
