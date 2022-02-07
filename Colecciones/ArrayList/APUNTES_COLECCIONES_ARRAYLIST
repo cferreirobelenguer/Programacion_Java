@@ -184,4 +184,14 @@ cada caracter a int y operar.
 String[] array=new String[lista.size()];
 lista.toArray(array);
 
+INTERCAMBIAR POSICIONES CON Collections.swap
+_____________________________________________
+
+Permite intercambiar posiciones entre dos posiciones.
+
+Collections.swap(lista,0,4);
+
+//Intercambia posiciones entre 0 y 4
+
+
 
