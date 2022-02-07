@@ -1,10 +1,11 @@
 package ejercicios_Arrays;
+import java.util.Arrays;
 /* 
  * Escribir la función int[]rellenarPares(int longitud,int fin), que crea y devuelve
  * una tabla ordenada de la longitud especificada que se encuentra rellena con números
  * pares aleatorios comprendidos en el rango desde 2 hasta fin (inclusive).
  * Al final tiene que quedar una tabla de la longitud indicada rellena toda con números
- * aleatorios comprendidos entre 2 y variable fin y que sean pares.
+ * aleatorios comprendidos entre 2 y variable fin y que sean pares. Ordenar el arreglo
  * 
  */
 import java.util.Scanner;
@@ -23,6 +24,7 @@ static Scanner sc=new Scanner(System.in);
 			}
 			
 		}while(j<lista.length);
+		Arrays.sort(lista);
 			
 		for(int i:lista) {
 			System.out.println(i);
