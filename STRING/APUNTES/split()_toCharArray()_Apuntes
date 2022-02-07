@@ -1,0 +1,61 @@
+
+SPLIT()
+_______
+
+Una cadena se puede descomponer en partes si definimos un separador. Por ejemplo podemos descomponer la frase:
+
+En un lugar de la mancha
+
+formada por seis palabras separadas por espacios, en una palabra de seis elementos de tipo String. Para ello
+utilzaremos el siguiente método:
+
+
+String[] split (String separador): devuelve las subcadenas resultantes de dividir la cadena invocante con el separador pasado como
+parámetro. Las subcadenas resultantes de la división se devuelven como una tabla de String.
+
+En nuestro ejemplo, escribiríamos:
+
+String frase: "En un lugar de la mancha"
+Strng[]palabras= frase.split(" "); separador es un espacio en blanco
+
+La tabla palabras tiene una longitud de 6 y sus elementos son: En un lugar de la mancha.
+
+Es decir:
+
+palabras=["En", "un", "lugar", "de", "la", "mancha"];
+
+
+toCharArray()
+______________
+
+El método que crea una tabla de caracteres tomando como base una cadena es:
+
+char[] toCharArray(): crea y devuelve una tabla de caracteres con el contenido de la cadena desde la que se invoca, a
+razón de un carácter en cada elemento.
+
+String frase="Hola mundo";
+char letras[];
+letras=frase.toCharArray();
+
+//La tabla resultante es;
+['H','o','l','a',' ','m','u','n','d','o'];
+
+valueOf para pasar arreglo de char a String
+___________________________________________
+El método que pasa un arreglo de caracteres a String es valueOf:
+
+String cadena;
+char c[]=['H','o','l','a'];
+cadena=String.valueOf(c) //Devuelve hola
+
+
+Obtener cadena de unas determinadas posiciones del arreglo de char
+_____________________________________________________________________
+
+Por ejemplo si queremos obtener una cadena de las posiciones comprendidas entre 2 y 4
+String cadena;
+char c[]=['a','b','c','d','e','f','g'];
+cadena=String.valueOf(c,2,4)   //cadena vale "cdef"
+
+
+
