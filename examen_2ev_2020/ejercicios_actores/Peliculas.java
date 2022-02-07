@@ -3,7 +3,7 @@
 sin cambiar el tipo de acceso de los atributos ( deben seguir siendo privados) para que el método 
 mostrarReparto funcione correctamente mostrando los nombres de los actores que estás asignados a una
  película y el texto con el papel asignado sin que se produzcan errores de compilación o de ejecución.
-*
+*/
 
 public class Peliculas
 {
