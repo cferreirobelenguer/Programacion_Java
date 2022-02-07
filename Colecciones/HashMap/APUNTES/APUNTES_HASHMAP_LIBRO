@@ -121,6 +121,15 @@ for(it=entradas.iterator();it.hashNext();){
        }
        
       
+TreeMap  
+_______
+
+Tiene una estructura de árbol que permite una inserción ordenada y una búsqueda rápida y eficiente de las entradas. Estas se insertan por orden natural
+creciente de las claves.
+
+Por ejemplo
+
+TreeMap<String, Double> tm= new TreeMap<>();
 
 
 
