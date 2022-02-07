@@ -1,0 +1,131 @@
+
+
+
+MAP
+___
+
+En un mapa se insertan entradas que constan de una clave, que no se puede repetir, y un valor asociado a ella.
+
+CREAR HASHMAP
+______________
+Map <K,V> m=new HasMap<>();
+
+Done K es el tipo de las claves y V es el de los valores.
+
+Map <String.Doube> m =new HashMap<>();
+
+INSERTAR CLAVE Y VALOR
+______________________
+V put (K clave, V valor) se le pasan como parámetros la clave y el valor asociado con ella. 
+
+m.put("Ana", 1.65);
+m.put("Marta", 1.60);
+
+Con los mapas, disponemos de la implementación toString(), de forma que podemos visualizarlos:
+System.out.println(m);
+
+Obteniendose por pantalla (Ana=1.65,Marta=2.60);
+
+MODIFICAR CLAVE VALOR
+______________________
+Para modificar valores usamos put que sobreescribe el valor sobre el antiguo:
+m.put("Ana",1.80);
+
+ELIMINAR CLAVE VALOR
+____________________
+Para eliminar un elemento:
+V.remove(Object K): elimina la entrada cuya clave es K, si exise. En este caso devuelve el valor asociado con esa clave. En caso contrario devuelve null.
+
+void clear() elimina todas las entradas dejando el mapa vacío.
+
+BUSCAR POR CLAVE
+_________________
+Para saber si una determinada clave está presente en un mapa
+
+boolean containsKey(Object K): devuelve true si hay una entrada con la clave K .
+m.containsKey("Ana"),
+
+BUSCAR POR VALOR
+_________________
+Para saber si hay alguna entrada con un valor determinado
+boolean containsValue(Object v): devuelve true si hay alguna entrada con valor v
+
+EQUALS
+______
+Los mapas se pueden comparar con el método equals(), que devuelve true si ambos tienen exactamente las mismas entradas, independientemente del orden.
+
+VISTAS COLLECTION DE LOS MAPAS
+______________________________
+
+Set KeySet()
+_____________
+Set <K> KeySet() nos devuelve una vista, con estructura Set, de las claves presentes en un mapa.
+
+Para obtener las claves del mapa :
+Set<String> claves=m.ketSet();
+System.out.println(claves);
+
+Muestra las claves del mapa
+
+También se puede obtener una vista de los valores del mapa:
+Collection<V> values() devuelve una vista Collection de los valores. Si alguna está repe también se muestra.
+
+Collection <Double> estaturas=m.values();
+System.out.println(estaturas);
+
+
+interfaz Map.Entry
+__________________
+
+Set<Map.Entry> <K,V>> entrySet(): devuelve una vista conjunto de las entradas objeto del tipo Map.Entry, de las que se puede obtener
+la clave con getKey() o el valor con getValue(). Map.Entry es una interfaz - no una clase implementada en los elementos del mapa y del
+conjunto devuelto por entrySet().
+
+Set<Map.Entry<String,Double>> entradas=m.entrySet(),
+System.out.println(entradas);
+
+Se obtiene:
+[Marta=1.60, Ana=1.65...]
+
+Se puede usar la vista de entradas para acceder a las entradas individuales y obtener la clave y el valor 
+
+K.getkKey() devuelve la clave de la entrada
+K.getValue() devuelve el valor de la entrada
+V.setValue(V,nuevoValor): asigna nuevoValor a la entrada y devuelve el valor antiguo
+
+Los mapas no son iterables, no se puede usar for-each .
+
+Ejemplo: filtramos el mapa eliminando todos aquellos alumnos con estatura mayir que 1.71, para ello iteramos sobre el conjunto
+de entradas.
+
+Set<Map.Entry<String,Double>> entradas= m.entrySet();
+
+Iterator <Map.Entry<String,Double>> it;  //Iterador de entradas
+
+for(it=entradas.iterator();it.hashNext();){
+  Map.Entry<String,Double> e =it.next();
+  
+  if(e.getValue()>1.71){
+    it.remove;
+   }
+   
+   
+   Esto mismo podríamos haberlo hecho iterando sobre la vista de los valores:
+   
+   Collection <Double> estaturas=m.values();
+   
+   for(Iterator<Double> it=estaturas.iterator();it.hasNext();){
+    Double v=it.next();
+      if(v=1.71){
+        it.remove;
+       }
+       
+      
+
+
+
+
+
+
+
+
