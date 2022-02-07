@@ -1,0 +1,50 @@
+USO DE toCharArray() y valueOf() para intercambiar posiciones de un String
+___________________________________________________________________________
+
+Para poder cambiar las posiciones de un String primero hay que pasar ese String a arreglo de char
+usando toCharArray().
+Se recorre el arreglo y se establecen dos índices con posiciones aleatorias desde el inicio del arreglo hasta el final, y un indice aux vacío.
+
+//Se crean posiciones aleatorias
+			int k=(int)(Math.random()*caracteres.length);
+			int j=(int)(Math.random()*caracteres.length);
+      
+Se intercambian los indices:
+
+char aux=caracteres[k];
+			caracteres[k]=caracteres[j];
+			caracteres[j]=aux;
+      
+Finalmente se pasa el arreglo de char con las posiciones intercambiadas a String con valueOf() en una variable String nueva;
+String nueva="";
+nueva=String.valueOf(caracteres);
+
+
+CÓDIGO:
+_______
+
+char[] caracteres=cadena.toCharArray();
+		do {
+		for(int i=0;i<caracteres.length;i++) {
+			//Se crean posiciones aleatorias
+			int k=(int)(Math.random()*caracteres.length);
+			int j=(int)(Math.random()*caracteres.length);
+			/*
+			 * Se crean posiciones aleatorias
+			 * 	System.out.println(k);
+				System.out.println(j);
+			 */
+			
+			//Se intercambian las posiciones con un char aux
+			
+			char aux=caracteres[k];
+			caracteres[k]=caracteres[j];
+			caracteres[j]=aux;
+		}
+		nueva=String.valueOf(caracteres);
+		System.out.println(nueva);
+		//Hacer este proceso mientras la palabra nueva sea igual que cadena, lo que queremos es que sea diferente
+		}while(nueva.equals(cadena));
+    
+    
+    
